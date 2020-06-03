@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://acvoyager.github.io/2020/06/02/Git-%E4%BF%AE%E6%94%B9-gitignore%E5%B9%B6%E5%BA%94%E7%94%A8/</loc>
+    
+    <lastmod>2020-06-03T20:07:49.170Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://acvoyager.github.io/2020/06/02/6-2-leetcode-check-in/</loc>
+    
+    <lastmod>2020-06-03T20:06:52.020Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://acvoyager.github.io/tags/index.html</loc>
     
     <lastmod>2020-06-03T08:01:11.601Z</lastmod>
@@ -12,20 +26,6 @@
     <loc>https://acvoyager.github.io/categories/index.html</loc>
     
     <lastmod>2020-06-03T08:01:02.140Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://acvoyager.github.io/2020/06/02/6-2-leetcode-check-in/</loc>
-    
-    <lastmod>2020-06-03T04:11:49.363Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://acvoyager.github.io/2020/06/02/Git-%E4%BF%AE%E6%94%B9-gitignore%E5%B9%B6%E5%BA%94%E7%94%A8/</loc>
-    
-    <lastmod>2020-06-03T02:00:38.791Z</lastmod>
     
   </url>
   
