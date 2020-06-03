@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>6.2 leetcode check-in</title>
+    <url>/2020/06/02/6-2-leetcode-check-in/</url>
+    <content><![CDATA[<p>今日leetcode打卡：dc, lc79, lc103(one-shot), lc121(one-shot)</p>
+<p><a href="https://leetcode.com/problems/word-search/" target="_blank" rel="noopener">lc79</a>: </p>
+<ol>
+<li>backtrack可用递归试的dfs加visited数组标记得以实现。</li>
+<li>复杂度注意一下，$O(N*4^L)$, N is the number of cells in the board, L is the length of the word to be matched and “4” is because there are four directions.</li>
+</ol>
+<p><a href="https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/" target="_blank" rel="noopener">lc103</a>:</p>
+<p>思路：BFS+手动赋rank</p>
+<ol>
+<li><p>Java如何reverse一个arraylist？</p>
+<pre><code>Collections.reverse(myarraylist);</code></pre></li>
+<li><p>Queue的操作</p>
+<pre><code>Queue&lt;E&gt; q = new LinkedList&lt;&gt;();
+q.offer(); // add
+q.poll(); // remove</code></pre></li>
+</ol>
+]]></content>
+      <categories>
+        <category>中文</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Begin of the summer</title>
+    <url>/2020/06/01/Begin-of-the-summer/</url>
+    <content><![CDATA[<p>于我而言，夏天是从六月开始。这边的学校喜欢把暑期学期称之为summer session. 虽然学校的academic calendar上summer session开始的时间并不是6.1，不过嘛，whatever.对我来讲，今天不仅是6.1，也是一个周一，更是上个学期杂七杂八一堆事儿的结束。所以，本篇名为夏之初，begin of the summer.</p>
+<p>如果说19fall学期是起初焦虑担忧，到最后斗志昂扬的一个,看似顺利的转变，那么20spr学期便五味杂陈的多。这几个月碰上了新冠病毒，经济崩盘，留学生签证入境受限和最近的美国暴动，一切的一切都好像预示着什么，“山雨欲来风满楼”。而我个人的生活也因各种大小事儿变得碎片化，脑子里面充斥的东西也不像之前纯粹而勇敢。但是总体来讲个人意志还算坚强，所以撑过了这学期，保住了成绩，办完了各种手续，转租了房子，搬了家。</p>
+<p>生活方面的事儿就聊到这里吧。今天开始有计划的刷题。那么每天都会大致记录一下刷了什么题，再刷题过程学到了什么。</p>
+<p>今天刷了两道：</p>
+<ol>
+<li><a href="https://leetcode.com/explore/challenge/card/june-leetcoding-challenge/539/week-1-june-1st-june-7th/3347/" target="_blank" rel="noopener">Invert Binary Tree</a></li>
+<li><a href="https://leetcode.com/problems/number-of-islands/" target="_blank" rel="noopener">lc200:Number of Islands</a></li>
+</ol>
+<p>第一道题没什么好说的，简单的递归。</p>
+<p>第二道题，我用两种方法做：BFS和DSU(Disjoint Set Union). </p>
+<ul>
+<li>Java的List可以用来存放一些，用python的眼光来看，tuple。实属好用。</li>
+<li>如果做题的时候需要自定义一些数据结构，可以用类中类的方式来解决。需要注意的是，对于一个类中的成员内部类，变量名等若与外部类相同会出现隐藏外部的情况。如果想访问外部类中属性或方法的时候，使用外部类.this.Bluhbluh…拓展阅读：<a href="https://blog.csdn.net/u010126792/java/article/details/82840563" target="_blank" rel="noopener">java内部类为什么可以访问外部类属性方法</a></li>
+<li>DSU的union方法中，切记Union的是root们，不慎写错的话bug不好找。</li>
+</ul>
+<p>目前看来就是这样了，祝自己，祝大家，夏天快乐。</p>
+]]></content>
+      <categories>
+        <category>中文</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>life</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>My first blog</title>
+    <url>/2020/05/19/My-first-blog/</url>
+    <content><![CDATA[<p>第一篇blog，就来记录下搭建时遇到的一些问题和解决方案。</p>
+<p>本博客时基于hexo搭建，使用next主题。一开始hexo自带的landscape主题文件夹中，readme.md的第77行会导致GitHub page无法成功build，建议直接删掉哪一行。</p>
+<p>本人follow知乎用户@吴润的<a href="https://zhuanlan.zhihu.com/p/26625249" target="_blank" rel="noopener">hexo搭建指南</a>。非常感谢这位大佬的分享。他的文章中提到了插件hexo-deployer-git的使用。本人测试发现用了这个插件后，完全不需要自己管理博客的版本，hexo -d会自动部署。</p>
+<p>还发现了一个问题是，我将next的_config.yml中的darkmode选项改为true，在本地测试时成功进入暗色模式，但是在远端并未成功。原因尚且不知，推测是github page的渲染问题。</p>
+<p>未完待续…</p>
+]]></content>
+      <categories>
+        <category>中文</category>
+      </categories>
+      <tags>
+        <tag>blog</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git: 修改.gitignore并应用</title>
+    <url>/2020/06/02/Git-%E4%BF%AE%E6%94%B9-gitignore%E5%B9%B6%E5%BA%94%E7%94%A8/</url>
+    <content><![CDATA[<ol>
+<li>git rm -r –cached file_name/dir</li>
+<li>修改.gitignore</li>
+<li><pre><code>git add .
+git commit</code></pre></li>
+</ol>
+]]></content>
+      <categories>
+        <category>中文</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+</search>
