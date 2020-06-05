@@ -89,4 +89,25 @@
         <tag>git</tag>
       </tags>
   </entry>
+  <entry>
+    <title>6.4 leetcode check-in</title>
+    <url>/2020/06/04/6-4-leetcode-check-in/</url>
+    <content><![CDATA[<p>今天是6月4日。昨天6.3办了一天手续，只做了dc。</p>
+<p>今日leetcode打卡：dc(one-shot), lc692(one-shot), lc127(<em>reserved</em>), lc138(one-shot), </p>
+<p><a href="https://leetcode.com/problems/top-k-frequent-words/" target="_blank" rel="noopener">lc692</a>:</p>
+<p>学到了comparator的用法。具体可参加<a href="https://github.com/AcVoyager/MyLeetCode/blob/dc43489cd64748b96a1a7ebbf7ce49606effcc7a/problems/Amazon/692.%20Top%20K%20Frequent%20Words/code.java#L9-L20" target="_blank" rel="noopener">本人代码</a>。</p>
+<p><a href="https://leetcode.com/problems/word-ladder/" target="_blank" rel="noopener">lc127</a></p>
+<p>说是medium，其实有点hard…有空的话此题要复习一下</p>
+<p><a href="https://leetcode.com/problems/copy-list-with-random-pointer/" target="_blank" rel="noopener">lc138</a></p>
+<p>Hashmap解决所有问题</p>
+<p>今天突然又想起了杭州。出国在外，一人生活久了，渐渐地也就没有什么留恋的人和事儿了。唯一一个，一直一直放不下的，是那座承载童年梦想和四年青春的杭城。</p>
+<p><img src="6-4-leetcode-check-in/hz.jpeg" alt=""><br><em>摄于2020年1月5日中午，苏堤，杭州</em></p>
+]]></content>
+      <categories>
+        <category>中文</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
 </search>
