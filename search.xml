@@ -110,4 +110,36 @@
         <tag>leetcode</tag>
       </tags>
   </entry>
+  <entry>
+    <title>6.7 leetcode check-in</title>
+    <url>/2020/06/07/6-7-leetcode-check-in/</url>
+    <content><![CDATA[<p>今日leetcode打卡：</p>
+<p>dc: lc518. Coin Change 2</p>
+<p>这道题很经典，我记得我大一下学“C大程”时的第一个project就是这个题。当时用C语言写的，在图书馆干了快一下午硬是没想出自己的答案，不得已上网需求CSDN等大佬的帮助。如今倒是不到一个小时几乎一遍过了（第二次ac，第一次没ac是因为edge case，amount为0时应该算一种），也算是有所进步吧，，，什么时候能15分钟内写出来就牛逼了。</p>
+<p>不过我的算法看起来效率不太高，我用的是递归，结果如下：</p>
+<p>Runtime: 950 ms, faster than 5.04% of Java online submissions for Coin Change 2.</p>
+<p>Memory Usage: 57.8 MB, less than 5.03% of Java online submissions for Coin Change 2.</p>
+<p>我已经用字典存取访问过的路径来加速了，还是不够快。</p>
+<p>leetcode上给出的<a href="https://leetcode.com/problems/coin-change-2/solution/" target="_blank" rel="noopener">solution</a>是用dp来做的，结果确实快，faster than 100%, space lesser than 86%.</p>
+<p>这个算法是用dp，将coin作为外循环，amount从0到目标作为外循环。确实很厉害，我也没想到。还需加油。</p>
+]]></content>
+      <categories>
+        <category>中文</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>6.5 leetcode check-in</title>
+    <url>/2020/06/05/6-5-leetcode-check-in/</url>
+    <content><![CDATA[<p>今日leetcode打卡：daily challenge</p>
+]]></content>
+      <categories>
+        <category>中文</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
 </search>
