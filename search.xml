@@ -142,4 +142,18 @@
         <tag>leetcode</tag>
       </tags>
   </entry>
+  <entry>
+    <title>6.9 leetcode check-in</title>
+    <url>/2020/06/09/6-9-leetcode-check-in/</url>
+    <content><![CDATA[<p>今日leetcode打卡：daily challenge(one-shot)</p>
+<p>这道题本身不难，不过follow up有点意思，值得一看。</p>
+<p>follow-up的一个解释贴在<a href="https://leetcode.com/explore/challenge/card/june-leetcoding-challenge/540/week-2-june-8th-june-14th/3355/discuss/87268/Java-code-for-the-follow-up-question" target="_blank" rel="noopener">这里</a>，使用的是hashmap和二分查找。</p>
+]]></content>
+      <categories>
+        <category>中文</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
 </search>
