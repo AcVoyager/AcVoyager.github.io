@@ -208,4 +208,25 @@
         <tag>life</tag>
       </tags>
   </entry>
+  <entry>
+    <title>六月末夜谈</title>
+    <url>/2020/06/29/%E5%85%AD%E6%9C%88%E6%9C%AB%E5%A4%9C%E8%B0%88/</url>
+    <content><![CDATA[<p>今日做了leetcode的Reconstruct Itinerary，自认为对于backtrack+递归套件的使用已渐渐熟练。</p>
+<p>使用linkedlist时要注意，pop和poll方法都是removefirst的。换言之，如果你不用stack而是用linkedlist来模拟stack的pop功能的话，别用pop，用removeLast。</p>
+<p>从时间上看已经是6月29日，六月之末，新的一周的开始。</p>
+<p>重新打开了苏东坡传。这段时间颇为思考了一些关于偏见和认知的问题。也许真理，只有能横跨时间，空间和种群的高维生物才能分辨，而我们人类只能尽量地接近最优解。</p>
+<p>即便如此，人还要有信仰。绝对的对错也许无法分清，但是相对的对错，优劣，利弊是可以分清的。利益，立场是可以划分的。只求不愧于心这话很有道理，我们无法改变别人，也无法发现纯粹的对错，但是我们可以不背叛自己，追求自己所认为更正确的东西。</p>
+<p>我认为是时候坚定这样的想法了。坚定不同于固执，当我听到或者观察到更有建设性，更有智慧的观点时，我会尝试吸纳和接受。</p>
+<p>还是想的太多，做的不够多，读的太少。</p>
+<p>千里之行，始于足下。有则改之，无则加勉。</p>
+<p>加油。</p>
+]]></content>
+      <categories>
+        <category>中文</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>life</tag>
+      </tags>
+  </entry>
 </search>
