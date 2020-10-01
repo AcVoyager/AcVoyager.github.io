@@ -170,45 +170,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Once lost</title>
-    <url>/2020/06/18/Once-lost/</url>
-    <content><![CDATA[<p>再一次地，从平衡游戏/娱乐和生活中失败了。我想也许我可能确实无法平衡好这两点。</p>
-<p>记得2019年的暑假，因为焦虑和其他心里原因，我投入了游戏的怀抱来寻找安慰。可是所有的焦虑和心里感受都需要意志去克服，逃避是不能克服的。</p>
-<p>游戏于我而言，纯粹的艺术上的乐趣已经越来越少。而赌博性与竞技性错中复杂的特点又显得让人挣脱不开。想了想自己是多么的愚蠢，被游戏的开发者拿捏到弱点，操控与鼓掌之中。生活本就是一场最难的竞技，想去拼搏，为什么不在真实的世界之中？</p>
-<p>也许自己的进步也就在于能更快地意识到这一点吧。</p>
-<p>steam已卸载，twitch已卸载，战网已卸载。这个世界更大，这个世界更为真实，我选择现实。</p>
-<p>再会，or，再也不见。</p>
-]]></content>
-      <categories>
-        <category>中文</category>
-      </categories>
-      <tags>
-        <tag>life</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>First day of recovery</title>
-    <url>/2020/06/24/First-day-of-recovery/</url>
-    <content><![CDATA[<p>前两天leetcode都没有打卡，今天续上。</p>
-<p>今天不仅leetcode刷了题，也上了即将开始的cs5200的预修部分，与即将开始的暑期实习的hiring leader进行联络。</p>
-<p>不过最重要的，还是经过这么多天，将这段日子以来所有的负面情绪击败了。决心和力量重新灌注入我的身体。</p>
-<p>终于领会到哈利波特中，邓校的说法，”The choice matters.” 每个人都是一个集合体，融合了善良，邪恶，强大，软弱，固执，谦虚，勤奋，懒惰等等品质。那么背负这些负面的品质，抑或是在某些特定条件下表现出负面的品质，也无可厚非。关键是，我们选择正面，还是负面。</p>
-<p><strong>我愿追逐力量，心向善良。</strong></p>
-<p>我是意志的主人，任何无建设性、无意义而又刻薄的蠢话或想法，和说这些话、表达这些看法的人，就好比路上的臭虫，一脚踩死，虽然可能会有些味道残留，但我有权利选择无视。随着我一步步向前走，这些东西便会烂在泥土里，被无情地遗忘。</p>
-<p>人不可有傲气，但必须有傲骨。我选择光明，便对黑暗表示蔑视。</p>
-<p>趋利避害不是软弱的行为，逃避自己的责任才是懦夫。</p>
-<p>I get healed; I am stronger.</p>
-<p>我愿追逐力量，心向善良。</p>
-<p><img src="dumbledore-choices-abilities.jpg" alt=""></p>
-]]></content>
-      <categories>
-        <category>中文</category>
-      </categories>
-      <tags>
-        <tag>life</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>六月末夜谈</title>
     <url>/2020/06/29/%E5%85%AD%E6%9C%88%E6%9C%AB%E5%A4%9C%E8%B0%88/</url>
     <content><![CDATA[<p>今日做了leetcode的Reconstruct Itinerary，自认为对于backtrack+递归套件的使用已渐渐熟练。</p>
@@ -249,5 +210,131 @@
       <categories>
         <category>English</category>
       </categories>
+  </entry>
+  <entry>
+    <title>Leetcode刷题积累(持续updating...)</title>
+    <url>/2020/10/01/Leetcode%E5%88%B7%E9%A2%98%E7%A7%AF%E7%B4%AF/</url>
+    <content><![CDATA[<h2 id="Ask-search-and-learn"><a href="#Ask-search-and-learn" class="headerlink" title="Ask, search and learn."></a>Ask, search and learn.</h2><h2 id="Java-for-each-char-in-string"><a href="#Java-for-each-char-in-string" class="headerlink" title="Java for each char in string?"></a>Java for each char in string?</h2><ol>
+<li>for (char ch: “xyz”.toCharArray() { }; //<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/String.html#toCharArray%28%29" target="_blank" rel="noopener">toCharArray()</a></li>
+<li>for (int i = 0; i &lt; s.length(); i++&gt;) and s.charAt(i)</li>
+</ol>
+<h2 id="Java-for-each-list"><a href="#Java-for-each-list" class="headerlink" title="Java for each list?"></a>Java for each list?</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;String&gt; l = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">for</span>(String str: l)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Java-if-element-in-set"><a href="#Java-if-element-in-set" class="headerlink" title="Java if element in set?"></a>Java if element in set?</h2><p>Set. contains() method is used to check whether a specific element is present in the Set or not. So basically it is used to check if a Set contains any particular element.</p>
+<p><a href="https://www.geeksforgeeks.org/set-contains-method-in-java-with-examples/#:~:text=Set.,Set%20contains%20any%20particular%20element." target="_blank" rel="noopener">Set contains() method in Java with Examples</a></p>
+<h2 id="Java-create-an-ArrayList-literal"><a href="#Java-create-an-ArrayList-literal" class="headerlink" title="Java create an ArrayList literal"></a>Java create an ArrayList literal</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Arrays.asList(<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Java-create-an-array-literal"><a href="#Java-create-an-array-literal" class="headerlink" title="Java create an array literal"></a>Java create an array literal</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span>[] intArray = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="Java-initialize-a-hashset"><a href="#Java-initialize-a-hashset" class="headerlink" title="Java initialize a hashset"></a>Java initialize a hashset</h2><p><a href="https://www.baeldung.com/java-initialize-hashset" target="_blank" rel="noopener">https://www.baeldung.com/java-initialize-hashset</a></p>
+<p>One common way:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Set s = <span class="keyword">new</span> HashSet&lt;&gt;(Arrays.asList(<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>));</span><br></pre></td></tr></table></figure>
+
+<h2 id="Binary-search-in-Java"><a href="#Binary-search-in-Java" class="headerlink" title="Binary search in Java"></a>Binary search in Java</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Recursive</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (r &gt;= l) &#123; </span><br><span class="line">        <span class="keyword">int</span> mid = l + (r - l) / <span class="number">2</span>; </span><br><span class="line">        <span class="keyword">if</span> (arr[mid] == x) </span><br><span class="line">            <span class="keyword">return</span> mid; </span><br><span class="line">        <span class="keyword">if</span> (arr[mid] &gt; x) </span><br><span class="line">            <span class="keyword">return</span> binarySearch(arr, l, mid - <span class="number">1</span>, x); </span><br><span class="line">        <span class="keyword">return</span> binarySearch(arr, mid + <span class="number">1</span>, r, x); </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Iterative</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> x)</span> </span>&#123; </span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = arr.length - <span class="number">1</span>; </span><br><span class="line">    <span class="keyword">while</span> (l &lt;= r) &#123; </span><br><span class="line">        <span class="keyword">int</span> m = l + (r - l) / <span class="number">2</span>; </span><br><span class="line">        <span class="keyword">if</span> (arr[m] == x) </span><br><span class="line">            <span class="keyword">return</span> m; </span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (arr[m] &lt; x) </span><br><span class="line">            l = m + <span class="number">1</span>; </span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            r = m - <span class="number">1</span>; </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="When-the-binary-search-fails-to-find-the-value-what-is-the-position-of-start-and-end"><a href="#When-the-binary-search-fails-to-find-the-value-what-is-the-position-of-start-and-end" class="headerlink" title="When the binary search fails to find the value, what is the position of start and end?"></a>When the binary search fails to find the value, what is the position of start and end?</h2><ol>
+<li>Before breaking the loop, the start and end must be at the same index.</li>
+<li>When breaking the loop, start = end + 1.</li>
+</ol>
+<h2 id="Java-list-to-array-array-to-list"><a href="#Java-list-to-array-array-to-list" class="headerlink" title="Java list to array(array to list)"></a>Java list to array(array to list)</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ArrayList.toArray() <span class="comment">// list -&gt; array</span></span><br></pre></td></tr></table></figure>
+
+<p>As for Array -&gt; List, use <code>Arrays.asList()</code>. But do remember, this method does not handle boxing! So if you want to convert a <code>int[]</code>, be sure to transform to <code>Integer[]</code> first or don’t use this method.</p>
+<p>Reference: for <code>int[]</code> there is <a href="https://stackoverflow.com/a/1073933/9045814" target="_blank" rel="noopener">no shortcut</a>.</p>
+<h2 id="Java-add-a-list-to-another-list"><a href="#Java-add-a-list-to-another-list" class="headerlink" title="Java add a list to another list"></a>Java add a list to another list</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">list1.addAll(list2);</span><br></pre></td></tr></table></figure>
+
+<h2 id="How-to-compare-two-arrays-or-strings"><a href="#How-to-compare-two-arrays-or-strings" class="headerlink" title="How to compare two arrays or strings?"></a>How to compare two arrays or strings?</h2><p>Array: java.util.Arrays.equals(a1, a2)</p>
+<p>String; str.equals()</p>
+<h2 id="How-to-sort-a-int-array-with-int-0-as-index"><a href="#How-to-sort-a-int-array-with-int-0-as-index" class="headerlink" title="How to sort a int[][] array with int[][0] as index?"></a>How to sort a int[][] array with int[][0] as index?</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">class MyComparator implements Comparator&lt;int[]&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span>[] b)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> a[<span class="number">0</span>] &lt; b[<span class="number">0</span>] ? -<span class="number">1</span> : a[<span class="number">0</span>] == b[<span class="number">0</span>] ? <span class="number">0</span> : <span class="number">1</span>; <span class="comment">// ascending</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Collections.sort(Arrays.asList(myArray), <span class="keyword">new</span> MyComparator());</span><br></pre></td></tr></table></figure>
+
+<h2 id="Java-remove-all-whitespaces-in-String"><a href="#Java-remove-all-whitespaces-in-String" class="headerlink" title="Java remove all whitespaces in String"></a>Java remove all whitespaces in String</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">replaceAll(<span class="string">"\\s"</span>,<span class="string">""</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Reference: <a href="https://stackoverflow.com/a/5455828/9045814" target="_blank" rel="noopener">https://stackoverflow.com/a/5455828/9045814</a></p>
+<h2 id="Can-we-use-array-or-List-as-key-of-hashset-map"><a href="#Can-we-use-array-or-List-as-key-of-hashset-map" class="headerlink" title="Can we use array or List as key of hashset/map?"></a>Can we use array or List as key of hashset/map?</h2><p><strong>Conclusion</strong>: List? Yes, but not good; Array? NO.</p>
+<p>List: <a href="https://stackoverflow.com/questions/9973596/arraylist-as-key-in-hashmap" target="_blank" rel="noopener">ArrayList as key in HashMap</a></p>
+<p>Array: <a href="https://stackoverflow.com/a/7488144/9045814" target="_blank" rel="noopener">Storing arrays in Set and avoiding duplicates</a></p>
+<p>Also, after I did some <a href="playground/Test1.java">experiments about primitive types and String</a> and <a href="playground/Test2.java">experiments about array</a>: </p>
+<ul>
+<li><p>After I put a list(with Integer as the element type) to the hashset, it will take the content of the list into consideration. However, when you change the elements of the list, the set DOESN’T change accordingly.</p>
+</li>
+<li><p>After I changed the element type of the list from Integer to String, the result is the same.</p>
+</li>
+<li><p>After I changed the element type of the list from Integer to int[], guess what? The set and list will only consider the reference to the int[] as such:<br>  [[[I@6e2c9341], [[I@46238e3f]]]</p>
+</li>
+<li><p>After I changed the element type of the list from Integer to int[], guess what? The set will only consider the reference to the int[].</p>
+</li>
+</ul>
+<p>Summary:</p>
+<table>
+<thead>
+<tr>
+<th>Element Type in Set</th>
+<th>When adding</th>
+<th>When modifying elements only</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>List<Integer></td>
+<td>compare inner value of elements</td>
+<td>set does not change accordingly</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>List<String></td>
+<td>compare inner value of elements</td>
+<td>set does not change accordingly</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>List&lt;int[]&gt;</td>
+<td>compare references of elements</td>
+<td>set does not change accordingly</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>int[]</td>
+<td>compare references</td>
+<td>set does not change accordingly</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="How-to-customize-Java-class-in-order-to-be-used-in-PriorityQueue"><a href="#How-to-customize-Java-class-in-order-to-be-used-in-PriorityQueue" class="headerlink" title="How to customize Java class in order to be used in PriorityQueue ?"></a>How to customize Java class in order to be used in <code>PriorityQueue</code> ?</h2><ol>
+<li>Implements <code>Comparable&lt;T&gt;</code></li>
+<li>Override the method <code>public int compareTo(T t)</code></li>
+</ol>
+<p><a href="https://howtodoinjava.com/java/collections/java-priorityqueue/#:~:text=Java%20PriorityQueue%20class%20is%20a,are%20according%20to%20their%20priority." target="_blank" rel="noopener">reference</a></p>
+<h2 id="How-to-use-Java-Pair"><a href="#How-to-use-Java-Pair" class="headerlink" title="How to use Java Pair ?"></a>How to use Java <code>Pair</code> ?</h2><p>#TODO</p>
+<h2 id="Java-visibility"><a href="#Java-visibility" class="headerlink" title="Java visibility"></a>Java visibility</h2><p><img src="res/visibility.png" alt=""></p>
+]]></content>
+      <categories>
+        <category>中文</category>
+        <category>English</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>十月初夜谈</title>
+    <url>/2020/10/01/%E5%8D%81%E6%9C%88%E5%88%9D%E5%A4%9C%E8%B0%88/</url>
+    <content><![CDATA[<p>总结刚刚过去的九月：</p>
+<ul>
+<li>刷题量上100+，参加三次leetcode contest</li>
+<li>适应在西雅图的新生活，适应新学校。</li>
+<li>作出下一步的职业规划</li>
+</ul>
+<p>多说无益，既有决心，便请前行。</p>
+<p>晚安。</p>
+]]></content>
+      <categories>
+        <category>中文</category>
+      </categories>
+      <tags>
+        <tag>life</tag>
+      </tags>
   </entry>
 </search>
