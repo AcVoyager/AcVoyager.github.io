@@ -212,7 +212,7 @@
       </categories>
   </entry>
   <entry>
-    <title>Leetcode刷题积累(持续updating...)</title>
+    <title>Leetcode刷题积累</title>
     <url>/2020/10/01/Leetcode%E5%88%B7%E9%A2%98%E7%A7%AF%E7%B4%AF/</url>
     <content><![CDATA[<h2 id="Ask-search-and-learn"><a href="#Ask-search-and-learn" class="headerlink" title="Ask, search and learn."></a>Ask, search and learn.</h2><h2 id="Java-for-each-char-in-string"><a href="#Java-for-each-char-in-string" class="headerlink" title="Java for each char in string?"></a>Java for each char in string?</h2><ol>
 <li>for (char ch: “xyz”.toCharArray() { }; //<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/String.html#toCharArray%28%29" target="_blank" rel="noopener">toCharArray()</a></li>
@@ -243,8 +243,10 @@
 
 <h2 id="How-to-compare-two-arrays-or-strings"><a href="#How-to-compare-two-arrays-or-strings" class="headerlink" title="How to compare two arrays or strings?"></a>How to compare two arrays or strings?</h2><p>Array: java.util.Arrays.equals(a1, a2)</p>
 <p>String; str.equals()</p>
-<h2 id="How-to-sort-a-int-array-with-int-0-as-index"><a href="#How-to-sort-a-int-array-with-int-0-as-index" class="headerlink" title="How to sort a int[][] array with int[][0] as index?"></a>How to sort a int[][] array with int[][0] as index?</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">class MyComparator implements Comparator&lt;int[]&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span>[] b)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> a[<span class="number">0</span>] &lt; b[<span class="number">0</span>] ? -<span class="number">1</span> : a[<span class="number">0</span>] == b[<span class="number">0</span>] ? <span class="number">0</span> : <span class="number">1</span>; <span class="comment">// ascending</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Collections.sort(Arrays.asList(myArray), <span class="keyword">new</span> MyComparator());</span><br></pre></td></tr></table></figure>
+<h2 id="How-to-sort-a-int-array-with-int-0-as-index"><a href="#How-to-sort-a-int-array-with-int-0-as-index" class="headerlink" title="How to sort a int[][] array with int[][0] as index?"></a>How to sort a int[][] array with int[][0] as index?</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">class MyComparator implements Comparator&lt;int[]&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span>[] b)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> a[<span class="number">0</span>] &lt; b[<span class="number">0</span>] ? -<span class="number">1</span> : a[<span class="number">0</span>] == b[<span class="number">0</span>] ? <span class="number">0</span> : <span class="number">1</span>; <span class="comment">// ascending</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h2 id="Sort-a-collection-or-array"><a href="#Sort-a-collection-or-array" class="headerlink" title="Sort a collection or array"></a>Sort a collection or array</h2><p>Collection: Collections.(Arrays.asList(myArray), new MyComparator());</p>
+<p>Array: Arrays.sort();</p>
 <h2 id="Java-remove-all-whitespaces-in-String"><a href="#Java-remove-all-whitespaces-in-String" class="headerlink" title="Java remove all whitespaces in String"></a>Java remove all whitespaces in String</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">replaceAll(<span class="string">"\\s"</span>,<span class="string">""</span>)</span><br></pre></td></tr></table></figure>
 
 <p>Reference: <a href="https://stackoverflow.com/a/5455828/9045814" target="_blank" rel="noopener">https://stackoverflow.com/a/5455828/9045814</a></p>
@@ -307,16 +309,12 @@
 <li>Override the method <code>public int compareTo(T t)</code></li>
 </ol>
 <p><a href="https://howtodoinjava.com/java/collections/java-priorityqueue/#:~:text=Java%20PriorityQueue%20class%20is%20a,are%20according%20to%20their%20priority." target="_blank" rel="noopener">reference</a></p>
-<h2 id="How-to-use-Java-Pair"><a href="#How-to-use-Java-Pair" class="headerlink" title="How to use Java Pair ?"></a>How to use Java <code>Pair</code> ?</h2><p>#TODO</p>
-<h2 id="Java-visibility"><a href="#Java-visibility" class="headerlink" title="Java visibility"></a>Java visibility</h2><p><img src="res/visibility.png" alt=""></p>
-]]></content>
-      <categories>
-        <category>中文</category>
-        <category>English</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
-      </tags>
+<h2 id="Java-visibility-Explanation"><a href="#Java-visibility-Explanation" class="headerlink" title="Java visibility Explanation"></a>Java visibility Explanation</h2><p><img src="res/visibility.png" alt=""></p>
+<h2 id="How-to-test-if-a-double-is-an-integer"><a href="#How-to-test-if-a-double-is-an-integer" class="headerlink" title="How to test if a double is an integer?"></a>How to test if a double is an integer?</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(i % <span class="number">1</span> == <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Compare-two-strings"><a href="#Compare-two-strings" class="headerlink" title="Compare two strings"></a>Compare two strings</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">str1.compareTo(str2); <span class="comment">// return a integer</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="How-to-use-Java-Pair-TODO"><a href="#How-to-use-Java-Pair-TODO" class="headerlink" title="How to use Java Pair ? #TODO"></a>How to use Java <code>Pair</code> ? #TODO</h2>]]></content>
   </entry>
   <entry>
     <title>十月初夜谈</title>
@@ -335,6 +333,21 @@
       </categories>
       <tags>
         <tag>life</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Oct 1st check-in</title>
+    <url>/2020/10/01/Oct-1st-check-in/</url>
+    <content><![CDATA[<p><a href="https://leetcode.com/problems/sliding-window-maximum/" target="_blank" rel="noopener">239. Sliding Window Maximum</a></p>
+<p><a href="https://www.geeksforgeeks.org/arraydeque-in-java/" target="_blank" rel="noopener">ArrayDeque</a></p>
+<p><a href="https://leetcode.com/problems/consecutive-numbers-sum/" target="_blank" rel="noopener">829. Consecutive Numbers Sum</a></p>
+<p><a href="https://www.geeksforgeeks.org/prefix-postfix-conversion/" target="_blank" rel="noopener">Prefix to Postfix Conversion</a></p>
+]]></content>
+      <categories>
+        <category>English</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
       </tags>
   </entry>
 </search>
