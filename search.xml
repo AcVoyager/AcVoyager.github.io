@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>6.2 leetcode check-in</title>
-    <url>/2020/06/02/6-2-leetcode-check-in/</url>
-    <content><![CDATA[<p>今日leetcode打卡：dc, lc79, lc103(one-shot), lc121(one-shot)</p>
-<p><a href="https://leetcode.com/problems/word-search/" target="_blank" rel="noopener">lc79</a>: </p>
-<ol>
-<li>backtrack可用递归试的dfs加visited数组标记得以实现。</li>
-<li>复杂度注意一下，$O(N*4^L)$, N is the number of cells in the board, L is the length of the word to be matched and “4” is because there are four directions.</li>
-</ol>
-<p><a href="https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/" target="_blank" rel="noopener">lc103</a>:</p>
-<p>思路：BFS+手动赋rank</p>
-<ol>
-<li>Java如何reverse一个arraylist？<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Collections.reverse(myarraylist);</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ol>
-<ol start="2">
-<li>Queue的操作<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Queue&lt;E&gt; q = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">q.offer(); <span class="comment">// add</span></span><br><span class="line">q.poll(); <span class="comment">// remove</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
+    <title>6.4 leetcode check-in</title>
+    <url>/2020/06/04/6-4-leetcode-check-in/</url>
+    <content><![CDATA[<p>今天是6月4日。昨天6.3办了一天手续，只做了dc。</p>
+<p>今日leetcode打卡：dc(one-shot), lc692(one-shot), lc127(<em>reserved</em>), lc138(one-shot), </p>
+<p><a href="https://leetcode.com/problems/top-k-frequent-words/" target="_blank" rel="noopener">lc692</a>:</p>
+<p>学到了comparator的用法。具体可参加<a href="https://github.com/AcVoyager/MyLeetCode/blob/dc43489cd64748b96a1a7ebbf7ce49606effcc7a/problems/Amazon/692.%20Top%20K%20Frequent%20Words/code.java#L9-L20" target="_blank" rel="noopener">本人代码</a>。</p>
+<p><a href="https://leetcode.com/problems/word-ladder/" target="_blank" rel="noopener">lc127</a></p>
+<p>说是medium，其实有点hard…有空的话此题要复习一下</p>
+<p><a href="https://leetcode.com/problems/copy-list-with-random-pointer/" target="_blank" rel="noopener">lc138</a></p>
+<p>Hashmap解决所有问题</p>
+<p>今天突然又想起了杭州。出国在外，一人生活久了，渐渐地也就没有什么留恋的人和事儿了。唯一一个，一直一直放不下的，是那座承载童年梦想和四年青春的杭城。</p>
+<p><img src="hz.jpeg" alt=""><br><em>摄于2020年1月5日中午，苏堤，杭州</em></p>
+]]></content>
+      <categories>
+        <category>中文</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>6.10 leetcode check-in</title>
+    <url>/2020/06/10/6-10-leetcode-check-in/</url>
+    <content><![CDATA[<p>今日leetcode打卡：daily challenge(one-shot)</p>
+<p>今天的daily challenge就是标准的二分查找。</p>
 ]]></content>
       <categories>
         <category>中文</category>
@@ -58,50 +63,52 @@
       </tags>
   </entry>
   <entry>
-    <title>My first blog</title>
-    <url>/2020/05/19/My-first-blog/</url>
-    <content><![CDATA[<p>第一篇blog，就来记录下搭建时遇到的一些问题和解决方案。</p>
-<p>本博客时基于hexo搭建，使用next主题。一开始hexo自带的landscape主题文件夹中，readme.md的第77行会导致GitHub page无法成功build，建议直接删掉哪一行。</p>
-<p>本人follow知乎用户@吴润的<a href="https://zhuanlan.zhihu.com/p/26625249" target="_blank" rel="noopener">hexo搭建指南</a>。非常感谢这位大佬的分享。他的文章中提到了插件hexo-deployer-git的使用。本人测试发现用了这个插件后，完全不需要自己管理博客的版本，hexo -d会自动部署。</p>
-<p>还发现了一个问题是，我将next的_config.yml中的darkmode选项改为true，在本地测试时成功进入暗色模式，但是在远端并未成功。原因尚且不知，推测是github page的渲染问题。</p>
-<p>未完待续…</p>
+    <title>6.5 leetcode check-in</title>
+    <url>/2020/06/05/6-5-leetcode-check-in/</url>
+    <content><![CDATA[<p>今日leetcode打卡：daily challenge</p>
 ]]></content>
       <categories>
         <category>中文</category>
       </categories>
       <tags>
-        <tag>blog</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
-    <title>Git: 修改.gitignore并应用</title>
-    <url>/2020/06/02/Git-%E4%BF%AE%E6%94%B9-gitignore%E5%B9%B6%E5%BA%94%E7%94%A8/</url>
-    <content><![CDATA[<ol>
-<li>git rm -r –cached file_name/dir</li>
-<li>修改.gitignore</li>
-<li><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit</span><br></pre></td></tr></table></figure></li>
+    <title>6.2 leetcode check-in</title>
+    <url>/2020/06/02/6-2-leetcode-check-in/</url>
+    <content><![CDATA[<p>今日leetcode打卡：dc, lc79, lc103(one-shot), lc121(one-shot)</p>
+<p><a href="https://leetcode.com/problems/word-search/" target="_blank" rel="noopener">lc79</a>: </p>
+<ol>
+<li>backtrack可用递归试的dfs加visited数组标记得以实现。</li>
+<li>复杂度注意一下，$O(N*4^L)$, N is the number of cells in the board, L is the length of the word to be matched and “4” is because there are four directions.</li>
+</ol>
+<p><a href="https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/" target="_blank" rel="noopener">lc103</a>:</p>
+<p>思路：BFS+手动赋rank</p>
+<ol>
+<li>Java如何reverse一个arraylist？<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Collections.reverse(myarraylist);</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<ol start="2">
+<li>Queue的操作<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Queue&lt;E&gt; q = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">q.offer(); <span class="comment">// add</span></span><br><span class="line">q.poll(); <span class="comment">// remove</span></span><br></pre></td></tr></table></figure>
+</li>
 </ol>
 ]]></content>
       <categories>
         <category>中文</category>
       </categories>
       <tags>
-        <tag>git</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
-    <title>6.4 leetcode check-in</title>
-    <url>/2020/06/04/6-4-leetcode-check-in/</url>
-    <content><![CDATA[<p>今天是6月4日。昨天6.3办了一天手续，只做了dc。</p>
-<p>今日leetcode打卡：dc(one-shot), lc692(one-shot), lc127(<em>reserved</em>), lc138(one-shot), </p>
-<p><a href="https://leetcode.com/problems/top-k-frequent-words/" target="_blank" rel="noopener">lc692</a>:</p>
-<p>学到了comparator的用法。具体可参加<a href="https://github.com/AcVoyager/MyLeetCode/blob/dc43489cd64748b96a1a7ebbf7ce49606effcc7a/problems/Amazon/692.%20Top%20K%20Frequent%20Words/code.java#L9-L20" target="_blank" rel="noopener">本人代码</a>。</p>
-<p><a href="https://leetcode.com/problems/word-ladder/" target="_blank" rel="noopener">lc127</a></p>
-<p>说是medium，其实有点hard…有空的话此题要复习一下</p>
-<p><a href="https://leetcode.com/problems/copy-list-with-random-pointer/" target="_blank" rel="noopener">lc138</a></p>
-<p>Hashmap解决所有问题</p>
-<p>今天突然又想起了杭州。出国在外，一人生活久了，渐渐地也就没有什么留恋的人和事儿了。唯一一个，一直一直放不下的，是那座承载童年梦想和四年青春的杭城。</p>
-<p><img src="hz.jpeg" alt=""><br><em>摄于2020年1月5日中午，苏堤，杭州</em></p>
+    <title>6.9 leetcode check-in</title>
+    <url>/2020/06/09/6-9-leetcode-check-in/</url>
+    <content><![CDATA[<p>今日leetcode打卡：daily challenge(one-shot)</p>
+<p>这道题本身不难，不过follow up有点意思，值得一看。</p>
+<p>follow-up的一个解释贴在<a href="https://leetcode.com/explore/challenge/card/june-leetcoding-challenge/540/week-2-june-8th-june-14th/3355/discuss/87268/Java-code-for-the-follow-up-question" target="_blank" rel="noopener">这里</a>，使用的是hashmap和二分查找。</p>
 ]]></content>
       <categories>
         <category>中文</category>
@@ -129,87 +136,6 @@
       <tags>
         <tag>leetcode</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>6.5 leetcode check-in</title>
-    <url>/2020/06/05/6-5-leetcode-check-in/</url>
-    <content><![CDATA[<p>今日leetcode打卡：daily challenge</p>
-]]></content>
-      <categories>
-        <category>中文</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>6.9 leetcode check-in</title>
-    <url>/2020/06/09/6-9-leetcode-check-in/</url>
-    <content><![CDATA[<p>今日leetcode打卡：daily challenge(one-shot)</p>
-<p>这道题本身不难，不过follow up有点意思，值得一看。</p>
-<p>follow-up的一个解释贴在<a href="https://leetcode.com/explore/challenge/card/june-leetcoding-challenge/540/week-2-june-8th-june-14th/3355/discuss/87268/Java-code-for-the-follow-up-question" target="_blank" rel="noopener">这里</a>，使用的是hashmap和二分查找。</p>
-]]></content>
-      <categories>
-        <category>中文</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>6.10 leetcode check-in</title>
-    <url>/2020/06/10/6-10-leetcode-check-in/</url>
-    <content><![CDATA[<p>今日leetcode打卡：daily challenge(one-shot)</p>
-<p>今天的daily challenge就是标准的二分查找。</p>
-]]></content>
-      <categories>
-        <category>中文</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>六月末夜谈</title>
-    <url>/2020/06/29/%E5%85%AD%E6%9C%88%E6%9C%AB%E5%A4%9C%E8%B0%88/</url>
-    <content><![CDATA[<p>今日做了leetcode的Reconstruct Itinerary，自认为对于backtrack+递归套件的使用已渐渐熟练。</p>
-<p>使用linkedlist时要注意，pop和poll方法都是removefirst的。换言之，如果你不用stack而是用linkedlist来模拟stack的pop功能的话，别用pop，用removeLast。</p>
-<p>从时间上看已经是6月29日，六月之末，新的一周的开始。</p>
-<p>重新打开了苏东坡传。这段时间颇为思考了一些关于偏见和认知的问题。也许真理，只有能横跨时间，空间和种群的高维生物才能分辨，而我们人类只能尽量地接近最优解。</p>
-<p>即便如此，人还要有信仰。绝对的对错也许无法分清，但是相对的对错，优劣，利弊是可以分清的。利益，立场是可以划分的。只求不愧于心这话很有道理，我们无法改变别人，也无法发现纯粹的对错，但是我们可以不背叛自己，追求自己所认为更正确的东西。</p>
-<p>我认为是时候坚定这样的想法了。坚定不同于固执，当我听到或者观察到更有建设性，更有智慧的观点时，我会尝试吸纳和接受。</p>
-<p>还是想的太多，做的不够多，读的太少。</p>
-<p>千里之行，始于足下。有则改之，无则加勉。</p>
-<p>加油。</p>
-]]></content>
-      <categories>
-        <category>中文</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
-        <tag>life</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>return to blog</title>
-    <url>/2020/09/03/return-to-blog/</url>
-    <content><![CDATA[<p>Now is Sep 3, 23:13.</p>
-<p>It has been 66 days since my last post on June 29th. Lots of things happen during such “evil” time range:</p>
-<ul>
-<li>Completed my first internship/job in my life.</li>
-<li>Finished a 4 credit hours online class.</li>
-<li>Moved out from AZ</li>
-<li>Had my last meal in AZ with a receipt ID “66” 😈😈😈.</li>
-<li>Move to Seattle</li>
-<li>Get all daily life things done.</li>
-<li>…</li>
-</ul>
-<p>Now, I finally get the chance to stay in peace and think about the next step. I am gonna to be a professional software engineer, and I shall continue leetcoding and doing project today.</p>
-<p>That’s all, THE LORD HAS RETURNED!</p>
-]]></content>
-      <categories>
-        <category>English</category>
-      </categories>
   </entry>
   <entry>
     <title>Leetcode刷题积累</title>
@@ -317,6 +243,79 @@
 <h2 id="How-to-use-Java-Pair-TODO"><a href="#How-to-use-Java-Pair-TODO" class="headerlink" title="How to use Java Pair ? #TODO"></a>How to use Java <code>Pair</code> ? #TODO</h2>]]></content>
   </entry>
   <entry>
+    <title>Git: 修改.gitignore并应用</title>
+    <url>/2020/06/02/Git-%E4%BF%AE%E6%94%B9-gitignore%E5%B9%B6%E5%BA%94%E7%94%A8/</url>
+    <content><![CDATA[<ol>
+<li>git rm -r –cached file_name/dir</li>
+<li>修改.gitignore</li>
+<li><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>中文</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>return to blog</title>
+    <url>/2020/09/03/return-to-blog/</url>
+    <content><![CDATA[<p>Now is Sep 3, 23:13.</p>
+<p>It has been 66 days since my last post on June 29th. Lots of things happen during such “evil” time range:</p>
+<ul>
+<li>Completed my first internship/job in my life.</li>
+<li>Finished a 4 credit hours online class.</li>
+<li>Moved out from AZ</li>
+<li>Had my last meal in AZ with a receipt ID “66” 😈😈😈.</li>
+<li>Move to Seattle</li>
+<li>Get all daily life things done.</li>
+<li>…</li>
+</ul>
+<p>Now, I finally get the chance to stay in peace and think about the next step. I am gonna to be a professional software engineer, and I shall continue leetcoding and doing project today.</p>
+<p>That’s all, THE LORD HAS RETURNED!</p>
+]]></content>
+      <categories>
+        <category>English</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Oct 1st check-in</title>
+    <url>/2020/10/01/Oct-1st-check-in/</url>
+    <content><![CDATA[<p><a href="https://leetcode.com/problems/sliding-window-maximum/" target="_blank" rel="noopener">239. Sliding Window Maximum</a></p>
+<p><a href="https://www.geeksforgeeks.org/arraydeque-in-java/" target="_blank" rel="noopener">ArrayDeque</a></p>
+<p><a href="https://leetcode.com/problems/consecutive-numbers-sum/" target="_blank" rel="noopener">829. Consecutive Numbers Sum</a></p>
+<p><a href="https://www.geeksforgeeks.org/prefix-postfix-conversion/" target="_blank" rel="noopener">Prefix to Postfix Conversion</a></p>
+]]></content>
+      <categories>
+        <category>English</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>六月末夜谈</title>
+    <url>/2020/06/29/%E5%85%AD%E6%9C%88%E6%9C%AB%E5%A4%9C%E8%B0%88/</url>
+    <content><![CDATA[<p>今日做了leetcode的Reconstruct Itinerary，自认为对于backtrack+递归套件的使用已渐渐熟练。</p>
+<p>使用linkedlist时要注意，pop和poll方法都是removefirst的。换言之，如果你不用stack而是用linkedlist来模拟stack的pop功能的话，别用pop，用removeLast。</p>
+<p>从时间上看已经是6月29日，六月之末，新的一周的开始。</p>
+<p>重新打开了苏东坡传。这段时间颇为思考了一些关于偏见和认知的问题。也许真理，只有能横跨时间，空间和种群的高维生物才能分辨，而我们人类只能尽量地接近最优解。</p>
+<p>即便如此，人还要有信仰。绝对的对错也许无法分清，但是相对的对错，优劣，利弊是可以分清的。利益，立场是可以划分的。只求不愧于心这话很有道理，我们无法改变别人，也无法发现纯粹的对错，但是我们可以不背叛自己，追求自己所认为更正确的东西。</p>
+<p>我认为是时候坚定这样的想法了。坚定不同于固执，当我听到或者观察到更有建设性，更有智慧的观点时，我会尝试吸纳和接受。</p>
+<p>还是想的太多，做的不够多，读的太少。</p>
+<p>千里之行，始于足下。有则改之，无则加勉。</p>
+<p>加油。</p>
+]]></content>
+      <categories>
+        <category>中文</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>life</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>十月初夜谈</title>
     <url>/2020/10/01/%E5%8D%81%E6%9C%88%E5%88%9D%E5%A4%9C%E8%B0%88/</url>
     <content><![CDATA[<p>总结刚刚过去的九月：</p>
@@ -336,18 +335,19 @@
       </tags>
   </entry>
   <entry>
-    <title>Oct 1st check-in</title>
-    <url>/2020/10/01/Oct-1st-check-in/</url>
-    <content><![CDATA[<p><a href="https://leetcode.com/problems/sliding-window-maximum/" target="_blank" rel="noopener">239. Sliding Window Maximum</a></p>
-<p><a href="https://www.geeksforgeeks.org/arraydeque-in-java/" target="_blank" rel="noopener">ArrayDeque</a></p>
-<p><a href="https://leetcode.com/problems/consecutive-numbers-sum/" target="_blank" rel="noopener">829. Consecutive Numbers Sum</a></p>
-<p><a href="https://www.geeksforgeeks.org/prefix-postfix-conversion/" target="_blank" rel="noopener">Prefix to Postfix Conversion</a></p>
+    <title>My first blog</title>
+    <url>/2020/05/19/My-first-blog/</url>
+    <content><![CDATA[<p>第一篇blog，就来记录下搭建时遇到的一些问题和解决方案。</p>
+<p>本博客时基于hexo搭建，使用next主题。一开始hexo自带的landscape主题文件夹中，readme.md的第77行会导致GitHub page无法成功build，建议直接删掉哪一行。</p>
+<p>本人follow知乎用户@吴润的<a href="https://zhuanlan.zhihu.com/p/26625249" target="_blank" rel="noopener">hexo搭建指南</a>。非常感谢这位大佬的分享。他的文章中提到了插件hexo-deployer-git的使用。本人测试发现用了这个插件后，完全不需要自己管理博客的版本，hexo -d会自动部署。</p>
+<p>还发现了一个问题是，我将next的_config.yml中的darkmode选项改为true，在本地测试时成功进入暗色模式，但是在远端并未成功。原因尚且不知，推测是github page的渲染问题。</p>
+<p>未完待续…</p>
 ]]></content>
       <categories>
-        <category>English</category>
+        <category>中文</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
+        <tag>blog</tag>
       </tags>
   </entry>
 </search>
