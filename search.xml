@@ -350,4 +350,115 @@
         <tag>blog</tag>
       </tags>
   </entry>
+  <entry>
+    <title>AWS学习笔记: Networking and Content Delivery</title>
+    <url>/2020/10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/</url>
+    <content><![CDATA[<p>欢迎来到我的AWS学习笔记系列。本文着重记述关于AWS网络和内容分发的知识点。转载请注明作者。</p>
+<p>由于版权原因，下文中有些配图不予显示，敬请谅解。</p>
+<h1 id="AWS-Networking-and-Content-Delivering"><a href="#AWS-Networking-and-Content-Delivering" class="headerlink" title="AWS Networking and Content Delivering"></a>AWS Networking and Content Delivering</h1><h2 id="Sec-I-Networking-Basics"><a href="#Sec-I-Networking-Basics" class="headerlink" title="Sec I: Networking Basics"></a>Sec I: Networking Basics</h2><p><img src="/.io//sec1.jpeg" alt></p>
+<h2 id="Sec-II-Amazon-VPC"><a href="#Sec-II-Amazon-VPC" class="headerlink" title="Sec II: Amazon VPC"></a>Sec II: Amazon VPC</h2><p><img src="/.io//sec2.1.jpeg" alt></p>
+<p><img src="/.io//sec2.2.jpeg" alt></p>
+<h2 id="Sec-III-VPC-Networking"><a href="#Sec-III-VPC-Networking" class="headerlink" title="Sec III: VPC Networking"></a>Sec III: VPC Networking</h2><h3 id="Outlines"><a href="#Outlines" class="headerlink" title="Outlines"></a>Outlines</h3><p>Internet gateway: Connects your VPC to the internet</p>
+<p>NAT gateway: Enables instances in a private subnet to connect to the internet</p>
+<p>VPC endpoint: Connects your VPC to supported AWS services</p>
+<p>VPC peering: Connects your VPC to other VPCs</p>
+<p>VPC sharing: Allows multiple AWS accounts to create their application resources into shared, centrally-managed Amazon VPCs</p>
+<p>AWS Site-to-Site VPN: Connects your VPC to remote networks</p>
+<p>AWS Direct Connect: Connects your VPC to a remote network by using a dedicated network connection</p>
+<p>AWS Transit Gateway: A hub-and-spoke connection alternative to VPC peering</p>
+<p><a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html" target="_blank" rel="noopener">Internet Gateway(public subnet公网连接)</a></p>
+<ul>
+<li>Scalable, redundant and highly available.</li>
+<li>Allow communication between instances in VPC and the internet.</li>
+<li>Two purposes:<ul>
+<li>Provide a target for the VPC route tables for internet-routable traffic.</li>
+<li>Perform network address translation(NAT) for instances within VPC.</li>
+</ul>
+</li>
+<li>Subnet and gateway<ul>
+<li>If a subnet is associated with a <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html#RouteTables" target="_blank" rel="noopener">route table</a> which</li>
+<li>has a gateway -&gt; public subnet;</li>
+<li>doesn’t have a gateway -&gt; private subnet.</li>
+</ul>
+</li>
+<li>To make subset public,<ul>
+<li>Attach an internet gateway to the VPC(not directly to the subnet).</li>
+<li>Add a route to the route table to send <strong>non-local</strong> traffic through the gateway to the internet</li>
+<li>In your subnet route table, you can specify a route for the internet gateway to <strong>all destinations not explicitly known to the route table</strong> (0.0.0.0/0 for IPv4 or ::/0 for IPv6)<br><img src="/.io//internet-gateway-overview-diagram.png" alt></li>
+</ul>
+</li>
+</ul>
+<p><a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat.html" target="_blank" rel="noopener">Network Address Gateway(NAT) (private subnet借public subnet单向访问公网)</a></p>
+<ul>
+<li>Reside in <strong>public subnet</strong>, work for <strong>private subnet</strong>.</li>
+<li>Enable private subnets to access the Internet, but prevent the Internet from initializing connection with private subnets.</li>
+<li>Have to assign an elastic IP address to NAT gateway.</li>
+<li>Alternative: NAT Instance, but NAT gateway is recommended because:<ul>
+<li>NAT gateway is a managed NAT service that provides better availability, higher bandwidth, and less administrative effort.</li>
+<li>For common use cases, AWS recommends that you <strong>use a NAT gateway instead of a NAT instance</strong>.<br><img src="/.io//nat-gateway-diagram.png" alt></li>
+</ul>
+</li>
+</ul>
+<p><a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html" target="_blank" rel="noopener">VPC Sharing(同组织用户共享VOC)</a></p>
+<ul>
+<li>VPC sharing enables customers to share subnets with other AWS accounts in the same organization in AWS Organizations.</li>
+<li>Application resources: such as Amazon EC2 instances, Amazon Relational Database Service (Amazon RDS) databases, Amazon Redshift clusters, and AWS Lambda functions.</li>
+<li>The participants can view, create, modify, and delete their application resources in the subnets that are shared with them.</li>
+<li>Centrally controlled VPC structure, routing, IP address allocation.<br><img src="https://d2908q01vomqb2.cloudfront.net/fc074d501302eb2b93e2554793fcaf50b3bf7291/2020/04/06/NLB_Blog1-1-1024x719.jpg" alt></li>
+</ul>
+<p><a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-peering.html" target="_blank" rel="noopener">VPC Peering(VPC间private互联)</a></p>
+<ul>
+<li>A VPC peering connection is a networking <strong>connection between two VPCs</strong> that enables you to route traffic between them privately. </li>
+<li>When you set up the peering connection, you create rules in your route table to allow the VPCs to communicate with each other through the peering resource.</li>
+<li>Restrictions:<ul>
+<li>IP address ranges cannot overlap. </li>
+<li>Transitive peering is not supported. A&lt;-&gt;B, A&lt;-&gt;C, cannot infer B&lt;-&gt;C.</li>
+<li>You can only have one peering resource between the same two VPCs.</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html" target="_blank" rel="noopener">AWS Site-to-Site VPN(VPC到外部网络点对点VPN连接)</a></p>
+<ul>
+<li>From <strong>private subnet</strong> to your own(remote) network.</li>
+<li>By default, instances that you launch into a VPC cannot communicate with a remote network. To connect your VPC to your remote network (that is, create a virtual private network or VPN connection), you:<ul>
+<li>Create a new virtual gateway device (called a virtual private network (VPN) gateway) and attach it to your VPC.</li>
+<li>Define the configuration of the VPN device or the customer gateway. The customer gateway is not a device but an AWS resource that provides information to AWS about your VPN device.</li>
+<li>Create a custom route table to point corporate data center-bound traffic to the VPN gateway. You also must update security group rules. (You will learn about security groups in the next section.)</li>
+<li>Establish an AWS Site-to-Site VPN (Site-to-Site VPN) connection to link the two systems together.</li>
+<li>Configure routing to pass traffic through the connection.<br><img src="/.io//aws_sts_vpn.png" alt></li>
+</ul>
+</li>
+</ul>
+<p><a href="https://aws.amazon.com/directconnect/" target="_blank" rel="noopener">AWS Direct Connect(VPC与外部数据中心建立private高性能连接)</a></p>
+<ul>
+<li><strong>Private connection</strong> from your VPC to your data center. The key difference between VPN:<ul>
+<li>It focuses on <strong>increasing the performance</strong> of the connection.</li>
+<li>Replace AWS Site-to-Site VPN with AWS Direct Connect.</li>
+<li>Use open standard 802.1q virtual local area networks (VLANs).</li>
+</ul>
+</li>
+<li>reduce your network costs, increase bandwidth throughput, and provide a more consistent network experience than internet-based connections.<br><img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.edge-cloud.net%2F2019%2F09%2F06%2Fdx-gateway-deep-dive%2F&psig=AOvVaw0M-h0i2ow2cYs-Ir1gHV1Q&ust=1601967707665000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCNDz0vPwnOwCFQAAAAAdAAAAABA4" alt></li>
+</ul>
+<p><a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints.html" target="_blank" rel="noopener">VPC Endpoints(VPC与AWS内部services建立private互联)</a></p>
+<ul>
+<li>Still <strong>private connection</strong>, connect your VPC to supported AWS services and VPC endpoint services that are powered by AWS PrivateLink.</li>
+<li>Connection to these services does not require an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection.</li>
+<li>Instances in your VPC do not require public IP addresses to communicate with resources in the service. Traffic between your VPC and the other service does not leave the Amazon network.<br><img src="/.io//vpc_endpoints.png" alt></li>
+</ul>
+<p><a href="https://docs.aws.amazon.com/vpc/latest/tgw/what-is-transit-gateway.html" target="_blank" rel="noopener">AWS Transit Gateway(将上述各类connection用一个hub集成)</a></p>
+<ul>
+<li>A transit gateway <strong>acts as a hub that controls how traffic is routed</strong> among all the connected networks, which act like spokes. </li>
+<li>You can configure your VPCs in several ways, and take advantage of numerous connectivity options and gateways, but managing point-to-point connectivity across many VPCs without the ability to centrally manage the connectivity policies can be operationally costly and difficult.</li>
+<li>To solve this problem, you can use AWS Transit Gateway to simplify your networking model. With AWS Transit Gateway, you only need to create and manage a single connection from the central gateway into each VPC, on-premises data center, or remote office across your network.<br><img src="/.io//aws_transit_gateway.png" alt></li>
+</ul>
+<h2 id="Sec-IV-VPC-Security"><a href="#Sec-IV-VPC-Security" class="headerlink" title="Sec IV: VPC Security"></a>Sec IV: VPC Security</h2><h2 id="Sec-V-Route-53"><a href="#Sec-V-Route-53" class="headerlink" title="Sec V: Route 53"></a>Sec V: Route 53</h2><h2 id="Sec-VI-Cloud-Front"><a href="#Sec-VI-Cloud-Front" class="headerlink" title="Sec VI: Cloud Front"></a>Sec VI: Cloud Front</h2>]]></content>
+      <categories>
+        <category>中文</category>
+        <category>English</category>
+      </categories>
+      <tags>
+        <tag>AWS</tag>
+        <tag>Network</tag>
+      </tags>
+  </entry>
 </search>
