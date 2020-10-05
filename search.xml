@@ -25,7 +25,33 @@
 <p><a href="https://leetcode.com/problems/copy-list-with-random-pointer/" target="_blank" rel="noopener">lc138</a></p>
 <p>Hashmap解决所有问题</p>
 <p>今天突然又想起了杭州。出国在外，一人生活久了，渐渐地也就没有什么留恋的人和事儿了。唯一一个，一直一直放不下的，是那座承载童年梦想和四年青春的杭城。</p>
-<p><img src="/.io//06/04/6-4-leetcode-check-in/hz.jpeg" alt><br><em>摄于2020年1月5日中午，苏堤，杭州</em></p>
+<p><img src="hz.jpeg" alt=""><br><em>摄于2020年1月5日中午，苏堤，杭州</em></p>
+]]></content>
+      <categories>
+        <category>中文</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>6.5 leetcode check-in</title>
+    <url>/2020/06/05/6-5-leetcode-check-in/</url>
+    <content><![CDATA[<p>今日leetcode打卡：daily challenge</p>
+]]></content>
+      <categories>
+        <category>中文</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>6.9 leetcode check-in</title>
+    <url>/2020/06/09/6-9-leetcode-check-in/</url>
+    <content><![CDATA[<p>今日leetcode打卡：daily challenge(one-shot)</p>
+<p>这道题本身不难，不过follow up有点意思，值得一看。</p>
+<p>follow-up的一个解释贴在<a href="https://leetcode.com/explore/challenge/card/june-leetcoding-challenge/540/week-2-june-8th-june-14th/3355/discuss/87268/Java-code-for-the-follow-up-question" target="_blank" rel="noopener">这里</a>，使用的是hashmap和二分查找。</p>
 ]]></content>
       <categories>
         <category>中文</category>
@@ -84,26 +110,17 @@
       </tags>
   </entry>
   <entry>
-    <title>6.5 leetcode check-in</title>
-    <url>/2020/06/05/6-5-leetcode-check-in/</url>
-    <content><![CDATA[<p>今日leetcode打卡：daily challenge</p>
-]]></content>
-      <categories>
-        <category>中文</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>AWS学习笔记: Networking and Content Delivery</title>
     <url>/2020/10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/</url>
     <content><![CDATA[<p>欢迎来到我的AWS学习笔记系列。</p>
 <p>本文着重记述关于AWS网络和内容分发的知识点。如若转载，请先与作者联系。</p>
 <p><em>本文图片来自于网络</em></p>
-<h1 id="AWS-Networking-and-Content-Delivering"><a href="#AWS-Networking-and-Content-Delivering" class="headerlink" title="AWS Networking and Content Delivering"></a>AWS Networking and Content Delivering</h1><h2 id="Sec-I-Networking-Basics"><a href="#Sec-I-Networking-Basics" class="headerlink" title="Sec I: Networking Basics"></a>Sec I: Networking Basics</h2><img src="/.io//10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/sec1.jpg" class title="This is an test image">
+<h1 id="AWS-Networking-and-Content-Delivering"><a href="#AWS-Networking-and-Content-Delivering" class="headerlink" title="AWS Networking and Content Delivering"></a>AWS Networking and Content Delivering</h1><a id="more"></a>
 
-<h2 id="Sec-II-Amazon-VPC"><a href="#Sec-II-Amazon-VPC" class="headerlink" title="Sec II: Amazon VPC"></a>Sec II: Amazon VPC</h2><h2 id="Sec-III-VPC-Networking"><a href="#Sec-III-VPC-Networking" class="headerlink" title="Sec III: VPC Networking"></a>Sec III: VPC Networking</h2><h3 id="Outlines"><a href="#Outlines" class="headerlink" title="Outlines"></a>Outlines</h3><p>Internet gateway: Connects your VPC to the internet</p>
+<h2 id="Sec-I-Networking-Basics"><a href="#Sec-I-Networking-Basics" class="headerlink" title="Sec I: Networking Basics"></a>Sec I: Networking Basics</h2><p><img src="sec1.jpg" alt=""></p>
+<h2 id="Sec-II-Amazon-VPC"><a href="#Sec-II-Amazon-VPC" class="headerlink" title="Sec II: Amazon VPC"></a>Sec II: Amazon VPC</h2><p><img src="sec2.1.jpeg" alt=""></p>
+<p><img src="sec2.2.jpeg" alt=""></p>
+<h2 id="Sec-III-VPC-Networking"><a href="#Sec-III-VPC-Networking" class="headerlink" title="Sec III: VPC Networking"></a>Sec III: VPC Networking</h2><h3 id="Outlines"><a href="#Outlines" class="headerlink" title="Outlines"></a>Outlines</h3><p>Internet gateway: Connects your VPC to the internet</p>
 <p>NAT gateway: Enables instances in a private subnet to connect to the internet</p>
 <p>VPC endpoint: Connects your VPC to supported AWS services</p>
 <p>VPC peering: Connects your VPC to other VPCs</p>
@@ -129,7 +146,7 @@
 <li>To make subset public,<ul>
 <li>Attach an internet gateway to the VPC(not directly to the subnet).</li>
 <li>Add a route to the route table to send <strong>non-local</strong> traffic through the gateway to the internet</li>
-<li>In your subnet route table, you can specify a route for the internet gateway to <strong>all destinations not explicitly known to the route table</strong> (0.0.0.0/0 for IPv4 or ::/0 for IPv6)<br><img src="/.io//10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/internet-gateway-overview-diagram.png" alt></li>
+<li>In your subnet route table, you can specify a route for the internet gateway to <strong>all destinations not explicitly known to the route table</strong> (0.0.0.0/0 for IPv4 or ::/0 for IPv6)<br><img src="internet-gateway-overview-diagram.png" alt=""></li>
 </ul>
 </li>
 </ul>
@@ -140,7 +157,7 @@
 <li>Have to assign an elastic IP address to NAT gateway.</li>
 <li>Alternative: NAT Instance, but NAT gateway is recommended because:<ul>
 <li>NAT gateway is a managed NAT service that provides better availability, higher bandwidth, and less administrative effort.</li>
-<li>For common use cases, AWS recommends that you <strong>use a NAT gateway instead of a NAT instance</strong>.<br><img src="/.io//10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/nat-gateway-diagram.png" alt></li>
+<li>For common use cases, AWS recommends that you <strong>use a NAT gateway instead of a NAT instance</strong>.<br><img src="nat-gateway-diagram.png" alt=""></li>
 </ul>
 </li>
 </ul>
@@ -149,7 +166,7 @@
 <li>VPC sharing enables customers to share subnets with other AWS accounts in the same organization in AWS Organizations.</li>
 <li>Application resources: such as Amazon EC2 instances, Amazon Relational Database Service (Amazon RDS) databases, Amazon Redshift clusters, and AWS Lambda functions.</li>
 <li>The participants can view, create, modify, and delete their application resources in the subnets that are shared with them.</li>
-<li>Centrally controlled VPC structure, routing, IP address allocation.<br><img src="https://media.amazonwebservices.com/blog/2017/dc_global_mod_after_1.png" alt></li>
+<li>Centrally controlled VPC structure, routing, IP address allocation.<br><img src="https://media.amazonwebservices.com/blog/2017/dc_global_mod_after_1.png" alt=""></li>
 </ul>
 <p><a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-peering.html" target="_blank" rel="noopener">VPC Peering(VPC间private互联)</a></p>
 <ul>
@@ -170,7 +187,7 @@
 <li>Define the configuration of the VPN device or the customer gateway. The customer gateway is not a device but an AWS resource that provides information to AWS about your VPN device.</li>
 <li>Create a custom route table to point corporate data center-bound traffic to the VPN gateway. You also must update security group rules. (You will learn about security groups in the next section.)</li>
 <li>Establish an AWS Site-to-Site VPN (Site-to-Site VPN) connection to link the two systems together.</li>
-<li>Configure routing to pass traffic through the connection.<br><img src="/.io//10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/aws_sts_vpn.png" alt></li>
+<li>Configure routing to pass traffic through the connection.<br><img src="aws_sts_vpn.png" alt=""></li>
 </ul>
 </li>
 </ul>
@@ -182,42 +199,27 @@
 <li>Use open standard 802.1q virtual local area networks (VLANs).</li>
 </ul>
 </li>
-<li>reduce your network costs, increase bandwidth throughput, and provide a more consistent network experience than internet-based connections.<br><img src="https://docs.aws.amazon.com/directconnect/latest/UserGuide/images/direct_connect_overview.png" alt></li>
+<li>reduce your network costs, increase bandwidth throughput, and provide a more consistent network experience than internet-based connections.<br><img src="https://docs.aws.amazon.com/directconnect/latest/UserGuide/images/direct_connect_overview.png" alt=""></li>
 </ul>
 <p><a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints.html" target="_blank" rel="noopener">VPC Endpoints(VPC与AWS内部services建立private互联)</a></p>
 <ul>
 <li>Still <strong>private connection</strong>, connect your VPC to supported AWS services and VPC endpoint services that are powered by AWS PrivateLink.</li>
 <li>Connection to these services does not require an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection.</li>
-<li>Instances in your VPC do not require public IP addresses to communicate with resources in the service. Traffic between your VPC and the other service does not leave the Amazon network.<br><img src="/.io//10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/vpc_endpoints.png" alt></li>
+<li>Instances in your VPC do not require public IP addresses to communicate with resources in the service. Traffic between your VPC and the other service does not leave the Amazon network.<br><img src="vpc_endpoints.png" alt=""></li>
 </ul>
 <p><a href="https://docs.aws.amazon.com/vpc/latest/tgw/what-is-transit-gateway.html" target="_blank" rel="noopener">AWS Transit Gateway(将上述各类connection用一个hub集成)</a></p>
 <ul>
 <li>A transit gateway <strong>acts as a hub that controls how traffic is routed</strong> among all the connected networks, which act like spokes. </li>
 <li>You can configure your VPCs in several ways, and take advantage of numerous connectivity options and gateways, but managing point-to-point connectivity across many VPCs without the ability to centrally manage the connectivity policies can be operationally costly and difficult.</li>
-<li>To solve this problem, you can use AWS Transit Gateway to simplify your networking model. With AWS Transit Gateway, you only need to create and manage a single connection from the central gateway into each VPC, on-premises data center, or remote office across your network.<br><img src="/.io//10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/aws_transit_gateway.png" alt></li>
+<li>To solve this problem, you can use AWS Transit Gateway to simplify your networking model. With AWS Transit Gateway, you only need to create and manage a single connection from the central gateway into each VPC, on-premises data center, or remote office across your network.<br><img src="aws_transit_gateway.png" alt=""></li>
 </ul>
 <h2 id="Sec-IV-VPC-Security"><a href="#Sec-IV-VPC-Security" class="headerlink" title="Sec IV: VPC Security"></a>Sec IV: VPC Security</h2><h2 id="Sec-V-Route-53"><a href="#Sec-V-Route-53" class="headerlink" title="Sec V: Route 53"></a>Sec V: Route 53</h2><h2 id="Sec-VI-Cloud-Front"><a href="#Sec-VI-Cloud-Front" class="headerlink" title="Sec VI: Cloud Front"></a>Sec VI: Cloud Front</h2>]]></content>
       <categories>
-        <category>中文</category>
-        <category>English</category>
+        <category>中文 English</category>
       </categories>
       <tags>
         <tag>AWS</tag>
         <tag>Network</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>6.9 leetcode check-in</title>
-    <url>/2020/06/09/6-9-leetcode-check-in/</url>
-    <content><![CDATA[<p>今日leetcode打卡：daily challenge(one-shot)</p>
-<p>这道题本身不难，不过follow up有点意思，值得一看。</p>
-<p>follow-up的一个解释贴在<a href="https://leetcode.com/explore/challenge/card/june-leetcoding-challenge/540/week-2-june-8th-june-14th/3355/discuss/87268/Java-code-for-the-follow-up-question" target="_blank" rel="noopener">这里</a>，使用的是hashmap和二分查找。</p>
-]]></content>
-      <categories>
-        <category>中文</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -271,6 +273,8 @@
 <li>for (char ch: “xyz”.toCharArray() { }; //<a href="https://docs.oracle.com/javase/6/docs/api/java/lang/String.html#toCharArray%28%29" target="_blank" rel="noopener">toCharArray()</a></li>
 <li>for (int i = 0; i &lt; s.length(); i++&gt;) and s.charAt(i)</li>
 </ol>
+<a id="more"></a>
+
 <h2 id="Java-for-each-list"><a href="#Java-for-each-list" class="headerlink" title="Java for each list?"></a>Java for each list?</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;String&gt; l = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">for</span>(String str: l)</span><br></pre></td></tr></table></figure>
 
 <h2 id="Java-if-element-in-set"><a href="#Java-if-element-in-set" class="headerlink" title="Java if element in set?"></a>Java if element in set?</h2><p>Set. contains() method is used to check whether a specific element is present in the Set or not. So basically it is used to check if a Set contains any particular element.</p>
@@ -329,14 +333,14 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>List<Integer></Integer></td>
+<td>List<Integer></td>
 <td>compare inner value of elements</td>
 <td>set does not change accordingly</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>List<String></String></td>
+<td>List<String></td>
 <td>compare inner value of elements</td>
 <td>set does not change accordingly</td>
 <td></td>
@@ -362,12 +366,33 @@
 <li>Override the method <code>public int compareTo(T t)</code></li>
 </ol>
 <p><a href="https://howtodoinjava.com/java/collections/java-priorityqueue/#:~:text=Java%20PriorityQueue%20class%20is%20a,are%20according%20to%20their%20priority." target="_blank" rel="noopener">reference</a></p>
-<h2 id="Java-visibility-Explanation"><a href="#Java-visibility-Explanation" class="headerlink" title="Java visibility Explanation"></a>Java visibility Explanation</h2><p><img src="/.io//10/01/Leetcode%E5%88%B7%E9%A2%98%E7%A7%AF%E7%B4%AF/visibility.png" alt></p>
+<h2 id="Java-visibility-Explanation"><a href="#Java-visibility-Explanation" class="headerlink" title="Java visibility Explanation"></a>Java visibility Explanation</h2><p><img src="res/visibility.png" alt=""></p>
 <h2 id="How-to-test-if-a-double-is-an-integer"><a href="#How-to-test-if-a-double-is-an-integer" class="headerlink" title="How to test if a double is an integer?"></a>How to test if a double is an integer?</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(i % <span class="number">1</span> == <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
 
 <h2 id="Compare-two-strings"><a href="#Compare-two-strings" class="headerlink" title="Compare two strings"></a>Compare two strings</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">str1.compareTo(str2); <span class="comment">// return a integer</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="How-to-use-Java-Pair-TODO"><a href="#How-to-use-Java-Pair-TODO" class="headerlink" title="How to use Java Pair ? #TODO"></a>How to use Java <code>Pair</code> ? #TODO</h2>]]></content>
+  </entry>
+  <entry>
+    <title>return to blog</title>
+    <url>/2020/09/03/return-to-blog/</url>
+    <content><![CDATA[<p>Now is Sep 3, 23:13.</p>
+<p>It has been 66 days since my last post on June 29th. Lots of things happen during such “evil” time range:</p>
+<ul>
+<li>Completed my first internship/job in my life.</li>
+<li>Finished a 4 credit hours online class.</li>
+<li>Moved out from AZ</li>
+<li>Had my last meal in AZ with a receipt ID “66” 😈😈😈.</li>
+<li>Move to Seattle</li>
+<li>Get all daily life things done.</li>
+<li>…</li>
+</ul>
+<p>Now, I finally get the chance to stay in peace and think about the next step. I am gonna to be a professional software engineer, and I shall continue leetcoding and doing project today.</p>
+<p>That’s all, THE LORD HAS RETURNED!</p>
+]]></content>
+      <categories>
+        <category>English</category>
+      </categories>
   </entry>
   <entry>
     <title>Oct 1st check-in</title>
@@ -382,6 +407,22 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>My first blog</title>
+    <url>/2020/05/19/My-first-blog/</url>
+    <content><![CDATA[<p>第一篇blog，就来记录下搭建时遇到的一些问题和解决方案。</p>
+<p>本博客时基于hexo搭建，使用next主题。一开始hexo自带的landscape主题文件夹中，readme.md的第77行会导致GitHub page无法成功build，建议直接删掉哪一行。</p>
+<p>本人follow知乎用户@吴润的<a href="https://zhuanlan.zhihu.com/p/26625249" target="_blank" rel="noopener">hexo搭建指南</a>。非常感谢这位大佬的分享。他的文章中提到了插件hexo-deployer-git的使用。本人测试发现用了这个插件后，完全不需要自己管理博客的版本，hexo -d会自动部署。</p>
+<p>还发现了一个问题是，我将next的_config.yml中的darkmode选项改为true，在本地测试时成功进入暗色模式，但是在远端并未成功。原因尚且不知，推测是github page的渲染问题。</p>
+<p>未完待续…</p>
+]]></content>
+      <categories>
+        <category>中文</category>
+      </categories>
+      <tags>
+        <tag>blog</tag>
       </tags>
   </entry>
   <entry>
@@ -406,43 +447,6 @@
       </tags>
   </entry>
   <entry>
-    <title>return to blog</title>
-    <url>/2020/09/03/return-to-blog/</url>
-    <content><![CDATA[<p>Now is Sep 3, 23:13.</p>
-<p>It has been 66 days since my last post on June 29th. Lots of things happen during such “evil” time range:</p>
-<ul>
-<li>Completed my first internship/job in my life.</li>
-<li>Finished a 4 credit hours online class.</li>
-<li>Moved out from AZ</li>
-<li>Had my last meal in AZ with a receipt ID “66” 😈😈😈.</li>
-<li>Move to Seattle</li>
-<li>Get all daily life things done.</li>
-<li>…</li>
-</ul>
-<p>Now, I finally get the chance to stay in peace and think about the next step. I am gonna to be a professional software engineer, and I shall continue leetcoding and doing project today.</p>
-<p>That’s all, THE LORD HAS RETURNED!</p>
-]]></content>
-      <categories>
-        <category>English</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>My first blog</title>
-    <url>/2020/05/19/My-first-blog/</url>
-    <content><![CDATA[<p>第一篇blog，就来记录下搭建时遇到的一些问题和解决方案。</p>
-<p>本博客时基于hexo搭建，使用next主题。一开始hexo自带的landscape主题文件夹中，readme.md的第77行会导致GitHub page无法成功build，建议直接删掉哪一行。</p>
-<p>本人follow知乎用户@吴润的<a href="https://zhuanlan.zhihu.com/p/26625249" target="_blank" rel="noopener">hexo搭建指南</a>。非常感谢这位大佬的分享。他的文章中提到了插件hexo-deployer-git的使用。本人测试发现用了这个插件后，完全不需要自己管理博客的版本，hexo -d会自动部署。</p>
-<p>还发现了一个问题是，我将next的_config.yml中的darkmode选项改为true，在本地测试时成功进入暗色模式，但是在远端并未成功。原因尚且不知，推测是github page的渲染问题。</p>
-<p>未完待续…</p>
-]]></content>
-      <categories>
-        <category>中文</category>
-      </categories>
-      <tags>
-        <tag>blog</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>十月初夜谈</title>
     <url>/2020/10/01/%E5%8D%81%E6%9C%88%E5%88%9D%E5%A4%9C%E8%B0%88/</url>
     <content><![CDATA[<p>总结刚刚过去的九月：</p>
@@ -459,6 +463,22 @@
       </categories>
       <tags>
         <tag>life</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo asset设置: hexo-rendered-marked</title>
+    <url>/2020/10/05/hexo-asset%E8%AE%BE%E7%BD%AE-hexo-rendered-marked/</url>
+    <content><![CDATA[<p>本人hexo版本：4.2.1</p>
+<p>对Hexo asset进行配置，网上很多比较老的教程使用<code>hexo-asset-image</code>插件进行配置。</p>
+<p>我一开始也是使用该插件，但是不知是何玄学原因it just doesn’t work. 最后无奈只能老老实实网上查询解决办法。</p>
+<p>在目前最新的Hexo官方文档的<a href="https://hexo.io/docs/asset-folders.html#Embedding-an-image-using-markdown" target="_blank" rel="noopener">Assert Folder</a>中，使用了<code>hexo-rendered-marked</code>插件。正是该插件解决了我的问题。使用方法请进入文档自行研究。</p>
+<p>注意：如果你同时也有<code>hexo-asset-image</code>插件，请先卸载该插件否则会使<code>hexo-rendered-marked</code>无法正常作用：</p>
+<pre><code>npm uninstall hexo-asset-image</code></pre>]]></content>
+      <categories>
+        <category>中文</category>
+      </categories>
+      <tags>
+        <tag>blog</tag>
       </tags>
   </entry>
 </search>
