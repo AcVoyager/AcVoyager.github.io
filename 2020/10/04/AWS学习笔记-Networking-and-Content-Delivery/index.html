@@ -20,30 +20,28 @@
     var CONFIG = {"hostname":"acvoyager.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="欢迎来到我的AWS学习笔记系列。本文着重记述关于AWS网络和内容分发的知识点。转载请注明作者。 由于版权原因，下文中有些配图不予显示，敬请谅解。 AWS Networking and Content DeliveringSec I: Networking Basics Sec II: Amazon VPC  Sec III: VPC NetworkingOutlinesInternet gatew">
+  <meta name="description" content="欢迎来到我的AWS学习笔记系列。 本文着重记述关于AWS网络和内容分发的知识点。如若转载，请先与作者联系。 本文图片来自于网络 AWS Networking and Content DeliveringSec I: Networking Basics  Sec II: Amazon VPCSec III: VPC NetworkingOutlinesInternet gateway: Connec">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AWS学习笔记: Networking and Content Delivery">
 <meta property="og:url" content="https://acvoyager.github.io/2020/10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/index.html">
 <meta property="og:site_name" content="The Black Pearl">
-<meta property="og:description" content="欢迎来到我的AWS学习笔记系列。本文着重记述关于AWS网络和内容分发的知识点。转载请注明作者。 由于版权原因，下文中有些配图不予显示，敬请谅解。 AWS Networking and Content DeliveringSec I: Networking Basics Sec II: Amazon VPC  Sec III: VPC NetworkingOutlinesInternet gatew">
+<meta property="og:description" content="欢迎来到我的AWS学习笔记系列。 本文着重记述关于AWS网络和内容分发的知识点。如若转载，请先与作者联系。 本文图片来自于网络 AWS Networking and Content DeliveringSec I: Networking Basics  Sec II: Amazon VPCSec III: VPC NetworkingOutlinesInternet gateway: Connec">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://acvoyager.github.io/.io//sec1.jpeg">
-<meta property="og:image" content="https://acvoyager.github.io/.io//sec2.1.jpeg">
-<meta property="og:image" content="https://acvoyager.github.io/.io//sec2.2.jpeg">
-<meta property="og:image" content="https://acvoyager.github.io/.io//internet-gateway-overview-diagram.png">
-<meta property="og:image" content="https://acvoyager.github.io/.io//nat-gateway-diagram.png">
-<meta property="og:image" content="https://d2908q01vomqb2.cloudfront.net/fc074d501302eb2b93e2554793fcaf50b3bf7291/2020/04/06/NLB_Blog1-1-1024x719.jpg">
-<meta property="og:image" content="https://acvoyager.github.io/.io//aws_sts_vpn.png">
-<meta property="og:image" content="https://www.google.com/url?sa=i&url=https%253A%252F%252Fwww.edge-cloud.net%252F2019%252F09%252F06%252Fdx-gateway-deep-dive%252F&psig=AOvVaw0M-h0i2ow2cYs-Ir1gHV1Q&ust=1601967707665000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCNDz0vPwnOwCFQAAAAAdAAAAABA4">
-<meta property="og:image" content="https://acvoyager.github.io/.io//vpc_endpoints.png">
-<meta property="og:image" content="https://acvoyager.github.io/.io//aws_transit_gateway.png">
+<meta property="og:image" content="https://acvoyager.github.io/.io//10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/sec1.jpg">
+<meta property="og:image" content="https://acvoyager.github.io/.io//10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/internet-gateway-overview-diagram.png">
+<meta property="og:image" content="https://acvoyager.github.io/.io//10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/nat-gateway-diagram.png">
+<meta property="og:image" content="https://media.amazonwebservices.com/blog/2017/dc_global_mod_after_1.png">
+<meta property="og:image" content="https://acvoyager.github.io/.io//10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/aws_sts_vpn.png">
+<meta property="og:image" content="https://docs.aws.amazon.com/directconnect/latest/UserGuide/images/direct_connect_overview.png">
+<meta property="og:image" content="https://acvoyager.github.io/.io//10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/vpc_endpoints.png">
+<meta property="og:image" content="https://acvoyager.github.io/.io//10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/aws_transit_gateway.png">
 <meta property="article:published_time" content="2020-10-05T05:01:46.000Z">
-<meta property="article:modified_time" content="2020-10-05T07:05:23.931Z">
+<meta property="article:modified_time" content="2020-10-05T07:35:01.485Z">
 <meta property="article:author" content="Voyager">
 <meta property="article:tag" content="AWS">
 <meta property="article:tag" content="Network">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://acvoyager.github.io/.io//sec1.jpeg">
+<meta name="twitter:image" content="https://acvoyager.github.io/.io//10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/sec1.jpg">
 
 <link rel="canonical" href="https://acvoyager.github.io/2020/10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/">
 
@@ -239,7 +237,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-05 00:05:23" itemprop="dateModified" datetime="2020-10-05T00:05:23-07:00">2020-10-05</time>
+                <time title="Modified: 2020-10-05 00:35:01" itemprop="dateModified" datetime="2020-10-05T00:35:01-07:00">2020-10-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -287,12 +285,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>欢迎来到我的AWS学习笔记系列。本文着重记述关于AWS网络和内容分发的知识点。转载请注明作者。</p>
-<p>由于版权原因，下文中有些配图不予显示，敬请谅解。</p>
-<h1 id="AWS-Networking-and-Content-Delivering"><a href="#AWS-Networking-and-Content-Delivering" class="headerlink" title="AWS Networking and Content Delivering"></a>AWS Networking and Content Delivering</h1><h2 id="Sec-I-Networking-Basics"><a href="#Sec-I-Networking-Basics" class="headerlink" title="Sec I: Networking Basics"></a>Sec I: Networking Basics</h2><p><img src="/.io//sec1.jpeg" alt></p>
-<h2 id="Sec-II-Amazon-VPC"><a href="#Sec-II-Amazon-VPC" class="headerlink" title="Sec II: Amazon VPC"></a>Sec II: Amazon VPC</h2><p><img src="/.io//sec2.1.jpeg" alt></p>
-<p><img src="/.io//sec2.2.jpeg" alt></p>
-<h2 id="Sec-III-VPC-Networking"><a href="#Sec-III-VPC-Networking" class="headerlink" title="Sec III: VPC Networking"></a>Sec III: VPC Networking</h2><h3 id="Outlines"><a href="#Outlines" class="headerlink" title="Outlines"></a>Outlines</h3><p>Internet gateway: Connects your VPC to the internet</p>
+        <p>欢迎来到我的AWS学习笔记系列。</p>
+<p>本文着重记述关于AWS网络和内容分发的知识点。如若转载，请先与作者联系。</p>
+<p><em>本文图片来自于网络</em></p>
+<h1 id="AWS-Networking-and-Content-Delivering"><a href="#AWS-Networking-and-Content-Delivering" class="headerlink" title="AWS Networking and Content Delivering"></a>AWS Networking and Content Delivering</h1><h2 id="Sec-I-Networking-Basics"><a href="#Sec-I-Networking-Basics" class="headerlink" title="Sec I: Networking Basics"></a>Sec I: Networking Basics</h2><img src="/.io//10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/sec1.jpg" class title="This is an test image">
+
+<h2 id="Sec-II-Amazon-VPC"><a href="#Sec-II-Amazon-VPC" class="headerlink" title="Sec II: Amazon VPC"></a>Sec II: Amazon VPC</h2><h2 id="Sec-III-VPC-Networking"><a href="#Sec-III-VPC-Networking" class="headerlink" title="Sec III: VPC Networking"></a>Sec III: VPC Networking</h2><h3 id="Outlines"><a href="#Outlines" class="headerlink" title="Outlines"></a>Outlines</h3><p>Internet gateway: Connects your VPC to the internet</p>
 <p>NAT gateway: Enables instances in a private subnet to connect to the internet</p>
 <p>VPC endpoint: Connects your VPC to supported AWS services</p>
 <p>VPC peering: Connects your VPC to other VPCs</p>
@@ -318,7 +316,7 @@
 <li>To make subset public,<ul>
 <li>Attach an internet gateway to the VPC(not directly to the subnet).</li>
 <li>Add a route to the route table to send <strong>non-local</strong> traffic through the gateway to the internet</li>
-<li>In your subnet route table, you can specify a route for the internet gateway to <strong>all destinations not explicitly known to the route table</strong> (0.0.0.0/0 for IPv4 or ::/0 for IPv6)<br><img src="/.io//internet-gateway-overview-diagram.png" alt></li>
+<li>In your subnet route table, you can specify a route for the internet gateway to <strong>all destinations not explicitly known to the route table</strong> (0.0.0.0/0 for IPv4 or ::/0 for IPv6)<br><img src="/.io//10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/internet-gateway-overview-diagram.png" alt></li>
 </ul>
 </li>
 </ul>
@@ -329,7 +327,7 @@
 <li>Have to assign an elastic IP address to NAT gateway.</li>
 <li>Alternative: NAT Instance, but NAT gateway is recommended because:<ul>
 <li>NAT gateway is a managed NAT service that provides better availability, higher bandwidth, and less administrative effort.</li>
-<li>For common use cases, AWS recommends that you <strong>use a NAT gateway instead of a NAT instance</strong>.<br><img src="/.io//nat-gateway-diagram.png" alt></li>
+<li>For common use cases, AWS recommends that you <strong>use a NAT gateway instead of a NAT instance</strong>.<br><img src="/.io//10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/nat-gateway-diagram.png" alt></li>
 </ul>
 </li>
 </ul>
@@ -338,7 +336,7 @@
 <li>VPC sharing enables customers to share subnets with other AWS accounts in the same organization in AWS Organizations.</li>
 <li>Application resources: such as Amazon EC2 instances, Amazon Relational Database Service (Amazon RDS) databases, Amazon Redshift clusters, and AWS Lambda functions.</li>
 <li>The participants can view, create, modify, and delete their application resources in the subnets that are shared with them.</li>
-<li>Centrally controlled VPC structure, routing, IP address allocation.<br><img src="https://d2908q01vomqb2.cloudfront.net/fc074d501302eb2b93e2554793fcaf50b3bf7291/2020/04/06/NLB_Blog1-1-1024x719.jpg" alt></li>
+<li>Centrally controlled VPC structure, routing, IP address allocation.<br><img src="https://media.amazonwebservices.com/blog/2017/dc_global_mod_after_1.png" alt></li>
 </ul>
 <p><a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-peering.html" target="_blank" rel="noopener">VPC Peering(VPC间private互联)</a></p>
 <ul>
@@ -359,7 +357,7 @@
 <li>Define the configuration of the VPN device or the customer gateway. The customer gateway is not a device but an AWS resource that provides information to AWS about your VPN device.</li>
 <li>Create a custom route table to point corporate data center-bound traffic to the VPN gateway. You also must update security group rules. (You will learn about security groups in the next section.)</li>
 <li>Establish an AWS Site-to-Site VPN (Site-to-Site VPN) connection to link the two systems together.</li>
-<li>Configure routing to pass traffic through the connection.<br><img src="/.io//aws_sts_vpn.png" alt></li>
+<li>Configure routing to pass traffic through the connection.<br><img src="/.io//10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/aws_sts_vpn.png" alt></li>
 </ul>
 </li>
 </ul>
@@ -371,19 +369,19 @@
 <li>Use open standard 802.1q virtual local area networks (VLANs).</li>
 </ul>
 </li>
-<li>reduce your network costs, increase bandwidth throughput, and provide a more consistent network experience than internet-based connections.<br><img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.edge-cloud.net%2F2019%2F09%2F06%2Fdx-gateway-deep-dive%2F&psig=AOvVaw0M-h0i2ow2cYs-Ir1gHV1Q&ust=1601967707665000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCNDz0vPwnOwCFQAAAAAdAAAAABA4" alt></li>
+<li>reduce your network costs, increase bandwidth throughput, and provide a more consistent network experience than internet-based connections.<br><img src="https://docs.aws.amazon.com/directconnect/latest/UserGuide/images/direct_connect_overview.png" alt></li>
 </ul>
 <p><a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints.html" target="_blank" rel="noopener">VPC Endpoints(VPC与AWS内部services建立private互联)</a></p>
 <ul>
 <li>Still <strong>private connection</strong>, connect your VPC to supported AWS services and VPC endpoint services that are powered by AWS PrivateLink.</li>
 <li>Connection to these services does not require an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection.</li>
-<li>Instances in your VPC do not require public IP addresses to communicate with resources in the service. Traffic between your VPC and the other service does not leave the Amazon network.<br><img src="/.io//vpc_endpoints.png" alt></li>
+<li>Instances in your VPC do not require public IP addresses to communicate with resources in the service. Traffic between your VPC and the other service does not leave the Amazon network.<br><img src="/.io//10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/vpc_endpoints.png" alt></li>
 </ul>
 <p><a href="https://docs.aws.amazon.com/vpc/latest/tgw/what-is-transit-gateway.html" target="_blank" rel="noopener">AWS Transit Gateway(将上述各类connection用一个hub集成)</a></p>
 <ul>
 <li>A transit gateway <strong>acts as a hub that controls how traffic is routed</strong> among all the connected networks, which act like spokes. </li>
 <li>You can configure your VPCs in several ways, and take advantage of numerous connectivity options and gateways, but managing point-to-point connectivity across many VPCs without the ability to centrally manage the connectivity policies can be operationally costly and difficult.</li>
-<li>To solve this problem, you can use AWS Transit Gateway to simplify your networking model. With AWS Transit Gateway, you only need to create and manage a single connection from the central gateway into each VPC, on-premises data center, or remote office across your network.<br><img src="/.io//aws_transit_gateway.png" alt></li>
+<li>To solve this problem, you can use AWS Transit Gateway to simplify your networking model. With AWS Transit Gateway, you only need to create and manage a single connection from the central gateway into each VPC, on-premises data center, or remote office across your network.<br><img src="/.io//10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/aws_transit_gateway.png" alt></li>
 </ul>
 <h2 id="Sec-IV-VPC-Security"><a href="#Sec-IV-VPC-Security" class="headerlink" title="Sec IV: VPC Security"></a>Sec IV: VPC Security</h2><h2 id="Sec-V-Route-53"><a href="#Sec-V-Route-53" class="headerlink" title="Sec V: Route 53"></a>Sec V: Route 53</h2><h2 id="Sec-VI-Cloud-Front"><a href="#Sec-VI-Cloud-Front" class="headerlink" title="Sec VI: Cloud Front"></a>Sec VI: Cloud Front</h2>
     </div>

@@ -1,27 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>6.4 leetcode check-in</title>
-    <url>/2020/06/04/6-4-leetcode-check-in/</url>
-    <content><![CDATA[<p>今天是6月4日。昨天6.3办了一天手续，只做了dc。</p>
-<p>今日leetcode打卡：dc(one-shot), lc692(one-shot), lc127(<em>reserved</em>), lc138(one-shot), </p>
-<p><a href="https://leetcode.com/problems/top-k-frequent-words/" target="_blank" rel="noopener">lc692</a>:</p>
-<p>学到了comparator的用法。具体可参加<a href="https://github.com/AcVoyager/MyLeetCode/blob/dc43489cd64748b96a1a7ebbf7ce49606effcc7a/problems/Amazon/692.%20Top%20K%20Frequent%20Words/code.java#L9-L20" target="_blank" rel="noopener">本人代码</a>。</p>
-<p><a href="https://leetcode.com/problems/word-ladder/" target="_blank" rel="noopener">lc127</a></p>
-<p>说是medium，其实有点hard…有空的话此题要复习一下</p>
-<p><a href="https://leetcode.com/problems/copy-list-with-random-pointer/" target="_blank" rel="noopener">lc138</a></p>
-<p>Hashmap解决所有问题</p>
-<p>今天突然又想起了杭州。出国在外，一人生活久了，渐渐地也就没有什么留恋的人和事儿了。唯一一个，一直一直放不下的，是那座承载童年梦想和四年青春的杭城。</p>
-<p><img src="hz.jpeg" alt=""><br><em>摄于2020年1月5日中午，苏堤，杭州</em></p>
-]]></content>
-      <categories>
-        <category>中文</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>6.10 leetcode check-in</title>
     <url>/2020/06/10/6-10-leetcode-check-in/</url>
     <content><![CDATA[<p>今日leetcode打卡：daily challenge(one-shot)</p>
@@ -35,37 +14,18 @@
       </tags>
   </entry>
   <entry>
-    <title>Begin of the summer</title>
-    <url>/2020/06/01/Begin-of-the-summer/</url>
-    <content><![CDATA[<p>于我而言，夏天是从六月开始。这边的学校喜欢把暑期学期称之为summer session. 虽然学校的academic calendar上summer session开始的时间并不是6.1，不过嘛，whatever.对我来讲，今天不仅是6.1，也是一个周一，更是上个学期杂七杂八一堆事儿的结束。所以，本篇名为夏之初，begin of the summer.</p>
-<p>如果说19fall学期是起初焦虑担忧，到最后斗志昂扬的一个,看似顺利的转变，那么20spr学期便五味杂陈的多。这几个月碰上了新冠病毒，经济崩盘，留学生签证入境受限和最近的美国暴动，一切的一切都好像预示着什么，“山雨欲来风满楼”。而我个人的生活也因各种大小事儿变得碎片化，脑子里面充斥的东西也不像之前纯粹而勇敢。但是总体来讲个人意志还算坚强，所以撑过了这学期，保住了成绩，办完了各种手续，转租了房子，搬了家。</p>
-<p>生活方面的事儿就聊到这里吧。今天开始有计划的刷题。那么每天都会大致记录一下刷了什么题，再刷题过程学到了什么。</p>
-<p>今天刷了两道：</p>
-<ol>
-<li><a href="https://leetcode.com/explore/challenge/card/june-leetcoding-challenge/539/week-1-june-1st-june-7th/3347/" target="_blank" rel="noopener">Invert Binary Tree</a></li>
-<li><a href="https://leetcode.com/problems/number-of-islands/" target="_blank" rel="noopener">lc200:Number of Islands</a></li>
-</ol>
-<p>第一道题没什么好说的，简单的递归。</p>
-<p>第二道题，我用两种方法做：BFS和DSU(Disjoint Set Union). </p>
-<ul>
-<li>Java的List可以用来存放一些，用python的眼光来看，tuple。实属好用。</li>
-<li>如果做题的时候需要自定义一些数据结构，可以用类中类的方式来解决。需要注意的是，对于一个类中的成员内部类，变量名等若与外部类相同会出现隐藏外部的情况。如果想访问外部类中属性或方法的时候，使用外部类.this.Bluhbluh…拓展阅读：<a href="https://blog.csdn.net/u010126792/java/article/details/82840563" target="_blank" rel="noopener">java内部类为什么可以访问外部类属性方法</a></li>
-<li>DSU的union方法中，切记Union的是root们，不慎写错的话bug不好找。</li>
-</ul>
-<p>目前看来就是这样了，祝自己，祝大家，夏天快乐。</p>
-]]></content>
-      <categories>
-        <category>中文</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
-        <tag>life</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>6.5 leetcode check-in</title>
-    <url>/2020/06/05/6-5-leetcode-check-in/</url>
-    <content><![CDATA[<p>今日leetcode打卡：daily challenge</p>
+    <title>6.4 leetcode check-in</title>
+    <url>/2020/06/04/6-4-leetcode-check-in/</url>
+    <content><![CDATA[<p>今天是6月4日。昨天6.3办了一天手续，只做了dc。</p>
+<p>今日leetcode打卡：dc(one-shot), lc692(one-shot), lc127(<em>reserved</em>), lc138(one-shot), </p>
+<p><a href="https://leetcode.com/problems/top-k-frequent-words/" target="_blank" rel="noopener">lc692</a>:</p>
+<p>学到了comparator的用法。具体可参加<a href="https://github.com/AcVoyager/MyLeetCode/blob/dc43489cd64748b96a1a7ebbf7ce49606effcc7a/problems/Amazon/692.%20Top%20K%20Frequent%20Words/code.java#L9-L20" target="_blank" rel="noopener">本人代码</a>。</p>
+<p><a href="https://leetcode.com/problems/word-ladder/" target="_blank" rel="noopener">lc127</a></p>
+<p>说是medium，其实有点hard…有空的话此题要复习一下</p>
+<p><a href="https://leetcode.com/problems/copy-list-with-random-pointer/" target="_blank" rel="noopener">lc138</a></p>
+<p>Hashmap解决所有问题</p>
+<p>今天突然又想起了杭州。出国在外，一人生活久了，渐渐地也就没有什么留恋的人和事儿了。唯一一个，一直一直放不下的，是那座承载童年梦想和四年青春的杭城。</p>
+<p><img src="/.io//06/04/6-4-leetcode-check-in/hz.jpeg" alt><br><em>摄于2020年1月5日中午，苏堤，杭州</em></p>
 ]]></content>
       <categories>
         <category>中文</category>
@@ -104,20 +64,6 @@
       </tags>
   </entry>
   <entry>
-    <title>6.9 leetcode check-in</title>
-    <url>/2020/06/09/6-9-leetcode-check-in/</url>
-    <content><![CDATA[<p>今日leetcode打卡：daily challenge(one-shot)</p>
-<p>这道题本身不难，不过follow up有点意思，值得一看。</p>
-<p>follow-up的一个解释贴在<a href="https://leetcode.com/explore/challenge/card/june-leetcoding-challenge/540/week-2-june-8th-june-14th/3355/discuss/87268/Java-code-for-the-follow-up-question" target="_blank" rel="noopener">这里</a>，使用的是hashmap和二分查找。</p>
-]]></content>
-      <categories>
-        <category>中文</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>6.7 leetcode check-in</title>
     <url>/2020/06/07/6-7-leetcode-check-in/</url>
     <content><![CDATA[<p>今日leetcode打卡：</p>
@@ -135,6 +81,187 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>6.5 leetcode check-in</title>
+    <url>/2020/06/05/6-5-leetcode-check-in/</url>
+    <content><![CDATA[<p>今日leetcode打卡：daily challenge</p>
+]]></content>
+      <categories>
+        <category>中文</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AWS学习笔记: Networking and Content Delivery</title>
+    <url>/2020/10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/</url>
+    <content><![CDATA[<p>欢迎来到我的AWS学习笔记系列。</p>
+<p>本文着重记述关于AWS网络和内容分发的知识点。如若转载，请先与作者联系。</p>
+<p><em>本文图片来自于网络</em></p>
+<h1 id="AWS-Networking-and-Content-Delivering"><a href="#AWS-Networking-and-Content-Delivering" class="headerlink" title="AWS Networking and Content Delivering"></a>AWS Networking and Content Delivering</h1><h2 id="Sec-I-Networking-Basics"><a href="#Sec-I-Networking-Basics" class="headerlink" title="Sec I: Networking Basics"></a>Sec I: Networking Basics</h2><img src="/.io//10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/sec1.jpg" class title="This is an test image">
+
+<h2 id="Sec-II-Amazon-VPC"><a href="#Sec-II-Amazon-VPC" class="headerlink" title="Sec II: Amazon VPC"></a>Sec II: Amazon VPC</h2><h2 id="Sec-III-VPC-Networking"><a href="#Sec-III-VPC-Networking" class="headerlink" title="Sec III: VPC Networking"></a>Sec III: VPC Networking</h2><h3 id="Outlines"><a href="#Outlines" class="headerlink" title="Outlines"></a>Outlines</h3><p>Internet gateway: Connects your VPC to the internet</p>
+<p>NAT gateway: Enables instances in a private subnet to connect to the internet</p>
+<p>VPC endpoint: Connects your VPC to supported AWS services</p>
+<p>VPC peering: Connects your VPC to other VPCs</p>
+<p>VPC sharing: Allows multiple AWS accounts to create their application resources into shared, centrally-managed Amazon VPCs</p>
+<p>AWS Site-to-Site VPN: Connects your VPC to remote networks</p>
+<p>AWS Direct Connect: Connects your VPC to a remote network by using a dedicated network connection</p>
+<p>AWS Transit Gateway: A hub-and-spoke connection alternative to VPC peering</p>
+<p><a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html" target="_blank" rel="noopener">Internet Gateway(public subnet公网连接)</a></p>
+<ul>
+<li>Scalable, redundant and highly available.</li>
+<li>Allow communication between instances in VPC and the internet.</li>
+<li>Two purposes:<ul>
+<li>Provide a target for the VPC route tables for internet-routable traffic.</li>
+<li>Perform network address translation(NAT) for instances within VPC.</li>
+</ul>
+</li>
+<li>Subnet and gateway<ul>
+<li>If a subnet is associated with a <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html#RouteTables" target="_blank" rel="noopener">route table</a> which</li>
+<li>has a gateway -&gt; public subnet;</li>
+<li>doesn’t have a gateway -&gt; private subnet.</li>
+</ul>
+</li>
+<li>To make subset public,<ul>
+<li>Attach an internet gateway to the VPC(not directly to the subnet).</li>
+<li>Add a route to the route table to send <strong>non-local</strong> traffic through the gateway to the internet</li>
+<li>In your subnet route table, you can specify a route for the internet gateway to <strong>all destinations not explicitly known to the route table</strong> (0.0.0.0/0 for IPv4 or ::/0 for IPv6)<br><img src="/.io//10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/internet-gateway-overview-diagram.png" alt></li>
+</ul>
+</li>
+</ul>
+<p><a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat.html" target="_blank" rel="noopener">Network Address Gateway(NAT) (private subnet借public subnet单向访问公网)</a></p>
+<ul>
+<li>Reside in <strong>public subnet</strong>, work for <strong>private subnet</strong>.</li>
+<li>Enable private subnets to access the Internet, but prevent the Internet from initializing connection with private subnets.</li>
+<li>Have to assign an elastic IP address to NAT gateway.</li>
+<li>Alternative: NAT Instance, but NAT gateway is recommended because:<ul>
+<li>NAT gateway is a managed NAT service that provides better availability, higher bandwidth, and less administrative effort.</li>
+<li>For common use cases, AWS recommends that you <strong>use a NAT gateway instead of a NAT instance</strong>.<br><img src="/.io//10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/nat-gateway-diagram.png" alt></li>
+</ul>
+</li>
+</ul>
+<p><a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html" target="_blank" rel="noopener">VPC Sharing(同组织用户共享VOC)</a></p>
+<ul>
+<li>VPC sharing enables customers to share subnets with other AWS accounts in the same organization in AWS Organizations.</li>
+<li>Application resources: such as Amazon EC2 instances, Amazon Relational Database Service (Amazon RDS) databases, Amazon Redshift clusters, and AWS Lambda functions.</li>
+<li>The participants can view, create, modify, and delete their application resources in the subnets that are shared with them.</li>
+<li>Centrally controlled VPC structure, routing, IP address allocation.<br><img src="https://media.amazonwebservices.com/blog/2017/dc_global_mod_after_1.png" alt></li>
+</ul>
+<p><a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-peering.html" target="_blank" rel="noopener">VPC Peering(VPC间private互联)</a></p>
+<ul>
+<li>A VPC peering connection is a networking <strong>connection between two VPCs</strong> that enables you to route traffic between them privately. </li>
+<li>When you set up the peering connection, you create rules in your route table to allow the VPCs to communicate with each other through the peering resource.</li>
+<li>Restrictions:<ul>
+<li>IP address ranges cannot overlap. </li>
+<li>Transitive peering is not supported. A&lt;-&gt;B, A&lt;-&gt;C, cannot infer B&lt;-&gt;C.</li>
+<li>You can only have one peering resource between the same two VPCs.</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html" target="_blank" rel="noopener">AWS Site-to-Site VPN(VPC到外部网络点对点VPN连接)</a></p>
+<ul>
+<li>From <strong>private subnet</strong> to your own(remote) network.</li>
+<li>By default, instances that you launch into a VPC cannot communicate with a remote network. To connect your VPC to your remote network (that is, create a virtual private network or VPN connection), you:<ul>
+<li>Create a new virtual gateway device (called a virtual private network (VPN) gateway) and attach it to your VPC.</li>
+<li>Define the configuration of the VPN device or the customer gateway. The customer gateway is not a device but an AWS resource that provides information to AWS about your VPN device.</li>
+<li>Create a custom route table to point corporate data center-bound traffic to the VPN gateway. You also must update security group rules. (You will learn about security groups in the next section.)</li>
+<li>Establish an AWS Site-to-Site VPN (Site-to-Site VPN) connection to link the two systems together.</li>
+<li>Configure routing to pass traffic through the connection.<br><img src="/.io//10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/aws_sts_vpn.png" alt></li>
+</ul>
+</li>
+</ul>
+<p><a href="https://aws.amazon.com/directconnect/" target="_blank" rel="noopener">AWS Direct Connect(VPC与外部数据中心建立private高性能连接)</a></p>
+<ul>
+<li><strong>Private connection</strong> from your VPC to your data center. The key difference between VPN:<ul>
+<li>It focuses on <strong>increasing the performance</strong> of the connection.</li>
+<li>Replace AWS Site-to-Site VPN with AWS Direct Connect.</li>
+<li>Use open standard 802.1q virtual local area networks (VLANs).</li>
+</ul>
+</li>
+<li>reduce your network costs, increase bandwidth throughput, and provide a more consistent network experience than internet-based connections.<br><img src="https://docs.aws.amazon.com/directconnect/latest/UserGuide/images/direct_connect_overview.png" alt></li>
+</ul>
+<p><a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints.html" target="_blank" rel="noopener">VPC Endpoints(VPC与AWS内部services建立private互联)</a></p>
+<ul>
+<li>Still <strong>private connection</strong>, connect your VPC to supported AWS services and VPC endpoint services that are powered by AWS PrivateLink.</li>
+<li>Connection to these services does not require an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection.</li>
+<li>Instances in your VPC do not require public IP addresses to communicate with resources in the service. Traffic between your VPC and the other service does not leave the Amazon network.<br><img src="/.io//10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/vpc_endpoints.png" alt></li>
+</ul>
+<p><a href="https://docs.aws.amazon.com/vpc/latest/tgw/what-is-transit-gateway.html" target="_blank" rel="noopener">AWS Transit Gateway(将上述各类connection用一个hub集成)</a></p>
+<ul>
+<li>A transit gateway <strong>acts as a hub that controls how traffic is routed</strong> among all the connected networks, which act like spokes. </li>
+<li>You can configure your VPCs in several ways, and take advantage of numerous connectivity options and gateways, but managing point-to-point connectivity across many VPCs without the ability to centrally manage the connectivity policies can be operationally costly and difficult.</li>
+<li>To solve this problem, you can use AWS Transit Gateway to simplify your networking model. With AWS Transit Gateway, you only need to create and manage a single connection from the central gateway into each VPC, on-premises data center, or remote office across your network.<br><img src="/.io//10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/aws_transit_gateway.png" alt></li>
+</ul>
+<h2 id="Sec-IV-VPC-Security"><a href="#Sec-IV-VPC-Security" class="headerlink" title="Sec IV: VPC Security"></a>Sec IV: VPC Security</h2><h2 id="Sec-V-Route-53"><a href="#Sec-V-Route-53" class="headerlink" title="Sec V: Route 53"></a>Sec V: Route 53</h2><h2 id="Sec-VI-Cloud-Front"><a href="#Sec-VI-Cloud-Front" class="headerlink" title="Sec VI: Cloud Front"></a>Sec VI: Cloud Front</h2>]]></content>
+      <categories>
+        <category>中文</category>
+        <category>English</category>
+      </categories>
+      <tags>
+        <tag>AWS</tag>
+        <tag>Network</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>6.9 leetcode check-in</title>
+    <url>/2020/06/09/6-9-leetcode-check-in/</url>
+    <content><![CDATA[<p>今日leetcode打卡：daily challenge(one-shot)</p>
+<p>这道题本身不难，不过follow up有点意思，值得一看。</p>
+<p>follow-up的一个解释贴在<a href="https://leetcode.com/explore/challenge/card/june-leetcoding-challenge/540/week-2-june-8th-june-14th/3355/discuss/87268/Java-code-for-the-follow-up-question" target="_blank" rel="noopener">这里</a>，使用的是hashmap和二分查找。</p>
+]]></content>
+      <categories>
+        <category>中文</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Begin of the summer</title>
+    <url>/2020/06/01/Begin-of-the-summer/</url>
+    <content><![CDATA[<p>于我而言，夏天是从六月开始。这边的学校喜欢把暑期学期称之为summer session. 虽然学校的academic calendar上summer session开始的时间并不是6.1，不过嘛，whatever.对我来讲，今天不仅是6.1，也是一个周一，更是上个学期杂七杂八一堆事儿的结束。所以，本篇名为夏之初，begin of the summer.</p>
+<p>如果说19fall学期是起初焦虑担忧，到最后斗志昂扬的一个,看似顺利的转变，那么20spr学期便五味杂陈的多。这几个月碰上了新冠病毒，经济崩盘，留学生签证入境受限和最近的美国暴动，一切的一切都好像预示着什么，“山雨欲来风满楼”。而我个人的生活也因各种大小事儿变得碎片化，脑子里面充斥的东西也不像之前纯粹而勇敢。但是总体来讲个人意志还算坚强，所以撑过了这学期，保住了成绩，办完了各种手续，转租了房子，搬了家。</p>
+<p>生活方面的事儿就聊到这里吧。今天开始有计划的刷题。那么每天都会大致记录一下刷了什么题，再刷题过程学到了什么。</p>
+<p>今天刷了两道：</p>
+<ol>
+<li><a href="https://leetcode.com/explore/challenge/card/june-leetcoding-challenge/539/week-1-june-1st-june-7th/3347/" target="_blank" rel="noopener">Invert Binary Tree</a></li>
+<li><a href="https://leetcode.com/problems/number-of-islands/" target="_blank" rel="noopener">lc200:Number of Islands</a></li>
+</ol>
+<p>第一道题没什么好说的，简单的递归。</p>
+<p>第二道题，我用两种方法做：BFS和DSU(Disjoint Set Union). </p>
+<ul>
+<li>Java的List可以用来存放一些，用python的眼光来看，tuple。实属好用。</li>
+<li>如果做题的时候需要自定义一些数据结构，可以用类中类的方式来解决。需要注意的是，对于一个类中的成员内部类，变量名等若与外部类相同会出现隐藏外部的情况。如果想访问外部类中属性或方法的时候，使用外部类.this.Bluhbluh…拓展阅读：<a href="https://blog.csdn.net/u010126792/java/article/details/82840563" target="_blank" rel="noopener">java内部类为什么可以访问外部类属性方法</a></li>
+<li>DSU的union方法中，切记Union的是root们，不慎写错的话bug不好找。</li>
+</ul>
+<p>目前看来就是这样了，祝自己，祝大家，夏天快乐。</p>
+]]></content>
+      <categories>
+        <category>中文</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>life</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git: 修改.gitignore并应用</title>
+    <url>/2020/06/02/Git-%E4%BF%AE%E6%94%B9-gitignore%E5%B9%B6%E5%BA%94%E7%94%A8/</url>
+    <content><![CDATA[<ol>
+<li>git rm -r –cached file_name/dir</li>
+<li>修改.gitignore</li>
+<li><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>中文</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -202,14 +329,14 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>List<Integer></td>
+<td>List<Integer></Integer></td>
 <td>compare inner value of elements</td>
 <td>set does not change accordingly</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>List<String></td>
+<td>List<String></String></td>
 <td>compare inner value of elements</td>
 <td>set does not change accordingly</td>
 <td></td>
@@ -235,49 +362,12 @@
 <li>Override the method <code>public int compareTo(T t)</code></li>
 </ol>
 <p><a href="https://howtodoinjava.com/java/collections/java-priorityqueue/#:~:text=Java%20PriorityQueue%20class%20is%20a,are%20according%20to%20their%20priority." target="_blank" rel="noopener">reference</a></p>
-<h2 id="Java-visibility-Explanation"><a href="#Java-visibility-Explanation" class="headerlink" title="Java visibility Explanation"></a>Java visibility Explanation</h2><p><img src="res/visibility.png" alt=""></p>
+<h2 id="Java-visibility-Explanation"><a href="#Java-visibility-Explanation" class="headerlink" title="Java visibility Explanation"></a>Java visibility Explanation</h2><p><img src="/.io//10/01/Leetcode%E5%88%B7%E9%A2%98%E7%A7%AF%E7%B4%AF/visibility.png" alt></p>
 <h2 id="How-to-test-if-a-double-is-an-integer"><a href="#How-to-test-if-a-double-is-an-integer" class="headerlink" title="How to test if a double is an integer?"></a>How to test if a double is an integer?</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(i % <span class="number">1</span> == <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
 
 <h2 id="Compare-two-strings"><a href="#Compare-two-strings" class="headerlink" title="Compare two strings"></a>Compare two strings</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">str1.compareTo(str2); <span class="comment">// return a integer</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="How-to-use-Java-Pair-TODO"><a href="#How-to-use-Java-Pair-TODO" class="headerlink" title="How to use Java Pair ? #TODO"></a>How to use Java <code>Pair</code> ? #TODO</h2>]]></content>
-  </entry>
-  <entry>
-    <title>Git: 修改.gitignore并应用</title>
-    <url>/2020/06/02/Git-%E4%BF%AE%E6%94%B9-gitignore%E5%B9%B6%E5%BA%94%E7%94%A8/</url>
-    <content><![CDATA[<ol>
-<li>git rm -r –cached file_name/dir</li>
-<li>修改.gitignore</li>
-<li><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>中文</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>return to blog</title>
-    <url>/2020/09/03/return-to-blog/</url>
-    <content><![CDATA[<p>Now is Sep 3, 23:13.</p>
-<p>It has been 66 days since my last post on June 29th. Lots of things happen during such “evil” time range:</p>
-<ul>
-<li>Completed my first internship/job in my life.</li>
-<li>Finished a 4 credit hours online class.</li>
-<li>Moved out from AZ</li>
-<li>Had my last meal in AZ with a receipt ID “66” 😈😈😈.</li>
-<li>Move to Seattle</li>
-<li>Get all daily life things done.</li>
-<li>…</li>
-</ul>
-<p>Now, I finally get the chance to stay in peace and think about the next step. I am gonna to be a professional software engineer, and I shall continue leetcoding and doing project today.</p>
-<p>That’s all, THE LORD HAS RETURNED!</p>
-]]></content>
-      <categories>
-        <category>English</category>
-      </categories>
   </entry>
   <entry>
     <title>Oct 1st check-in</title>
@@ -316,23 +406,25 @@
       </tags>
   </entry>
   <entry>
-    <title>十月初夜谈</title>
-    <url>/2020/10/01/%E5%8D%81%E6%9C%88%E5%88%9D%E5%A4%9C%E8%B0%88/</url>
-    <content><![CDATA[<p>总结刚刚过去的九月：</p>
+    <title>return to blog</title>
+    <url>/2020/09/03/return-to-blog/</url>
+    <content><![CDATA[<p>Now is Sep 3, 23:13.</p>
+<p>It has been 66 days since my last post on June 29th. Lots of things happen during such “evil” time range:</p>
 <ul>
-<li>刷题量上100+，参加三次leetcode contest</li>
-<li>适应在西雅图的新生活，适应新学校。</li>
-<li>作出下一步的职业规划</li>
+<li>Completed my first internship/job in my life.</li>
+<li>Finished a 4 credit hours online class.</li>
+<li>Moved out from AZ</li>
+<li>Had my last meal in AZ with a receipt ID “66” 😈😈😈.</li>
+<li>Move to Seattle</li>
+<li>Get all daily life things done.</li>
+<li>…</li>
 </ul>
-<p>多说无益，既有决心，便请前行。</p>
-<p>晚安。</p>
+<p>Now, I finally get the chance to stay in peace and think about the next step. I am gonna to be a professional software engineer, and I shall continue leetcoding and doing project today.</p>
+<p>That’s all, THE LORD HAS RETURNED!</p>
 ]]></content>
       <categories>
-        <category>中文</category>
+        <category>English</category>
       </categories>
-      <tags>
-        <tag>life</tag>
-      </tags>
   </entry>
   <entry>
     <title>My first blog</title>
@@ -351,114 +443,22 @@
       </tags>
   </entry>
   <entry>
-    <title>AWS学习笔记: Networking and Content Delivery</title>
-    <url>/2020/10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/</url>
-    <content><![CDATA[<p>欢迎来到我的AWS学习笔记系列。本文着重记述关于AWS网络和内容分发的知识点。转载请注明作者。</p>
-<p>由于版权原因，下文中有些配图不予显示，敬请谅解。</p>
-<h1 id="AWS-Networking-and-Content-Delivering"><a href="#AWS-Networking-and-Content-Delivering" class="headerlink" title="AWS Networking and Content Delivering"></a>AWS Networking and Content Delivering</h1><h2 id="Sec-I-Networking-Basics"><a href="#Sec-I-Networking-Basics" class="headerlink" title="Sec I: Networking Basics"></a>Sec I: Networking Basics</h2><p><img src="/.io//sec1.jpeg" alt></p>
-<h2 id="Sec-II-Amazon-VPC"><a href="#Sec-II-Amazon-VPC" class="headerlink" title="Sec II: Amazon VPC"></a>Sec II: Amazon VPC</h2><p><img src="/.io//sec2.1.jpeg" alt></p>
-<p><img src="/.io//sec2.2.jpeg" alt></p>
-<h2 id="Sec-III-VPC-Networking"><a href="#Sec-III-VPC-Networking" class="headerlink" title="Sec III: VPC Networking"></a>Sec III: VPC Networking</h2><h3 id="Outlines"><a href="#Outlines" class="headerlink" title="Outlines"></a>Outlines</h3><p>Internet gateway: Connects your VPC to the internet</p>
-<p>NAT gateway: Enables instances in a private subnet to connect to the internet</p>
-<p>VPC endpoint: Connects your VPC to supported AWS services</p>
-<p>VPC peering: Connects your VPC to other VPCs</p>
-<p>VPC sharing: Allows multiple AWS accounts to create their application resources into shared, centrally-managed Amazon VPCs</p>
-<p>AWS Site-to-Site VPN: Connects your VPC to remote networks</p>
-<p>AWS Direct Connect: Connects your VPC to a remote network by using a dedicated network connection</p>
-<p>AWS Transit Gateway: A hub-and-spoke connection alternative to VPC peering</p>
-<p><a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html" target="_blank" rel="noopener">Internet Gateway(public subnet公网连接)</a></p>
+    <title>十月初夜谈</title>
+    <url>/2020/10/01/%E5%8D%81%E6%9C%88%E5%88%9D%E5%A4%9C%E8%B0%88/</url>
+    <content><![CDATA[<p>总结刚刚过去的九月：</p>
 <ul>
-<li>Scalable, redundant and highly available.</li>
-<li>Allow communication between instances in VPC and the internet.</li>
-<li>Two purposes:<ul>
-<li>Provide a target for the VPC route tables for internet-routable traffic.</li>
-<li>Perform network address translation(NAT) for instances within VPC.</li>
+<li>刷题量上100+，参加三次leetcode contest</li>
+<li>适应在西雅图的新生活，适应新学校。</li>
+<li>作出下一步的职业规划</li>
 </ul>
-</li>
-<li>Subnet and gateway<ul>
-<li>If a subnet is associated with a <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html#RouteTables" target="_blank" rel="noopener">route table</a> which</li>
-<li>has a gateway -&gt; public subnet;</li>
-<li>doesn’t have a gateway -&gt; private subnet.</li>
-</ul>
-</li>
-<li>To make subset public,<ul>
-<li>Attach an internet gateway to the VPC(not directly to the subnet).</li>
-<li>Add a route to the route table to send <strong>non-local</strong> traffic through the gateway to the internet</li>
-<li>In your subnet route table, you can specify a route for the internet gateway to <strong>all destinations not explicitly known to the route table</strong> (0.0.0.0/0 for IPv4 or ::/0 for IPv6)<br><img src="/.io//internet-gateway-overview-diagram.png" alt></li>
-</ul>
-</li>
-</ul>
-<p><a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat.html" target="_blank" rel="noopener">Network Address Gateway(NAT) (private subnet借public subnet单向访问公网)</a></p>
-<ul>
-<li>Reside in <strong>public subnet</strong>, work for <strong>private subnet</strong>.</li>
-<li>Enable private subnets to access the Internet, but prevent the Internet from initializing connection with private subnets.</li>
-<li>Have to assign an elastic IP address to NAT gateway.</li>
-<li>Alternative: NAT Instance, but NAT gateway is recommended because:<ul>
-<li>NAT gateway is a managed NAT service that provides better availability, higher bandwidth, and less administrative effort.</li>
-<li>For common use cases, AWS recommends that you <strong>use a NAT gateway instead of a NAT instance</strong>.<br><img src="/.io//nat-gateway-diagram.png" alt></li>
-</ul>
-</li>
-</ul>
-<p><a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html" target="_blank" rel="noopener">VPC Sharing(同组织用户共享VOC)</a></p>
-<ul>
-<li>VPC sharing enables customers to share subnets with other AWS accounts in the same organization in AWS Organizations.</li>
-<li>Application resources: such as Amazon EC2 instances, Amazon Relational Database Service (Amazon RDS) databases, Amazon Redshift clusters, and AWS Lambda functions.</li>
-<li>The participants can view, create, modify, and delete their application resources in the subnets that are shared with them.</li>
-<li>Centrally controlled VPC structure, routing, IP address allocation.<br><img src="https://d2908q01vomqb2.cloudfront.net/fc074d501302eb2b93e2554793fcaf50b3bf7291/2020/04/06/NLB_Blog1-1-1024x719.jpg" alt></li>
-</ul>
-<p><a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-peering.html" target="_blank" rel="noopener">VPC Peering(VPC间private互联)</a></p>
-<ul>
-<li>A VPC peering connection is a networking <strong>connection between two VPCs</strong> that enables you to route traffic between them privately. </li>
-<li>When you set up the peering connection, you create rules in your route table to allow the VPCs to communicate with each other through the peering resource.</li>
-<li>Restrictions:<ul>
-<li>IP address ranges cannot overlap. </li>
-<li>Transitive peering is not supported. A&lt;-&gt;B, A&lt;-&gt;C, cannot infer B&lt;-&gt;C.</li>
-<li>You can only have one peering resource between the same two VPCs.</li>
-</ul>
-</li>
-</ul>
-<p><a href="https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html" target="_blank" rel="noopener">AWS Site-to-Site VPN(VPC到外部网络点对点VPN连接)</a></p>
-<ul>
-<li>From <strong>private subnet</strong> to your own(remote) network.</li>
-<li>By default, instances that you launch into a VPC cannot communicate with a remote network. To connect your VPC to your remote network (that is, create a virtual private network or VPN connection), you:<ul>
-<li>Create a new virtual gateway device (called a virtual private network (VPN) gateway) and attach it to your VPC.</li>
-<li>Define the configuration of the VPN device or the customer gateway. The customer gateway is not a device but an AWS resource that provides information to AWS about your VPN device.</li>
-<li>Create a custom route table to point corporate data center-bound traffic to the VPN gateway. You also must update security group rules. (You will learn about security groups in the next section.)</li>
-<li>Establish an AWS Site-to-Site VPN (Site-to-Site VPN) connection to link the two systems together.</li>
-<li>Configure routing to pass traffic through the connection.<br><img src="/.io//aws_sts_vpn.png" alt></li>
-</ul>
-</li>
-</ul>
-<p><a href="https://aws.amazon.com/directconnect/" target="_blank" rel="noopener">AWS Direct Connect(VPC与外部数据中心建立private高性能连接)</a></p>
-<ul>
-<li><strong>Private connection</strong> from your VPC to your data center. The key difference between VPN:<ul>
-<li>It focuses on <strong>increasing the performance</strong> of the connection.</li>
-<li>Replace AWS Site-to-Site VPN with AWS Direct Connect.</li>
-<li>Use open standard 802.1q virtual local area networks (VLANs).</li>
-</ul>
-</li>
-<li>reduce your network costs, increase bandwidth throughput, and provide a more consistent network experience than internet-based connections.<br><img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.edge-cloud.net%2F2019%2F09%2F06%2Fdx-gateway-deep-dive%2F&psig=AOvVaw0M-h0i2ow2cYs-Ir1gHV1Q&ust=1601967707665000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCNDz0vPwnOwCFQAAAAAdAAAAABA4" alt></li>
-</ul>
-<p><a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints.html" target="_blank" rel="noopener">VPC Endpoints(VPC与AWS内部services建立private互联)</a></p>
-<ul>
-<li>Still <strong>private connection</strong>, connect your VPC to supported AWS services and VPC endpoint services that are powered by AWS PrivateLink.</li>
-<li>Connection to these services does not require an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection.</li>
-<li>Instances in your VPC do not require public IP addresses to communicate with resources in the service. Traffic between your VPC and the other service does not leave the Amazon network.<br><img src="/.io//vpc_endpoints.png" alt></li>
-</ul>
-<p><a href="https://docs.aws.amazon.com/vpc/latest/tgw/what-is-transit-gateway.html" target="_blank" rel="noopener">AWS Transit Gateway(将上述各类connection用一个hub集成)</a></p>
-<ul>
-<li>A transit gateway <strong>acts as a hub that controls how traffic is routed</strong> among all the connected networks, which act like spokes. </li>
-<li>You can configure your VPCs in several ways, and take advantage of numerous connectivity options and gateways, but managing point-to-point connectivity across many VPCs without the ability to centrally manage the connectivity policies can be operationally costly and difficult.</li>
-<li>To solve this problem, you can use AWS Transit Gateway to simplify your networking model. With AWS Transit Gateway, you only need to create and manage a single connection from the central gateway into each VPC, on-premises data center, or remote office across your network.<br><img src="/.io//aws_transit_gateway.png" alt></li>
-</ul>
-<h2 id="Sec-IV-VPC-Security"><a href="#Sec-IV-VPC-Security" class="headerlink" title="Sec IV: VPC Security"></a>Sec IV: VPC Security</h2><h2 id="Sec-V-Route-53"><a href="#Sec-V-Route-53" class="headerlink" title="Sec V: Route 53"></a>Sec V: Route 53</h2><h2 id="Sec-VI-Cloud-Front"><a href="#Sec-VI-Cloud-Front" class="headerlink" title="Sec VI: Cloud Front"></a>Sec VI: Cloud Front</h2>]]></content>
+<p>多说无益，既有决心，便请前行。</p>
+<p>晚安。</p>
+]]></content>
       <categories>
         <category>中文</category>
-        <category>English</category>
       </categories>
       <tags>
-        <tag>AWS</tag>
-        <tag>Network</tag>
+        <tag>life</tag>
       </tags>
   </entry>
 </search>
