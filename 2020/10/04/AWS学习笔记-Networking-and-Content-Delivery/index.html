@@ -37,8 +37,10 @@
 <meta property="og:image" content="https://docs.aws.amazon.com/directconnect/latest/UserGuide/images/direct_connect_overview.png">
 <meta property="og:image" content="https://acvoyager.github.io/2020/10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/vpc_endpoints.png">
 <meta property="og:image" content="https://acvoyager.github.io/2020/10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/aws_transit_gateway.png">
+<meta property="og:image" content="https://i2.wp.com/networkinterview.com/wp-content/uploads/2019/11/security-groups-in-AWS.jpg?w=800&ssl=1">
+<meta property="og:image" content="https://miro.medium.com/max/1750/1*o76vPCV2AF0jeVVunVwYDA.png">
 <meta property="article:published_time" content="2020-10-05T05:01:46.000Z">
-<meta property="article:modified_time" content="2020-10-05T07:59:14.307Z">
+<meta property="article:modified_time" content="2020-10-06T00:33:26.511Z">
 <meta property="article:author" content="Voyager">
 <meta property="article:tag" content="AWS">
 <meta property="article:tag" content="Network">
@@ -239,7 +241,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-05 00:59:14" itemprop="dateModified" datetime="2020-10-05T00:59:14-07:00">2020-10-05</time>
+                <time title="Modified: 2020-10-05 17:33:26" itemprop="dateModified" datetime="2020-10-05T17:33:26-07:00">2020-10-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -384,7 +386,138 @@
 <li>You can configure your VPCs in several ways, and take advantage of numerous connectivity options and gateways, but managing point-to-point connectivity across many VPCs without the ability to centrally manage the connectivity policies can be operationally costly and difficult.</li>
 <li>To solve this problem, you can use AWS Transit Gateway to simplify your networking model. With AWS Transit Gateway, you only need to create and manage a single connection from the central gateway into each VPC, on-premises data center, or remote office across your network.<br><img src="aws_transit_gateway.png" alt=""></li>
 </ul>
-<h2 id="Sec-IV-VPC-Security"><a href="#Sec-IV-VPC-Security" class="headerlink" title="Sec IV: VPC Security"></a>Sec IV: VPC Security</h2><h2 id="Sec-V-Route-53"><a href="#Sec-V-Route-53" class="headerlink" title="Sec V: Route 53"></a>Sec V: Route 53</h2><h2 id="Sec-VI-Cloud-Front"><a href="#Sec-VI-Cloud-Front" class="headerlink" title="Sec VI: Cloud Front"></a>Sec VI: Cloud Front</h2>
+<h2 id="Sec-IV-VPC-Security"><a href="#Sec-IV-VPC-Security" class="headerlink" title="Sec IV: VPC Security"></a>Sec IV: VPC Security</h2><p>In this section, you learn about two Amazon VPC firewall options that you can use to secure your VPC: <strong>security groups</strong> and <strong>network access control lists</strong> (network ACLs).</p>
+<p><a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#VPCSecurityGroups" target="_blank" rel="noopener">Security Groups(instance级别安全措施)</a></p>
+<ul>
+<li>A security group acts as a virtual firewall for your instance, and it controls inbound and outbound traffic. </li>
+<li>Security groups act at the instance level, not the subnet level. Therefore, each instance in a subnet in your VPC can be assigned to a different set of security groups.<br><img src="https://i2.wp.com/networkinterview.com/wp-content/uploads/2019/11/security-groups-in-AWS.jpg?w=800&ssl=1" alt=""></li>
+<li>By default, no inbound traffic allowed; all outbound traffic allowed.</li>
+<li>Stateful. <ul>
+<li>if you send a request from your instance, the response traffic for that request is allowed to flow in regardless of inbound security group rules. </li>
+<li>Responses to allowed inbound traffic are allowed to flow out, regardless of outbound rules. </li>
+</ul>
+</li>
+<li>Custom Security Rules<ul>
+<li>You can specify allow rules, but not deny rules. </li>
+<li>All rules are evaluated before the decision to allow traffic.</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html" target="_blank" rel="noopener">network access control list (network ACL) (subnet/VPC级别安全措施)</a></p>
+<ul>
+<li>Acts as a firewall for controlling traffic in and out of one or more subnets.</li>
+<li>Each subnet in your VPC must be associated with a network ACL. If you don’t explicitly associate a subnet with a network ACL, the subnet is automatically associated with the default network ACL. </li>
+<li>You can associate a network ACL with multiple subnets; however, a subnet can be associated with only one network ACL at a time.</li>
+<li>Your VPC automatically comes with a modifiable default network ACL.</li>
+<li>Difference between ACL and security groups:<ul>
+<li>By default, it allows all inbound and outbound IPv4 traffic and, if applicable, IPv6 traffic.</li>
+<li>Each rule can either allow or deny traffic. </li>
+<li>Network ACLs are stateless, which means that no information about a request is maintained after a request is processed. </li>
+</ul>
+</li>
+<li>Custom ACL<ul>
+<li>By default, each custom network ACL denies all inbound and outbound traffic until you add rules. </li>
+<li>A network ACL contains a numbered list of rules that are evaluated in order, starting with the lowest numbered rule. The highest number that you can use for a rule is <strong>32,766</strong>.</li>
+<li>AWS recommends to create rules in increments.</li>
+</ul>
+</li>
+</ul>
+<p>Comparison between security groups and network ACL.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Security Groups</th>
+<th>Network ACLs</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Scope</td>
+<td>Instance level.</td>
+<td>Subnet level.</td>
+</tr>
+<tr>
+<td>Default</td>
+<td>All inbound traffic denied; all outbound traffic allowed.</td>
+<td>Allows all inbound and outbound IPv4 traffic. If applicable, allows IPv6 traffic.</td>
+</tr>
+<tr>
+<td>Supported rules</td>
+<td><code>allow</code> rules only</td>
+<td><code>allow</code> and <code>deny</code> rules</td>
+</tr>
+<tr>
+<td>State</td>
+<td>Stateful</td>
+<td>Stateless</td>
+</tr>
+<tr>
+<td>Customize</td>
+<td>User can only specify allow rules but deny rules.</td>
+<td>By default, custom ACL denies all inbound and outbound traffic until adding rules. <br> User can both add allow or deny rules.</td>
+</tr>
+<tr>
+<td>Order of rules</td>
+<td>All rules are evaluated.</td>
+<td>Rules are evaluated in number order(increment).</td>
+</tr>
+</tbody></table>
+<h2 id="Sec-V-Route-53"><a href="#Sec-V-Route-53" class="headerlink" title="Sec V: Route 53"></a>Sec V: Route 53</h2><p>Amazon Route 53 is a highly available and scalable cloud <strong>Domain Name System (DNS)</strong> web service. </p>
+<ul>
+<li>Translating names (like <a href="http://www.example.com" target="_blank" rel="noopener">www.example.com</a>) into the numeric IP addresses (like 192.0.2.1).</li>
+<li>Is fully compliant with IPv4 and IPv6</li>
+<li>Connects user requests to infrastructure running in AWS and also outside of AWS</li>
+<li>Is used to check the health of your resources</li>
+<li>Features traffic flow</li>
+<li>Enables you to register domain names</li>
+<li>support routings<ul>
+<li>Simple routing – Use in single-server environments</li>
+<li>Weighted round robin routing – Assign weights to resource record sets to specify the frequency</li>
+<li>Latency routing – Help improve your global applications</li>
+<li>Geolocation routing – Route traffic based on location of your users</li>
+<li>Geoproximity routing – Route traffic based on location of your resources</li>
+<li>Failover routing – Fail over to a backup site if your primary site becomes unreachable</li>
+<li>Multivalue answer routing – Respond to DNS queries with up to eight healthy records selected at random</li>
+</ul>
+</li>
+<li>Multi-Region deployment<ul>
+<li>Latency-based routing to the Region</li>
+<li>Load balancing routing to the Availability Zone</li>
+</ul>
+</li>
+<li>Route Failover<ul>
+<li>Configuring backup and failover scenarios for your own applications</li>
+<li>Enabling highly available multi-region architectures on AWS</li>
+<li>Creating health checks</li>
+<li><img src="https://miro.medium.com/max/1750/1*o76vPCV2AF0jeVVunVwYDA.png" alt=""></li>
+</ul>
+</li>
+</ul>
+<h2 id="Sec-VI-CloudFront"><a href="#Sec-VI-CloudFront" class="headerlink" title="Sec VI: CloudFront"></a>Sec VI: CloudFront</h2><p>The purpose of networking is to share information between connected resources. So far in this module, you learned about VPC networking with Amazon VPC. You learned about the different options for connecting your VPC to the internet, to remote networks, to other VPCs, and to AWS services. </p>
+<p>Content delivery occurs over networks, too—for example, when you stream a movie from your favorite streaming service. In this final section, you learn about Amazon CloudFront, which is a content delivery network (CDN) service.</p>
+<p>Content Delivery Network(CDN)</p>
+<ul>
+<li>Globally distributed system of caching servers.</li>
+<li>The CDN delivers a local copy of the requested content from a cache edge or Point of Presence that provides the fastest delivery to the requester.</li>
+<li>Accelerates delivery of dynamic content</li>
+<li>Improves application performance and scaling</li>
+</ul>
+<p><a href="https://aws.amazon.com/cloudfront/" target="_blank" rel="noopener">Amazon CloudFront(Amazon提供的CDN服务)</a></p>
+<ul>
+<li>Features:  <ul>
+<li>Fast, global, and secure CDN service</li>
+<li>Global network of edge locations and Regional edge caches</li>
+<li>Self-service model </li>
+<li>Pay-as-you-go pricing</li>
+</ul>
+</li>
+<li>Global infrastructure<ul>
+<li>Edge locations: Network of data centersthat CloudFront uses to serve popular content quickly to customers.</li>
+<li>Regional edge locations: CloudFrontlocation that caches content that is notpopular enough to stay at an edge location. It is located between the origin server and the global edge location. </li>
+</ul>
+</li>
+</ul>
+
     </div>
 
     
@@ -475,7 +608,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#AWS-Networking-and-Content-Delivering"><span class="nav-number">1.</span> <span class="nav-text">AWS Networking and Content Delivering</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sec-I-Networking-Basics"><span class="nav-number">1.1.</span> <span class="nav-text">Sec I: Networking Basics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sec-II-Amazon-VPC"><span class="nav-number">1.2.</span> <span class="nav-text">Sec II: Amazon VPC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sec-III-VPC-Networking"><span class="nav-number">1.3.</span> <span class="nav-text">Sec III: VPC Networking</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Outlines"><span class="nav-number">1.3.1.</span> <span class="nav-text">Outlines</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sec-IV-VPC-Security"><span class="nav-number">1.4.</span> <span class="nav-text">Sec IV: VPC Security</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sec-V-Route-53"><span class="nav-number">1.5.</span> <span class="nav-text">Sec V: Route 53</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sec-VI-Cloud-Front"><span class="nav-number">1.6.</span> <span class="nav-text">Sec VI: Cloud Front</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#AWS-Networking-and-Content-Delivering"><span class="nav-number">1.</span> <span class="nav-text">AWS Networking and Content Delivering</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sec-I-Networking-Basics"><span class="nav-number">1.1.</span> <span class="nav-text">Sec I: Networking Basics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sec-II-Amazon-VPC"><span class="nav-number">1.2.</span> <span class="nav-text">Sec II: Amazon VPC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sec-III-VPC-Networking"><span class="nav-number">1.3.</span> <span class="nav-text">Sec III: VPC Networking</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Outlines"><span class="nav-number">1.3.1.</span> <span class="nav-text">Outlines</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sec-IV-VPC-Security"><span class="nav-number">1.4.</span> <span class="nav-text">Sec IV: VPC Security</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sec-V-Route-53"><span class="nav-number">1.5.</span> <span class="nav-text">Sec V: Route 53</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sec-VI-CloudFront"><span class="nav-number">1.6.</span> <span class="nav-text">Sec VI: CloudFront</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -489,14 +622,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">

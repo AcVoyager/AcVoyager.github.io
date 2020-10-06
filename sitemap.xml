@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://acvoyager.github.io/2020/10/05/hexo-asset%E8%AE%BE%E7%BD%AE-hexo-rendered-marked/</loc>
+    <loc>https://acvoyager.github.io/2020/10/05/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Compute/</loc>
     
-    <lastmod>2020-10-05T08:08:58.720Z</lastmod>
+    <lastmod>2020-10-06T04:54:10.157Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://acvoyager.github.io/2020/10/04/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Networking-and-Content-Delivery/</loc>
     
-    <lastmod>2020-10-05T07:59:14.307Z</lastmod>
+    <lastmod>2020-10-06T00:33:26.511Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://acvoyager.github.io/2020/10/05/hexo-asset%E8%AE%BE%E7%BD%AE-hexo-rendered-marked/</loc>
+    
+    <lastmod>2020-10-05T08:08:58.720Z</lastmod>
     
   </url>
   

@@ -213,7 +213,138 @@
 <li>You can configure your VPCs in several ways, and take advantage of numerous connectivity options and gateways, but managing point-to-point connectivity across many VPCs without the ability to centrally manage the connectivity policies can be operationally costly and difficult.</li>
 <li>To solve this problem, you can use AWS Transit Gateway to simplify your networking model. With AWS Transit Gateway, you only need to create and manage a single connection from the central gateway into each VPC, on-premises data center, or remote office across your network.<br><img src="aws_transit_gateway.png" alt=""></li>
 </ul>
-<h2 id="Sec-IV-VPC-Security"><a href="#Sec-IV-VPC-Security" class="headerlink" title="Sec IV: VPC Security"></a>Sec IV: VPC Security</h2><h2 id="Sec-V-Route-53"><a href="#Sec-V-Route-53" class="headerlink" title="Sec V: Route 53"></a>Sec V: Route 53</h2><h2 id="Sec-VI-Cloud-Front"><a href="#Sec-VI-Cloud-Front" class="headerlink" title="Sec VI: Cloud Front"></a>Sec VI: Cloud Front</h2>]]></content>
+<h2 id="Sec-IV-VPC-Security"><a href="#Sec-IV-VPC-Security" class="headerlink" title="Sec IV: VPC Security"></a>Sec IV: VPC Security</h2><p>In this section, you learn about two Amazon VPC firewall options that you can use to secure your VPC: <strong>security groups</strong> and <strong>network access control lists</strong> (network ACLs).</p>
+<p><a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#VPCSecurityGroups" target="_blank" rel="noopener">Security Groups(instance级别安全措施)</a></p>
+<ul>
+<li>A security group acts as a virtual firewall for your instance, and it controls inbound and outbound traffic. </li>
+<li>Security groups act at the instance level, not the subnet level. Therefore, each instance in a subnet in your VPC can be assigned to a different set of security groups.<br><img src="https://i2.wp.com/networkinterview.com/wp-content/uploads/2019/11/security-groups-in-AWS.jpg?w=800&ssl=1" alt=""></li>
+<li>By default, no inbound traffic allowed; all outbound traffic allowed.</li>
+<li>Stateful. <ul>
+<li>if you send a request from your instance, the response traffic for that request is allowed to flow in regardless of inbound security group rules. </li>
+<li>Responses to allowed inbound traffic are allowed to flow out, regardless of outbound rules. </li>
+</ul>
+</li>
+<li>Custom Security Rules<ul>
+<li>You can specify allow rules, but not deny rules. </li>
+<li>All rules are evaluated before the decision to allow traffic.</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html" target="_blank" rel="noopener">network access control list (network ACL) (subnet/VPC级别安全措施)</a></p>
+<ul>
+<li>Acts as a firewall for controlling traffic in and out of one or more subnets.</li>
+<li>Each subnet in your VPC must be associated with a network ACL. If you don’t explicitly associate a subnet with a network ACL, the subnet is automatically associated with the default network ACL. </li>
+<li>You can associate a network ACL with multiple subnets; however, a subnet can be associated with only one network ACL at a time.</li>
+<li>Your VPC automatically comes with a modifiable default network ACL.</li>
+<li>Difference between ACL and security groups:<ul>
+<li>By default, it allows all inbound and outbound IPv4 traffic and, if applicable, IPv6 traffic.</li>
+<li>Each rule can either allow or deny traffic. </li>
+<li>Network ACLs are stateless, which means that no information about a request is maintained after a request is processed. </li>
+</ul>
+</li>
+<li>Custom ACL<ul>
+<li>By default, each custom network ACL denies all inbound and outbound traffic until you add rules. </li>
+<li>A network ACL contains a numbered list of rules that are evaluated in order, starting with the lowest numbered rule. The highest number that you can use for a rule is <strong>32,766</strong>.</li>
+<li>AWS recommends to create rules in increments.</li>
+</ul>
+</li>
+</ul>
+<p>Comparison between security groups and network ACL.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Security Groups</th>
+<th>Network ACLs</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Scope</td>
+<td>Instance level.</td>
+<td>Subnet level.</td>
+</tr>
+<tr>
+<td>Default</td>
+<td>All inbound traffic denied; all outbound traffic allowed.</td>
+<td>Allows all inbound and outbound IPv4 traffic. If applicable, allows IPv6 traffic.</td>
+</tr>
+<tr>
+<td>Supported rules</td>
+<td><code>allow</code> rules only</td>
+<td><code>allow</code> and <code>deny</code> rules</td>
+</tr>
+<tr>
+<td>State</td>
+<td>Stateful</td>
+<td>Stateless</td>
+</tr>
+<tr>
+<td>Customize</td>
+<td>User can only specify allow rules but deny rules.</td>
+<td>By default, custom ACL denies all inbound and outbound traffic until adding rules. <br> User can both add allow or deny rules.</td>
+</tr>
+<tr>
+<td>Order of rules</td>
+<td>All rules are evaluated.</td>
+<td>Rules are evaluated in number order(increment).</td>
+</tr>
+</tbody></table>
+<h2 id="Sec-V-Route-53"><a href="#Sec-V-Route-53" class="headerlink" title="Sec V: Route 53"></a>Sec V: Route 53</h2><p>Amazon Route 53 is a highly available and scalable cloud <strong>Domain Name System (DNS)</strong> web service. </p>
+<ul>
+<li>Translating names (like <a href="http://www.example.com" target="_blank" rel="noopener">www.example.com</a>) into the numeric IP addresses (like 192.0.2.1).</li>
+<li>Is fully compliant with IPv4 and IPv6</li>
+<li>Connects user requests to infrastructure running in AWS and also outside of AWS</li>
+<li>Is used to check the health of your resources</li>
+<li>Features traffic flow</li>
+<li>Enables you to register domain names</li>
+<li>support routings<ul>
+<li>Simple routing – Use in single-server environments</li>
+<li>Weighted round robin routing – Assign weights to resource record sets to specify the frequency</li>
+<li>Latency routing – Help improve your global applications</li>
+<li>Geolocation routing – Route traffic based on location of your users</li>
+<li>Geoproximity routing – Route traffic based on location of your resources</li>
+<li>Failover routing – Fail over to a backup site if your primary site becomes unreachable</li>
+<li>Multivalue answer routing – Respond to DNS queries with up to eight healthy records selected at random</li>
+</ul>
+</li>
+<li>Multi-Region deployment<ul>
+<li>Latency-based routing to the Region</li>
+<li>Load balancing routing to the Availability Zone</li>
+</ul>
+</li>
+<li>Route Failover<ul>
+<li>Configuring backup and failover scenarios for your own applications</li>
+<li>Enabling highly available multi-region architectures on AWS</li>
+<li>Creating health checks</li>
+<li><img src="https://miro.medium.com/max/1750/1*o76vPCV2AF0jeVVunVwYDA.png" alt=""></li>
+</ul>
+</li>
+</ul>
+<h2 id="Sec-VI-CloudFront"><a href="#Sec-VI-CloudFront" class="headerlink" title="Sec VI: CloudFront"></a>Sec VI: CloudFront</h2><p>The purpose of networking is to share information between connected resources. So far in this module, you learned about VPC networking with Amazon VPC. You learned about the different options for connecting your VPC to the internet, to remote networks, to other VPCs, and to AWS services. </p>
+<p>Content delivery occurs over networks, too—for example, when you stream a movie from your favorite streaming service. In this final section, you learn about Amazon CloudFront, which is a content delivery network (CDN) service.</p>
+<p>Content Delivery Network(CDN)</p>
+<ul>
+<li>Globally distributed system of caching servers.</li>
+<li>The CDN delivers a local copy of the requested content from a cache edge or Point of Presence that provides the fastest delivery to the requester.</li>
+<li>Accelerates delivery of dynamic content</li>
+<li>Improves application performance and scaling</li>
+</ul>
+<p><a href="https://aws.amazon.com/cloudfront/" target="_blank" rel="noopener">Amazon CloudFront(Amazon提供的CDN服务)</a></p>
+<ul>
+<li>Features:  <ul>
+<li>Fast, global, and secure CDN service</li>
+<li>Global network of edge locations and Regional edge caches</li>
+<li>Self-service model </li>
+<li>Pay-as-you-go pricing</li>
+</ul>
+</li>
+<li>Global infrastructure<ul>
+<li>Edge locations: Network of data centersthat CloudFront uses to serve popular content quickly to customers.</li>
+<li>Regional edge locations: CloudFrontlocation that caches content that is notpopular enough to stay at an edge location. It is located between the origin server and the global edge location. </li>
+</ul>
+</li>
+</ul>
+]]></content>
       <categories>
         <category>中文 English</category>
       </categories>
@@ -479,6 +610,304 @@
       </categories>
       <tags>
         <tag>blog</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AWS学习笔记: Compute</title>
+    <url>/2020/10/05/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Compute/</url>
+    <content><![CDATA[<p>欢迎来到我的AWS学习笔记系列。</p>
+<p>本文着重记述关于AWS云计算服务的知识点。如若转载，请先与作者联系。</p>
+<p><em>本文图片来自于网络</em></p>
+<h1 id="AWS-Compute"><a href="#AWS-Compute" class="headerlink" title="AWS Compute"></a>AWS Compute</h1><a id="more"></a>
+
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p><img src="categorizing_compute_service.png" alt=""></p>
+<h2 id="Amazon-EC2"><a href="#Amazon-EC2" class="headerlink" title="Amazon EC2"></a>Amazon EC2</h2><p>Amazon Elastic Compute Cloud (Amazon EC2)</p>
+<ul>
+<li>Features:<ul>
+<li>Provides <strong>virtual machines</strong>—referred to as EC2 instances—in the cloud.</li>
+<li>Gives you <strong>full control</strong> over the guest operating system (Windows or Linux) on each instance.</li>
+<li>You can launch instances of any size into an Availability Zone anywhere in the world.<ul>
+<li>From <strong>Amazon Machine Images</strong> (AMIs)</li>
+<li>Control traffic to and from instances</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Launch steps:<ul>
+<li>1.Select an AMI<ul>
+<li>A template used to create an EC2 instance</li>
+<li>Win or Linux, also some pre-installed software</li>
+</ul>
+</li>
+<li>2.Instance type<ul>
+<li>Your choice of instance type determines RAM, CPU, Storage and Network performance.</li>
+<li>Types: general, computing, memory, storage, accelerated optimized</li>
+<li>Naming:<ul>
+<li>Example: t3.large</li>
+<li>T is the family name</li>
+<li>3 is the generation number</li>
+<li>Large is the size</li>
+</ul>
+</li>
+<li>Networking features:<ul>
+<li>Gbps varies by instance type</li>
+<li>To maximize networking and bandwidth, use <strong>cluster placement group</strong> or <strong>enable enhanced networking</strong>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>3.Network settings<ul>
+<li>Identify the VPC and optionally the subnet.</li>
+</ul>
+</li>
+<li>4.IAM role(Optional)<ul>
+<li>See more about IAM</li>
+</ul>
+</li>
+<li>5.User data(Optional)<ul>
+<li>Optionally specify a user data script at instance launch </li>
+</ul>
+</li>
+<li>6.Storage option<ul>
+<li>Root volume: Where the guest operating system is installed</li>
+<li>(Optional) add additional volumes</li>
+<li>Volume<ul>
+<li>Size in GB</li>
+<li>SSDs/HDDs</li>
+<li>if get deleted when the instances is terminated</li>
+<li>if use encryption</li>
+</ul>
+</li>
+<li>Storage options:<ul>
+<li>Amazon EBS -&gt; durable, won’t be deleted when termination</li>
+<li>Amazon EC2 Instance Store: Ephemeral, get deleted when stopping.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>7.tags<ul>
+<li>Tagging is how you can attach metadata to an EC2 instance</li>
+</ul>
+</li>
+<li>8.Security group<ul>
+<li>A set of firewall rules that control traffic to the instance.</li>
+<li>Specify the port number, the protocol, the source</li>
+</ul>
+</li>
+<li>9.Key pair<ul>
+<li>consists of a public key and private key</li>
+<li>For windows AMIs: Use the private key to obtain the administrator password that you need to log in to your instance</li>
+<li>For Linux AMIs: Use the private key to use SSH to securely connect to your instance.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Another option: Launch an EC2 instance with the AWS Command Line Interface</li>
+<li>Instance lifecycle</li>
+<li>Instance hibernation option<ul>
+<li>Benefits: Save and reload content in the RAM</li>
+<li>Prerequisites: <ul>
+<li>Certain Linux AMIS</li>
+<li>Must have encrypted Amazon EBS root volume</li>
+<li>Enable Hibernation at instance launch</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Using elastic address:<ul>
+<li>Before using:<ul>
+<li>Rebooting will not change ip address</li>
+<li>If stop and then start, the external IPv4 addr and DNS hostname will change; the internal ones won’t.</li>
+</ul>
+</li>
+<li>After:<ul>
+<li>Remains allocated until get released.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>EC2 instance metadata<ul>
+<li>While you are connected to the instance, you can view it – <ul>
+<li>In a browser: <a href="http://169.254.169.254/latest/meta-data/" target="_blank" rel="noopener">http://169.254.169.254/latest/meta-data/</a></li>
+<li>In a terminal window: curl <a href="http://169.254.169.254/latest/meta-data/" target="_blank" rel="noopener">http://169.254.169.254/latest/meta-data/</a></li>
+</ul>
+</li>
+<li>be used to configure or manage a running instance</li>
+</ul>
+</li>
+<li>Amazon CloudWatch for monitoring</li>
+</ul>
+<h2 id="Amazon-EC2-Cost-Optimization"><a href="#Amazon-EC2-Cost-Optimization" class="headerlink" title="Amazon EC2 Cost Optimization"></a>Amazon EC2 Cost Optimization</h2><table>
+<thead>
+<tr>
+<th>Pricing models</th>
+<th>On-Demand Instances</th>
+<th>Spot Instances</th>
+<th>Reserved Instances</th>
+<th>Dedicated Hosts</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Benefits</td>
+<td>Low cost and flexibility</td>
+<td>Large scale, dynamic workload</td>
+<td>Predictability ensures compute capacity is available when needed</td>
+<td>Save money on licensing costs <br> Help meet compliance and regulatory requirements</td>
+</tr>
+<tr>
+<td>Use cases</td>
+<td>Short-term, spiky, or unpredictable workloads <br> Application development or testing</td>
+<td>Applications with flexible start and end times <br> Applications only feasible at very low compute prices <br> Users with urgent computing needs for large amounts of additional capacity</td>
+<td>Steady state or predictable usage workloads <br> Applications that require reserved capacity, including disaster recovery <br> Users able to make upfront payments to reduce total computing costs even further</td>
+<td>Bring your own license (BYOL) <br> Compliance and regulatory restrictions <br> Usage and licensing tracking <br> Control instance placement</td>
+</tr>
+<tr>
+<td>Use cases example</td>
+<td>Spiky Workloads</td>
+<td>Time-Insensitive Workloads</td>
+<td>Steady-State Workloads</td>
+<td>Highly Sensitive Workloads</td>
+</tr>
+</tbody></table>
+<p>Four pillars of cost optimization:</p>
+<ul>
+<li>1.Right size<ul>
+<li>Provision instances to match the need </li>
+<li>Use CloudWatch</li>
+<li>Best practice: Right size, then reserve</li>
+</ul>
+</li>
+<li>2.Increase elasticity<ul>
+<li>Stop or hibernate Amazon EBS-backed instances that are not actively in use</li>
+<li>Use automatic scaling to match needs based on usage </li>
+</ul>
+</li>
+<li>3.Optimal pricing model<ul>
+<li>Leverage the right pricing model for your use case</li>
+<li>Consider serverless solutions (AWS Lambda)</li>
+</ul>
+</li>
+<li>4.Optimize storage choices<ul>
+<li>Mainly focus on EBS</li>
+</ul>
+</li>
+</ul>
+<h2 id="Container-Services"><a href="#Container-Services" class="headerlink" title="Container Services"></a>Container Services</h2><p>Container basics</p>
+<ul>
+<li>Containers are a method of operating system virtualization</li>
+<li>Benefits:<ul>
+<li>Repeatable</li>
+<li>Self-contained execution environments</li>
+<li>Software runs the same in different environments</li>
+<li>Faster to launch and stop or terminate than virtual machines</li>
+</ul>
+</li>
+</ul>
+<p>Docker</p>
+<ul>
+<li>Docker is a software platform that enables you to build, test, and deploy applications quickly.</li>
+<li>Run containers on Docker. Containers are created from a template called an image.</li>
+<li>A container has everything a software application needs to run,<ul>
+<li>which are l<strong>ibraries, system tools, code, runtime</strong></li>
+</ul>
+</li>
+</ul>
+<p>Container v.s. Virtual Machines<br><img src="container_vs_vm.png" alt=""></p>
+<p>Amazon Elastic Container Service (Amazon ECS)</p>
+<ul>
+<li>A highly scalable, fast, container management service </li>
+<li>Benefits:<ul>
+<li>Orchestrates the execution of Docker containers</li>
+<li>Maintains and scales the fleet of nodes that run your containers</li>
+<li>Removes the complexity of standing up the infrastructure </li>
+</ul>
+</li>
+<li>Amazon ECS cluster options<ul>
+<li>Do you want to manage Amazon ECS cluster?</li>
+<li>Yes:<ul>
+<li>create an Amazon ECS cluster <strong>backed by Amazon EC2</strong> </li>
+</ul>
+</li>
+<li>No:<ul>
+<li>create an Amazon ECS cluster <strong>backed by AWS Fargate</strong> </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Kubernetes</p>
+<ul>
+<li>An open source software for container orchestration</li>
+<li>Deploy and <strong>manage containerized applications</strong> at scale</li>
+<li><strong>Complements Docker</strong><ul>
+<li>Docker enables you to <strong>run multiple containers</strong> on a single OS host. </li>
+<li>Kubernetes <strong>orchestrates multiple Docker</strong> hosts (nodes).</li>
+</ul>
+</li>
+</ul>
+<p>Amazon Elastic Kubernetes Service(Amazon EKS)</p>
+<ul>
+<li>Enables you to run Kubernetes on AWS</li>
+<li>Manage clusters of Amazon EC2 compute instances</li>
+</ul>
+<p>Amazon Elastic Container Registry (Amazon ECR) </p>
+<ul>
+<li>Enables you to store, manage, and deploy your Docker containers</li>
+</ul>
+<h2 id="Introduction-to-AWS-Lambda"><a href="#Introduction-to-AWS-Lambda" class="headerlink" title="Introduction to AWS Lambda"></a>Introduction to AWS Lambda</h2><p><img src="lambda.png" alt=""></p>
+<p>AWS Lambda:</p>
+<ul>
+<li>Features<ul>
+<li>It supports multiple programming languages.</li>
+<li>Completely automated administration</li>
+<li>Built-in fault tolerance</li>
+<li>It supports the orchestration of multiple functions</li>
+<li>Pay-per-use pricing</li>
+</ul>
+</li>
+<li>Event sources<ul>
+<li>Configure other AWS services as event sources to invoke your function as shown here.</li>
+<li>Alternatively, invoke a Lambda function from the Lambda console, AWS SDK, or AWS CLI.</li>
+<li>Only execute when being triggered</li>
+</ul>
+</li>
+<li>Limits<ul>
+<li>The maximum memory allocation for a single Lambda function is 3,008 MB.</li>
+<li>The maximum execution time for a Lambda function is 15 minutes.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Introduction-to-AWS-Elastic-Beanstalk"><a href="#Introduction-to-AWS-Elastic-Beanstalk" class="headerlink" title="Introduction to AWS Elastic Beanstalk"></a>Introduction to AWS Elastic Beanstalk</h2><p>AWS Elastic Beanstalk</p>
+<ul>
+<li>An easy way to get web applications up and running</li>
+<li>A managed service that automatically handles – <ul>
+<li>Infrastructure provisioning and configuration</li>
+<li>Deployment</li>
+<li>Load balancing</li>
+<li>Automatic scaling</li>
+<li>Health monitoring</li>
+<li>Analysis and debugging</li>
+<li>Logging</li>
+</ul>
+</li>
+<li>No additional charge for Elastic Beanstalk<ul>
+<li>Pay only for the underlying resources that are used</li>
+</ul>
+</li>
+<li>It supports web applications written for common platforms <ul>
+<li>Java, .NET, PHP, Node.js, Python, Ruby, Go, and Docker</li>
+</ul>
+</li>
+<li>You upload your code and Elastic Beanstalk automatically handles the deployment</li>
+<li><img src="beanstalk.jpg" alt=""></li>
+</ul>
+]]></content>
+      <categories>
+        <category>中文 英文</category>
+      </categories>
+      <tags>
+        <tag>AWS</tag>
+        <tag>Network</tag>
       </tags>
   </entry>
 </search>
