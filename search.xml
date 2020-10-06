@@ -910,4 +910,19 @@
         <tag>Network</tag>
       </tags>
   </entry>
+  <entry>
+    <title>IntelliJ 进行Java单元测试时出错: IntelliJ test events were not received原因及解决办法</title>
+    <url>/2020/10/06/IntelliJ-%E8%BF%9B%E8%A1%8CJava%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E6%97%B6%E5%87%BA%E9%94%99-IntelliJ-test-events-were-not-received%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
+    <content><![CDATA[<p>最近升级了一下IntelliJ，发现在Unit Test报错：</p>
+<pre><code>IntelliJ test events were not received</code></pre><p>网上查了一下，可能是升级的时候将设置里面build tools里面的run testing with改回了默认的gradle。再改成IntelliJ IDEA即可</p>
+<p>参考链接: <a href="https://stackoverflow.com/questions/57795263/test-events-were-not-received-when-run-tests-using-intellij" target="_blank" rel="noopener">https://stackoverflow.com/questions/57795263/test-events-were-not-received-when-run-tests-using-intellij</a></p>
+]]></content>
+      <categories>
+        <category>中文 English</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>IntelliJ</tag>
+      </tags>
+  </entry>
 </search>
