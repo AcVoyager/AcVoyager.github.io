@@ -925,4 +925,103 @@
         <tag>IntelliJ</tag>
       </tags>
   </entry>
+  <entry>
+    <title>AWS学习笔记-Auto Scaling and Load Balancing</title>
+    <url>/2020/10/16/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Auto-Scaling-and-Load-Balancing/</url>
+    <content><![CDATA[<p>欢迎来到我的AWS学习笔记系列。</p>
+<p>本文着重记述关于AWS<strong>弹性伸缩</strong>和<strong>负载均衡</strong>的知识点。如若转载，请先与作者联系。</p>
+<p><em>本文图片来自于网络</em></p>
+<h1 id="AWS-Auto-Scaling-and-Load-Balancing"><a href="#AWS-Auto-Scaling-and-Load-Balancing" class="headerlink" title="AWS Auto Scaling and Load Balancing"></a>AWS Auto Scaling and Load Balancing</h1><a id="more"></a>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在笔者学习AWS相关知识的过程中，scaling和load balance作为两个关键词经常出现。这并非是巧合，作为云服务提供商，弹性伸缩和负载均衡是两大重点功能，这关系到互联网公司的服务质量等。</p>
+<p>闲话少说，今天就来figure it out。</p>
+<h2 id="Elastic-Load-Balancing"><a href="#Elastic-Load-Balancing" class="headerlink" title="Elastic Load Balancing"></a>Elastic Load Balancing</h2><h3 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h3><p>Modern high-traffic websites must serve hundreds of thousands—if not millions—of concurrent requests from users or clients, and then return the correct text, images, video, or application data in a fast and reliable manner. Additional servers are generally required to meet these high volumes.</p>
+<h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><p>Elastic Load Balancing is an AWS service that <strong>distributes incoming application or network traffic across multiple targets</strong>—such as Amazon Elastic Compute Cloud (Amazon EC2) instances, containers, internet protocol (IP) addresses, and Lambda functions—<strong>in a single Availability Zone or across multiple Availability Zones</strong>. Elastic Load Balancing scales your load balancer as traffic to your application changes over time. It can automatically scale to most workloads. </p>
+<p>Note: It could distribute the network across multiple availability zones.</p>
+<h3 id="Types-of-Load-Balancer"><a href="#Types-of-Load-Balancer" class="headerlink" title="Types of Load Balancer"></a><a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/load-balancer-types.html" target="_blank" rel="noopener">Types of Load Balancer</a></h3><table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Application Load Balancer</th>
+<th>Network Load Balancer</th>
+<th>Classic Load Balancer<br>(Last Generation)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Protocol</td>
+<td>(HTTP) and Secure HTTP (HTTPS)</td>
+<td>Both TCP and UDP</td>
+<td>HTTP, HTTPS, TCP and TLS</td>
+</tr>
+<tr>
+<td>Routing</td>
+<td>+ Route traffic to targets based on content of request.<br>+ Provides advanced request routing that is targeted at delivery of modern application architectures, <br>including microservices and container-based applications.<br>+ SSL/TLS used all the time.</td>
+<td>+ Route traffic to targets based on the IP Protocol date.<br>+ Can handle millions of requests per second while maintaining ultra-low latencies.<br>+ Optimized to handle sudden and volatile network traffic patterns.</td>
+<td>+ Load balance across multiple EC2 instances.</td>
+</tr>
+<tr>
+<td>Layer</td>
+<td>Operates at the application Layer<br>(OSI layer 7)</td>
+<td>Operates at the transportation layer<br>(OSI layer 4)</td>
+<td>Both the application and transportation layer.</td>
+</tr>
+</tbody></table>
+<h3 id="How-elastic-load-balancing-works"><a href="#How-elastic-load-balancing-works" class="headerlink" title="How elastic load balancing works"></a>How elastic load balancing works</h3><p>放图解释:</p>
+<p><img src="https://d2908q01vomqb2.cloudfront.net/da4b9237bacccdf19c0760cab7aec4a8359010b0/2019/10/06/illustration-2.png" alt=""></p>
+<p><img src="https://d2908q01vomqb2.cloudfront.net/5b384ce32d8cdef02bc3a139d4cac0a22bb029e8/2018/05/04/Picture1-updated.jpg" alt=""></p>
+<h3 id="Benefits"><a href="#Benefits" class="headerlink" title="Benefits"></a>Benefits</h3><ol>
+<li>Highly available and fault-tolerant applications.</li>
+<li>Automatically load balance the containerized applications.</li>
+<li>Automatically scale the applications.</li>
+<li>Elastic load balancing in the VPC.</li>
+<li>Enable hybrid load balancing.</li>
+<li>Invoking Lambda functions over HTTP(s).</li>
+</ol>
+<h3 id="Load-Balancer-Monitoring"><a href="#Load-Balancer-Monitoring" class="headerlink" title="Load Balancer Monitoring"></a>Load Balancer Monitoring</h3><p>Amazon CloudWatch metric</p>
+<ul>
+<li>Used to verify that the system is performing as expected and creates an alarm to initiate ana action if a metric goes outside an acceptable ranges.</li>
+</ul>
+<p>What can Cloud Watch “watch”?</p>
+<p><img src="cloudwatch.png" alt=""></p>
+<p>Access logs</p>
+<ul>
+<li>Capture detailed information about requests send to the load balancer.</li>
+</ul>
+<p>AWS CloudTrail logs</p>
+<ul>
+<li>Capture the who, what, when and where of API interactions in AWS services.</li>
+</ul>
+<h2 id="Auto-Scaling"><a href="#Auto-Scaling" class="headerlink" title="Auto Scaling"></a>Auto Scaling</h2><h3 id="Why-scaling"><a href="#Why-scaling" class="headerlink" title="Why scaling?"></a>Why scaling?</h3><p><img src="whyscaling.png" alt=""></p>
+<p>Scaling is the ability to increase or decrease the compute capacity of your application. To understand why scaling is important, consider this example of a workload that has varying resource requirements. In this example, the most resource capacity is required on Wednesday, and the least resource capacity is required on Sunday. </p>
+<p>One option is to allocate more than enough capacity so you can always meet your highest demand—in this case, Wednesday. However, this situation means that you are running resources that will be underutilized most days of the week. With this option, your costs are not optimized.</p>
+<h3 id="Amazon-Auto-Scaling"><a href="#Amazon-Auto-Scaling" class="headerlink" title="Amazon Auto Scaling"></a><a href="https://aws.amazon.com/ec2/autoscaling/" target="_blank" rel="noopener">Amazon Auto Scaling</a></h3><p>AWS Auto Scaling is a separate service that monitors your applications, and it automatically adjusts capacity for the following resources:</p>
+<ul>
+<li>Amazon EC2 instances and Spot Fleets</li>
+<li>Amazon ECS (Amazon Elastic Container Service) tasks</li>
+<li>Amazon DynamoDB tables and indexes</li>
+<li>Amazon Aurora Replicas</li>
+</ul>
+<p>Note: EC2实例，容器，non-relational DB和relational DB都可以弹性伸缩。</p>
+<p>Auto-Scaling groups:</p>
+<p><img src="https://miro.medium.com/max/1218/1*uS9J8btKCQaMOhnUXp62aA.jpeg" alt=""></p>
+<p>With Amazon EC2 Auto Scaling, launching instances is referred to as <em>scaling out</em>, and terminating instances is referred to as <em>scaling in</em>. </p>
+<p>How auto-scaling works?</p>
+<p><img src="howscalingworks.png" alt=""></p>
+<h2 id="Dynamic-scaling"><a href="#Dynamic-scaling" class="headerlink" title="Dynamic scaling"></a>Dynamic scaling</h2><p><img src="dynamicscaling.png" alt=""></p>
+<p>To understand how it works, consider this example:</p>
+<ul>
+<li>You create an Amazon CloudWatch alarm to monitor CPU utilization across your fleet of EC2 instances and execute automatic scaling policies if the average CPU utilization across the fleet goes above 60 percent for 5 minutes.</li>
+<li>Amazon EC2 Auto Scaling instantiates a new EC2 instance into your Auto Scaling group based on the launch configuration that you create. </li>
+<li>After the new instance is added, Amazon EC2 Auto Scaling makes a call to Elastic Load Balancing to register the new EC2 instance in that Auto Scaling group. </li>
+<li>Elastic Load Balancing then performs the required health checks and starts distributing traffic to that instance. Elastic Load Balancing routes traffic between EC2 instances and feeds metrics to Amazon CloudWatch. </li>
+</ul>
+]]></content>
+      <categories>
+        <category>中文 英文</category>
+      </categories>
+      <tags>
+        <tag>AWS</tag>
+        <tag>Network</tag>
+      </tags>
+  </entry>
 </search>
