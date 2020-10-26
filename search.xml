@@ -1024,4 +1024,158 @@
         <tag>Network</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Java 编译打包过程记录</title>
+    <url>/2020/10/26/Java-%E7%BC%96%E8%AF%91%E6%89%93%E5%8C%85%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<p>本文记录一次作业中，使用Java编译打包的过程。</p>
+<p>假设src目录如下：</p>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><span class="line">src</span><br><span class="line">├── main</span><br><span class="line">│   ├── <span class="keyword">java</span></span><br><span class="line"><span class="keyword">│ </span>  │   ├── xxx.<span class="keyword">java</span></span><br><span class="line"><span class="keyword">│ </span>  │   ├── yyy.<span class="keyword">java</span></span><br><span class="line"><span class="keyword">│ </span>  │   ├── zzz.<span class="keyword">java</span></span><br><span class="line"><span class="keyword">│ </span>  └── resources</span><br><span class="line">└── test</span><br><span class="line">    ├── <span class="keyword">java</span></span><br><span class="line"><span class="keyword"> </span>   │   ├── xxxTest.<span class="keyword">java</span></span><br><span class="line"><span class="keyword"> </span>   │   ├── yyyTest.<span class="keyword">java</span></span><br><span class="line"><span class="keyword"> </span>   │   ├── zzzTest.<span class="keyword">java</span></span><br><span class="line"><span class="keyword"> </span>   └── resources</span><br></pre></td></tr></table></figure>
+
+<p>假定起始路径为工作目录。</p>
+<h2 id="使用javac编译"><a href="#使用javac编译" class="headerlink" title="使用javac编译"></a>使用<code>javac</code>编译</h2><p>JDK负责编译过程，JRE负责运行时。具体命令如下</p>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">javac</span> -d build src/main/java/<span class="regexp">*.java</span></span><br></pre></td></tr></table></figure>
+
+<p>该命令会编译 <code>src/main/java</code>路径下所有java文件，并将输出的.class文件保存到<code>build</code>文件夹中。</p>
+<h2 id="使用jar打包"><a href="#使用jar打包" class="headerlink" title="使用jar打包"></a>使用<code>jar</code>打包</h2><p>进入<code>build</code>文件夹。注意这步很重要，如果不在build文件夹内进行后续打包操作的话，即使可以在外部利用相对路径解决问题，打包出来的jar包在运行的时候会报“找不到主类”的错误（哪怕已经在manifest中写明）。目前出现这种情况的原因暂且不明。</p>
+<p>在打包之前，要创建一个<code>MANIFEST.MF</code>来指明包中从哪个类开始运行（Main.class）</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">Manifest-Version:</span> <span class="number">1.0</span></span><br><span class="line"><span class="attr">Main-Class:</span> <span class="string">Main</span></span><br></pre></td></tr></table></figure>
+
+<p>之后运行：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">jar</span> <span class="selector-tag">cvmf</span> <span class="selector-tag">MANIFEST</span><span class="selector-class">.MF</span> <span class="selector-tag">run</span><span class="selector-class">.jar</span> *<span class="selector-class">.class</span></span><br></pre></td></tr></table></figure>
+
+<p>意为将路径下所有的.class文件打包，生成的文件名叫<code>run.jar</code>，所使用的manifest文件名为<code>MANIFEST.MF</code>。</p>
+<p><code>jar</code>命令的选项cvmf分别表示：</p>
+<ul>
+<li>-c, –create               Create the archive</li>
+<li>-v, –verbose              Generate verbose output on standard output</li>
+<li>-m, –manifest=FILE        Include the manifest information from the given manifest file</li>
+<li>-f, –file=FILE            The archive file name. When omitted, either stdin or stdout is used based on the operation</li>
+</ul>
+<p>注意，mf的相对顺序决定了manifest文件名和生成jar包文件名的相对顺序。</p>
+<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><p>得到<code>run.jar</code>包后就可以运行了。具体位置随意。</p>
+<p><code>jar -jar run.jar args0 args1...</code></p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>在过程中，我遇到了一个很奇怪的问题。使用apple自带的terminal运行javac的时候，会出现file not found的错误，然而其实file肯定被found了因为我输入的时候用的是*.java，报错的时候都出现了其中一个的文件名…但是在Intellij的terminal中不会出现该问题。我怀疑是和两个shell的环境变量不同有关，但是自己打印了一下环境变量尚未发现疑点。此处有待后续挖掘。</p>
+]]></content>
+      <categories>
+        <category>中文</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Design Pattern 学习笔记</title>
+    <url>/2020/10/19/Design-Pattern-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在学习设计模式，故用此篇记述所学内容。</p>
+<a id="more"></a>
+
+<h2 id="SOLID-Principle"><a href="#SOLID-Principle" class="headerlink" title="SOLID Principle"></a>SOLID Principle</h2><p>Acronym for OOP design principles.</p>
+<ul>
+<li><strong>S</strong>ingle responsibility principle.</li>
+<li><strong>O</strong>pen/closed principle.</li>
+<li><strong>L</strong>iskov substitution principle.</li>
+<li><strong>I</strong>nterface segregation principle.</li>
+<li><strong>D</strong>ependency inversion principle.</li>
+</ul>
+<h3 id="Single-responsibility-principle"><a href="#Single-responsibility-principle" class="headerlink" title="Single responsibility principle"></a>Single responsibility principle</h3><ul>
+<li>Do one thing and do it well.</li>
+<li>Utility method can be used to carry out tangential jobs(logging, reporting).</li>
+<li>Do not print statements in the core classes, return data can be handled by etc, loggings.</li>
+</ul>
+<h3 id="Open-close-principle"><a href="#Open-close-principle" class="headerlink" title="Open/close principle"></a>Open/close principle</h3><ul>
+<li>Open for extension, closed to modification.</li>
+<li>Extending existing functionality is the preferred way to add new functionality.</li>
+</ul>
+<h3 id="Liskov-substitution-principle-里氏替换原则"><a href="#Liskov-substitution-principle-里氏替换原则" class="headerlink" title="Liskov substitution principle(里氏替换原则)"></a>Liskov substitution principle(里氏替换原则)</h3><ul>
+<li>If S is a subtype of T, then objects of the type T may be replaced by objects of type S in a program.</li>
+</ul>
+<h3 id="Interface-segregation-principle"><a href="#Interface-segregation-principle" class="headerlink" title="Interface segregation principle"></a>Interface segregation principle</h3><ul>
+<li>Keep interfaces minimal. Do not add extraneous methods declarations.</li>
+<li>Prefer to implement multiple interfaces on classes, rather than put too much functionality into one interface.</li>
+</ul>
+<h3 id="Dependency-inversion-principle"><a href="#Dependency-inversion-principle" class="headerlink" title="Dependency inversion principle"></a>Dependency inversion principle</h3><ul>
+<li>High level modules should not depend on lower level modules. Both should depend on abstractions.</li>
+</ul>
+<h2 id="Modular-Design"><a href="#Modular-Design" class="headerlink" title="Modular Design"></a>Modular Design</h2><p>Modules: Some part of a program responsible for a specific area of functionality.</p>
+<h3 id="Idea-of-modular-software"><a href="#Idea-of-modular-software" class="headerlink" title="Idea of modular software"></a>Idea of modular software</h3><ul>
+<li>Decomposition: break a problem into modules to reduce complexity and enable teamwork</li>
+<li>Composability: put modules together, ideally in various ways</li>
+<li>Understandability should be understandable without reference to other modules</li>
+<li>Continuity small change in requirements should be answerable by small (local) change in design</li>
+<li>Isolation contain errors &amp; enable independent development</li>
+</ul>
+<h3 id="Maximize-cohesion-amp-minimize-coupling"><a href="#Maximize-cohesion-amp-minimize-coupling" class="headerlink" title="Maximize cohesion &amp; minimize coupling"></a>Maximize cohesion &amp; minimize coupling</h3><p>Cohesion:</p>
+<ul>
+<li>How well a module encapsulates a single notion/responsibility </li>
+<li>Degree to which the elements of a module belong together</li>
+</ul>
+<p>Coupling:</p>
+<ul>
+<li>Degree to which a module interacts with or depends on other modules</li>
+</ul>
+<h3 id="Decoupling-解耦合"><a href="#Decoupling-解耦合" class="headerlink" title="Decoupling(解耦合)"></a>Decoupling(解耦合)</h3><ul>
+<li><a href="https://docs.oracle.com/javase/tutorial/java/IandI/interfaceAsType.html" target="_blank" rel="noopener">Using an Interface as a Type</a></li>
+<li>Callback design pattern: Method call from a module to a client, to notify it about some condition.</li>
+</ul>
+<h3 id="Coupling-from-worst-to-best"><a href="#Coupling-from-worst-to-best" class="headerlink" title="Coupling: from worst to best"></a>Coupling: from worst to best</h3><ul>
+<li>Content coupling (worst): One class depends on the internal data or behavior of another. <ul>
+<li>一个类的field中定义另一个类的对象</li>
+</ul>
+</li>
+<li>Common coupling: Classes share common data (global state). Includes static fields.<ul>
+<li>两个类共享了静态变量</li>
+</ul>
+</li>
+<li>Control coupling: Method calls send information to control the method logic (e.g. in the form of flags). Caller must have knowledge of implementation.<ul>
+<li>函数调用者除了数据外还传入一些控制量</li>
+</ul>
+</li>
+<li>Stamp coupling: Too much data is passed; e.g. a method that takes an object as an argument but only uses (needs) one attribute of that object.<ul>
+<li>函数调用者传了太多不需要的数据</li>
+</ul>
+</li>
+<li>Data coupling: Passing data as a parameter to a method call. Mostly unavoidable.<ul>
+<li>函数调用者传参，不可避免</li>
+</ul>
+</li>
+<li>Message coupling: Calling a method that takes no parameters.<ul>
+<li>函数调用者无需传参(getter and setter)</li>
+</ul>
+</li>
+</ul>
+<h3 id="Why-reduce-coupling"><a href="#Why-reduce-coupling" class="headerlink" title="Why reduce coupling?"></a>Why reduce coupling?</h3><ul>
+<li>Design decisions made locally do not interfere with the correctness of other modules.</li>
+<li>Testing is easier to create.</li>
+<li>Easy maintenance.</li>
+</ul>
+<h2 id="Design-Patterns"><a href="#Design-Patterns" class="headerlink" title="Design Patterns"></a>Design Patterns</h2><h3 id="Model-View-Controller-MVC"><a href="#Model-View-Controller-MVC" class="headerlink" title="Model-View-Controller(MVC)"></a>Model-View-Controller(MVC)</h3><p><img src="https://mdn.mozillademos.org/files/16042/model-view-controller-light-blue.png" alt=""></p>
+<p>Model: Underlying business data of your software.</p>
+<ul>
+<li>Contains the data/object or state of the system.</li>
+</ul>
+<p>View: The UI, which displays data to the user and receive user input.</p>
+<ul>
+<li>May support multiple views of single model.</li>
+</ul>
+<p>Controller</p>
+<ul>
+<li>Acts on both model and view.</li>
+<li>Reacts to user input and other events.</li>
+<li>Sends message to model based on events.</li>
+</ul>
+<p>Note: </p>
+<ul>
+<li>Multiple views and controllers possible, but only one model.</li>
+<li>Models and views may be reusable, but controller is typically not reusable.</li>
+</ul>
+<h3 id="Factory-Pattern"><a href="#Factory-Pattern" class="headerlink" title="Factory Pattern"></a>Factory Pattern</h3><p>Please refer to <a href="https://refactoring.guru/design-patterns/factory-method" target="_blank" rel="noopener">factory method</a>, they got everything you need.</p>
+<p>//to be continued</p>
+]]></content>
+      <categories>
+        <category>中文, English</category>
+      </categories>
+      <tags>
+        <tag>software development</tag>
+      </tags>
+  </entry>
 </search>
