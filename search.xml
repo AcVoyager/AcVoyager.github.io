@@ -1180,4 +1180,217 @@
         <tag>software development</tag>
       </tags>
   </entry>
+  <entry>
+    <title>AWS学习笔记: How to design an environment</title>
+    <url>/2020/10/28/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-How-to-design-an-environment/</url>
+    <content><![CDATA[<p>欢迎来到我的AWS学习笔记系列。</p>
+<p>本文着重记述关于如何创建一个AWS环境，创建环境时的注意事项。如若转载，请先与作者联系。</p>
+<p><em>本文图片来自于网络</em></p>
+<a id="more"></a>
+
+<h1 id="How-to-design-an-environment"><a href="#How-to-design-an-environment" class="headerlink" title="How to design an environment"></a>How to design an environment</h1><h2 id="I-How-to-choose-a-region"><a href="#I-How-to-choose-a-region" class="headerlink" title="I. How to choose a region"></a>I. How to choose a region</h2><p>Data sovereignty and compliance.</p>
+<p>Proximity of users to data.</p>
+<ul>
+<li>Some regions are more expensive than the others.</li>
+<li>100ms delays can cost 1% dropping sales on Amazon.com.</li>
+</ul>
+<p>Availability of services and features</p>
+<ul>
+<li>Some services are available in limited regions.</li>
+<li>Some can cross regions, but at increased latency.</li>
+</ul>
+<p>Cost-effectiveness</p>
+<ul>
+<li>Services costs vary by Region.</li>
+<li>Some have costs for transferring data out.</li>
+<li>Best at least two regions.</li>
+<li>Replicating entire environment to another region.</li>
+</ul>
+<h2 id="II-How-many-availability-zones-to-use"><a href="#II-How-many-availability-zones-to-use" class="headerlink" title="II. How many availability zones to use?"></a>II. How many availability zones to use?</h2><p>Start with 2 az per region.<br>  <img src="1.png" alt=""></p>
+<p>For the following scenarios:</p>
+<ul>
+<li>heavily use Amazon EC2 Spot Instances -&gt; 2 az</li>
+<li>applications with MySQL, SQL server, Oracle data sources -&gt; 2 az to support active/passive</li>
+<li>applications with data sources Cassandra/MongoDB -&gt; 2 or more az for extremely high availability</li>
+</ul>
+<h2 id="III-VPC"><a href="#III-VPC" class="headerlink" title="III. VPC"></a>III. VPC</h2><p>Using one VPC</p>
+<ul>
+<li>High-performance computing environment</li>
+<li>Microsoft active directory for identity management.</li>
+<li>Small, single applications managed by very small team.</li>
+</ul>
+<p>Most cases, there are two primary patterns for organizing the infrastructure:</p>
+<p>Multi-VPC or Multi-Account.<br><img src="2.png" alt=""></p>
+<p>Multi-VPC pattern:</p>
+<ul>
+<li>For single team or organization</li>
+<li>Limited teams make maintaining standards and managing access easier.</li>
+</ul>
+<p>Multi-Account pattern</p>
+<ul>
+<li>Larger organizations</li>
+<li>Organizations with multiple IT teams</li>
+<li>Medium-sized organizations that grow fast.</li>
+</ul>
+<p>AWS Organizations</p>
+<ul>
+<li>Hierarchical grouping of accounts</li>
+<li>Integration and support of IAM</li>
+<li>Integration of other AWS services</li>
+<li>Data replication with eventually consistency</li>
+<li>Caching may improve performance.</li>
+</ul>
+<p><img src="3.png" alt=""></p>
+<h2 id="IV-Divide-the-VPC-to-subnets"><a href="#IV-Divide-the-VPC-to-subnets" class="headerlink" title="IV. Divide the VPC to subnets"></a>IV. Divide the VPC to subnets</h2><p>Classless Inter-Domain Routing(CIDR).</p>
+<p>Amazon VPC can use CIDR ranges between /16 to /28.</p>
+<p>/16: 256 * 256 = 65536</p>
+<p>/28: 2^4 = 16</p>
+<p><img src="4.png" alt=""></p>
+<p>For each subnets, there are five ip address unavailable because they are reserved. </p>
+<p>Private subnet: Include a routing table entry to an <strong>internet gateway</strong> to support inbound/outbound traffic.</p>
+<p>Public subnet: Don’t have such routing table so cannot be accessed to the internet gateway. But can use a “jump box” – which is a (NAT/proxy/bastion host) to support <strong>restricted</strong>, <strong>outbound-only</strong> public network access.</p>
+<p><strong>Note:</strong> The majority of the network resources should be hosted into <strong>private subnet</strong>.</p>
+<p><strong>Recommendation</strong>:</p>
+<ul>
+<li>subnet size. Consider larger subnets over smaller ones(/24, and larget)</li>
+<li>subnet type<ul>
+<li>Data store instances: private</li>
+<li>Batch processing instances: private</li>
+<li>Backend instances: private</li>
+<li>Web application instances: public or private</li>
+</ul>
+</li>
+</ul>
+<h2 id="V-Default-VPCs-and-Default-Subnets"><a href="#V-Default-VPCs-and-Default-Subnets" class="headerlink" title="V. Default VPCs and Default Subnets"></a>V. Default VPCs and Default Subnets</h2><p>Default VPC</p>
+<ul>
+<li>Each region in the account has one default VPC.</li>
+<li>Default CIDR for the default VPC: 172.32.0.0/16</li>
+<li>include a default subnet, gateway, main route table, security group and Network ACL.</li>
+</ul>
+<p>Default subnet in default VPCs</p>
+<ul>
+<li>Created within each AZ for each VPC.</li>
+<li>public, with CIDR block of /20</li>
+<li>Whenever add a AZ, place a subnet in it.</li>
+</ul>
+<p><strong>Recommendations</strong>:</p>
+<ul>
+<li>Use default VPCs and subnets to experiment with the AWS account only.</li>
+<li>For real-world applications, create your own VPCs and subnets.</li>
+</ul>
+<h2 id="VI-Controlling-VPC-Traffic"><a href="#VI-Controlling-VPC-Traffic" class="headerlink" title="VI. Controlling VPC Traffic"></a>VI. Controlling VPC Traffic</h2><p>Route tables:</p>
+<ul>
+<li>Main(default) and custom route tables</li>
+<li>All route tables include a local route entry<ul>
+<li>10.0.0.0/16 -&gt; local</li>
+<li>The local entry cannot be deleted</li>
+<li>Only one route table per subnet</li>
+</ul>
+</li>
+<li><em>Best practice</em>: Use custom route tables for each subnet.</li>
+</ul>
+<p>Security groups:</p>
+<ul>
+<li>Stateful applications that act as virtual firewalls</li>
+<li>By default<ul>
+<li>Deny all inbound traffic</li>
+<li>Allow all outbound traffic</li>
+<li>Use allow rules to filter based on protocols</li>
+</ul>
+</li>
+<li>If inbound is allowed, then the outbound response is allowed automatically.</li>
+</ul>
+<p><img src="5.png" alt=""></p>
+<p>Unless required for the compliance, it is not recommended to modify the default security group.</p>
+<p>Create security groups with inbound rules for each <strong>funtional tier</strong>(web/app/data) within an applications.</p>
+<p><img src="6.png" alt=""></p>
+<p>Network ACLs</p>
+<ul>
+<li>Virtual firewall</li>
+<li>When creating new one, automatically configured to <strong>DENY All</strong> traffic. </li>
+</ul>
+<p>Internet Gateways</p>
+<ul>
+<li>Horizontally scaled, redundant, and highly available.</li>
+<li>To enable access to or from the Internet:<ul>
+<li>Attach the gateway to the VPC</li>
+<li>Ensure subnets’ route table points to the gateway</li>
+<li>Ensure the instances have public IP address/Elastic IP address</li>
+<li>Ensure the NACLs and security groups allow the relevant traffic</li>
+</ul>
+</li>
+</ul>
+<p>Outbound from private instances</p>
+<ul>
+<li>Enable NAT</li>
+<li>Two options:<ul>
+<li>Amazon EC2 instance set up as a NAT in a public subnet</li>
+<li>NAT Gateway.</li>
+<li>Both these two are in the public subnet.</li>
+</ul>
+</li>
+</ul>
+<p><img src="7.png" alt=""></p>
+<p>Amazon VPC Flow logs</p>
+<ul>
+<li>Capture traffic flow details in your VPC</li>
+<li>Can be enabled for VPCs, subnets, and ENIs</li>
+<li>Publish logs to CloudWatch Logs.</li>
+</ul>
+<h2 id="VII-Connect-multiple-VPCs"><a href="#VII-Connect-multiple-VPCs" class="headerlink" title="VII. Connect multiple VPCs"></a>VII. Connect multiple VPCs</h2><p>VPN Hub and Spoke Architecture</p>
+<ul>
+<li>Two Amazon EC2-based VPN endpoints in each spoke to support high availability</li>
+<li>Central VPC(hub) that contains common services for all application VPCs</li>
+<li>Dynamic routing protocol between the spokes and the hub</li>
+</ul>
+<p>Resolution: VPC Peering<br>To establish a VPC peering connection:</p>
+<ul>
+<li>One sends a request, another one accepts to activate.</li>
+<li>To enable, add a route pointing to IP address range of peer VPC</li>
+<li>Update security groups</li>
+<li>VPC peering connection is one-to-one relationship between two VPCs</li>
+<li><strong>Note:</strong> Now VPC peering can cross different regions, through AWS backbone, never travel through the public Internet.</li>
+<li>VPC peering is not transitive.</li>
+</ul>
+<h2 id="VIII-Integrating-On-Premises-Components"><a href="#VIII-Integrating-On-Premises-Components" class="headerlink" title="VIII. Integrating On-Premises Components"></a>VIII. Integrating On-Premises Components</h2><p>VPN-connections</p>
+<ul>
+<li>Amazon Virtual Gateway(VGW). </li>
+<li>Dynamic routing uses Border Gateway Protocols, or BGP, peering to exchange routing information.</li>
+<li>AWS managed VPN supports up to 1.25 Gbps throughout per VPN tunnel.</li>
+</ul>
+<p>AWS Direct Connect</p>
+<ul>
+<li>Dedicated, private fiber to AWS.</li>
+<li>Create virtual interfaces(VIF) directly to AWS cloud.</li>
+</ul>
+<p>High Resiliency for Critical Workloads</p>
+<p><img src="8.png" alt=""></p>
+<p>Maximum Resiliency for Critical Workloads</p>
+<p><img src="9.png" alt=""></p>
+<p>Dual DX-Dual Location</p>
+<p><img src="10.png" alt=""></p>
+<h2 id="VIV-VPC-Best-practices"><a href="#VIV-VPC-Best-practices" class="headerlink" title="VIV. VPC Best practices"></a>VIV. VPC Best practices</h2><p>Best practice:</p>
+<ul>
+<li>Choose CIDR block or IP address ranges wisely. Plan ahead.</li>
+<li>Use subnets to divide resources based on access.</li>
+<li>Use Multi-AZ deployments in VPC for high availability.</li>
+<li>Use security groups to control traffic between resources.</li>
+<li>Use VPC FLow Logs to track and monitor the VPC traffic.</li>
+<li>Check the health of the VPN link via API calls or AWS Management Console.</li>
+</ul>
+<p>Common practice:</p>
+<ul>
+<li>Replicate the architecture across two/more AZ.</li>
+<li>Use NAT gateway to be in place of NAR instances. But which is on earth more appropriate? Check the previous content.</li>
+<li>If resources in multiple AZs share one NAT gateway, that is not recommended because if that gateway’s AZ is down, all resources in other AZ will be down. So in order to create AZ-independent architecture, be mind to create one gateway to each AZ.</li>
+</ul>
+]]></content>
+      <categories>
+        <category>中文, English</category>
+      </categories>
+      <tags>
+        <tag>AWS</tag>
+        <tag>Network</tag>
+      </tags>
+  </entry>
 </search>

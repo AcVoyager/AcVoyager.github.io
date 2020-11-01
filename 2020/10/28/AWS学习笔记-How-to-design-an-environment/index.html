@@ -20,21 +20,32 @@
     var CONFIG = {"hostname":"acvoyager.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="今日做了leetcode的Reconstruct Itinerary，自认为对于backtrack+递归套件的使用已渐渐熟练。 使用linkedlist时要注意，pop和poll方法都是removefirst的。换言之，如果你不用stack而是用linkedlist来模拟stack的pop功能的话，别用pop，用removeLast。 从时间上看已经是6月29日，六月之末，新的一周的开始。 重新打">
+  <meta name="description" content="欢迎来到我的AWS学习笔记系列。 本文着重记述关于如何创建一个AWS环境，创建环境时的注意事项。如若转载，请先与作者联系。 本文图片来自于网络">
 <meta property="og:type" content="article">
-<meta property="og:title" content="六月末夜谈">
-<meta property="og:url" content="https://acvoyager.github.io/2020/06/29/%E5%85%AD%E6%9C%88%E6%9C%AB%E5%A4%9C%E8%B0%88/index.html">
+<meta property="og:title" content="AWS学习笔记: How to design an environment">
+<meta property="og:url" content="https://acvoyager.github.io/2020/10/28/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-How-to-design-an-environment/index.html">
 <meta property="og:site_name" content="The Black Pearl">
-<meta property="og:description" content="今日做了leetcode的Reconstruct Itinerary，自认为对于backtrack+递归套件的使用已渐渐熟练。 使用linkedlist时要注意，pop和poll方法都是removefirst的。换言之，如果你不用stack而是用linkedlist来模拟stack的pop功能的话，别用pop，用removeLast。 从时间上看已经是6月29日，六月之末，新的一周的开始。 重新打">
+<meta property="og:description" content="欢迎来到我的AWS学习笔记系列。 本文着重记述关于如何创建一个AWS环境，创建环境时的注意事项。如若转载，请先与作者联系。 本文图片来自于网络">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-06-29T07:43:11.000Z">
-<meta property="article:modified_time" content="2020-10-01T07:22:06.945Z">
+<meta property="og:image" content="https://acvoyager.github.io/2020/10/28/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-How-to-design-an-environment/1.png">
+<meta property="og:image" content="https://acvoyager.github.io/2020/10/28/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-How-to-design-an-environment/2.png">
+<meta property="og:image" content="https://acvoyager.github.io/2020/10/28/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-How-to-design-an-environment/3.png">
+<meta property="og:image" content="https://acvoyager.github.io/2020/10/28/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-How-to-design-an-environment/4.png">
+<meta property="og:image" content="https://acvoyager.github.io/2020/10/28/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-How-to-design-an-environment/5.png">
+<meta property="og:image" content="https://acvoyager.github.io/2020/10/28/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-How-to-design-an-environment/6.png">
+<meta property="og:image" content="https://acvoyager.github.io/2020/10/28/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-How-to-design-an-environment/7.png">
+<meta property="og:image" content="https://acvoyager.github.io/2020/10/28/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-How-to-design-an-environment/8.png">
+<meta property="og:image" content="https://acvoyager.github.io/2020/10/28/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-How-to-design-an-environment/9.png">
+<meta property="og:image" content="https://acvoyager.github.io/2020/10/28/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-How-to-design-an-environment/10.png">
+<meta property="article:published_time" content="2020-10-28T21:40:01.000Z">
+<meta property="article:modified_time" content="2020-10-30T22:29:41.619Z">
 <meta property="article:author" content="Voyager">
-<meta property="article:tag" content="leetcode">
-<meta property="article:tag" content="life">
+<meta property="article:tag" content="AWS">
+<meta property="article:tag" content="Network">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://acvoyager.github.io/2020/10/28/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-How-to-design-an-environment/1.png">
 
-<link rel="canonical" href="https://acvoyager.github.io/2020/06/29/%E5%85%AD%E6%9C%88%E6%9C%AB%E5%A4%9C%E8%B0%88/">
+<link rel="canonical" href="https://acvoyager.github.io/2020/10/28/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-How-to-design-an-environment/">
 
 
 <script id="page-configurations">
@@ -47,7 +58,7 @@
   };
 </script>
 
-  <title>六月末夜谈 | The Black Pearl</title>
+  <title>AWS学习笔记: How to design an environment | The Black Pearl</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168368135-1"></script>
     <script>
@@ -198,7 +209,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://acvoyager.github.io/2020/06/29/%E5%85%AD%E6%9C%88%E6%9C%AB%E5%A4%9C%E8%B0%88/">
+    <link itemprop="mainEntityOfPage" href="https://acvoyager.github.io/2020/10/28/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-How-to-design-an-environment/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -211,7 +222,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          六月末夜谈
+          AWS学习笔记: How to design an environment
         </h1>
 
         <div class="post-meta">
@@ -221,14 +232,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-06-29 00:43:11" itemprop="dateCreated datePublished" datetime="2020-06-29T00:43:11-07:00">2020-06-29</time>
+              <time title="Created: 2020-10-28 14:40:01" itemprop="dateCreated datePublished" datetime="2020-10-28T14:40:01-07:00">2020-10-28</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-01 00:22:06" itemprop="dateModified" datetime="2020-10-01T00:22:06-07:00">2020-10-01</time>
+                <time title="Modified: 2020-10-30 15:29:41" itemprop="dateModified" datetime="2020-10-30T15:29:41-07:00">2020-10-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -236,7 +247,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%B8%AD%E6%96%87/" itemprop="url" rel="index"><span itemprop="name">中文</span></a>
+                  <a href="/categories/%E4%B8%AD%E6%96%87-English/" itemprop="url" rel="index"><span itemprop="name">中文, English</span></a>
                 </span>
             </span>
 
@@ -256,8 +267,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2020/06/29/%E5%85%AD%E6%9C%88%E6%9C%AB%E5%A4%9C%E8%B0%88/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/06/29/六月末夜谈/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2020/10/28/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-How-to-design-an-environment/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/28/AWS学习笔记-How-to-design-an-environment/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -272,15 +283,207 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>今日做了leetcode的Reconstruct Itinerary，自认为对于backtrack+递归套件的使用已渐渐熟练。</p>
-<p>使用linkedlist时要注意，pop和poll方法都是removefirst的。换言之，如果你不用stack而是用linkedlist来模拟stack的pop功能的话，别用pop，用removeLast。</p>
-<p>从时间上看已经是6月29日，六月之末，新的一周的开始。</p>
-<p>重新打开了苏东坡传。这段时间颇为思考了一些关于偏见和认知的问题。也许真理，只有能横跨时间，空间和种群的高维生物才能分辨，而我们人类只能尽量地接近最优解。</p>
-<p>即便如此，人还要有信仰。绝对的对错也许无法分清，但是相对的对错，优劣，利弊是可以分清的。利益，立场是可以划分的。只求不愧于心这话很有道理，我们无法改变别人，也无法发现纯粹的对错，但是我们可以不背叛自己，追求自己所认为更正确的东西。</p>
-<p>我认为是时候坚定这样的想法了。坚定不同于固执，当我听到或者观察到更有建设性，更有智慧的观点时，我会尝试吸纳和接受。</p>
-<p>还是想的太多，做的不够多，读的太少。</p>
-<p>千里之行，始于足下。有则改之，无则加勉。</p>
-<p>加油。</p>
+        <p>欢迎来到我的AWS学习笔记系列。</p>
+<p>本文着重记述关于如何创建一个AWS环境，创建环境时的注意事项。如若转载，请先与作者联系。</p>
+<p><em>本文图片来自于网络</em></p>
+<a id="more"></a>
+
+<h1 id="How-to-design-an-environment"><a href="#How-to-design-an-environment" class="headerlink" title="How to design an environment"></a>How to design an environment</h1><h2 id="I-How-to-choose-a-region"><a href="#I-How-to-choose-a-region" class="headerlink" title="I. How to choose a region"></a>I. How to choose a region</h2><p>Data sovereignty and compliance.</p>
+<p>Proximity of users to data.</p>
+<ul>
+<li>Some regions are more expensive than the others.</li>
+<li>100ms delays can cost 1% dropping sales on Amazon.com.</li>
+</ul>
+<p>Availability of services and features</p>
+<ul>
+<li>Some services are available in limited regions.</li>
+<li>Some can cross regions, but at increased latency.</li>
+</ul>
+<p>Cost-effectiveness</p>
+<ul>
+<li>Services costs vary by Region.</li>
+<li>Some have costs for transferring data out.</li>
+<li>Best at least two regions.</li>
+<li>Replicating entire environment to another region.</li>
+</ul>
+<h2 id="II-How-many-availability-zones-to-use"><a href="#II-How-many-availability-zones-to-use" class="headerlink" title="II. How many availability zones to use?"></a>II. How many availability zones to use?</h2><p>Start with 2 az per region.<br>  <img src="1.png" alt=""></p>
+<p>For the following scenarios:</p>
+<ul>
+<li>heavily use Amazon EC2 Spot Instances -&gt; 2 az</li>
+<li>applications with MySQL, SQL server, Oracle data sources -&gt; 2 az to support active/passive</li>
+<li>applications with data sources Cassandra/MongoDB -&gt; 2 or more az for extremely high availability</li>
+</ul>
+<h2 id="III-VPC"><a href="#III-VPC" class="headerlink" title="III. VPC"></a>III. VPC</h2><p>Using one VPC</p>
+<ul>
+<li>High-performance computing environment</li>
+<li>Microsoft active directory for identity management.</li>
+<li>Small, single applications managed by very small team.</li>
+</ul>
+<p>Most cases, there are two primary patterns for organizing the infrastructure:</p>
+<p>Multi-VPC or Multi-Account.<br><img src="2.png" alt=""></p>
+<p>Multi-VPC pattern:</p>
+<ul>
+<li>For single team or organization</li>
+<li>Limited teams make maintaining standards and managing access easier.</li>
+</ul>
+<p>Multi-Account pattern</p>
+<ul>
+<li>Larger organizations</li>
+<li>Organizations with multiple IT teams</li>
+<li>Medium-sized organizations that grow fast.</li>
+</ul>
+<p>AWS Organizations</p>
+<ul>
+<li>Hierarchical grouping of accounts</li>
+<li>Integration and support of IAM</li>
+<li>Integration of other AWS services</li>
+<li>Data replication with eventually consistency</li>
+<li>Caching may improve performance.</li>
+</ul>
+<p><img src="3.png" alt=""></p>
+<h2 id="IV-Divide-the-VPC-to-subnets"><a href="#IV-Divide-the-VPC-to-subnets" class="headerlink" title="IV. Divide the VPC to subnets"></a>IV. Divide the VPC to subnets</h2><p>Classless Inter-Domain Routing(CIDR).</p>
+<p>Amazon VPC can use CIDR ranges between /16 to /28.</p>
+<p>/16: 256 * 256 = 65536</p>
+<p>/28: 2^4 = 16</p>
+<p><img src="4.png" alt=""></p>
+<p>For each subnets, there are five ip address unavailable because they are reserved. </p>
+<p>Private subnet: Include a routing table entry to an <strong>internet gateway</strong> to support inbound/outbound traffic.</p>
+<p>Public subnet: Don’t have such routing table so cannot be accessed to the internet gateway. But can use a “jump box” – which is a (NAT/proxy/bastion host) to support <strong>restricted</strong>, <strong>outbound-only</strong> public network access.</p>
+<p><strong>Note:</strong> The majority of the network resources should be hosted into <strong>private subnet</strong>.</p>
+<p><strong>Recommendation</strong>:</p>
+<ul>
+<li>subnet size. Consider larger subnets over smaller ones(/24, and larget)</li>
+<li>subnet type<ul>
+<li>Data store instances: private</li>
+<li>Batch processing instances: private</li>
+<li>Backend instances: private</li>
+<li>Web application instances: public or private</li>
+</ul>
+</li>
+</ul>
+<h2 id="V-Default-VPCs-and-Default-Subnets"><a href="#V-Default-VPCs-and-Default-Subnets" class="headerlink" title="V. Default VPCs and Default Subnets"></a>V. Default VPCs and Default Subnets</h2><p>Default VPC</p>
+<ul>
+<li>Each region in the account has one default VPC.</li>
+<li>Default CIDR for the default VPC: 172.32.0.0/16</li>
+<li>include a default subnet, gateway, main route table, security group and Network ACL.</li>
+</ul>
+<p>Default subnet in default VPCs</p>
+<ul>
+<li>Created within each AZ for each VPC.</li>
+<li>public, with CIDR block of /20</li>
+<li>Whenever add a AZ, place a subnet in it.</li>
+</ul>
+<p><strong>Recommendations</strong>:</p>
+<ul>
+<li>Use default VPCs and subnets to experiment with the AWS account only.</li>
+<li>For real-world applications, create your own VPCs and subnets.</li>
+</ul>
+<h2 id="VI-Controlling-VPC-Traffic"><a href="#VI-Controlling-VPC-Traffic" class="headerlink" title="VI. Controlling VPC Traffic"></a>VI. Controlling VPC Traffic</h2><p>Route tables:</p>
+<ul>
+<li>Main(default) and custom route tables</li>
+<li>All route tables include a local route entry<ul>
+<li>10.0.0.0/16 -&gt; local</li>
+<li>The local entry cannot be deleted</li>
+<li>Only one route table per subnet</li>
+</ul>
+</li>
+<li><em>Best practice</em>: Use custom route tables for each subnet.</li>
+</ul>
+<p>Security groups:</p>
+<ul>
+<li>Stateful applications that act as virtual firewalls</li>
+<li>By default<ul>
+<li>Deny all inbound traffic</li>
+<li>Allow all outbound traffic</li>
+<li>Use allow rules to filter based on protocols</li>
+</ul>
+</li>
+<li>If inbound is allowed, then the outbound response is allowed automatically.</li>
+</ul>
+<p><img src="5.png" alt=""></p>
+<p>Unless required for the compliance, it is not recommended to modify the default security group.</p>
+<p>Create security groups with inbound rules for each <strong>funtional tier</strong>(web/app/data) within an applications.</p>
+<p><img src="6.png" alt=""></p>
+<p>Network ACLs</p>
+<ul>
+<li>Virtual firewall</li>
+<li>When creating new one, automatically configured to <strong>DENY All</strong> traffic. </li>
+</ul>
+<p>Internet Gateways</p>
+<ul>
+<li>Horizontally scaled, redundant, and highly available.</li>
+<li>To enable access to or from the Internet:<ul>
+<li>Attach the gateway to the VPC</li>
+<li>Ensure subnets’ route table points to the gateway</li>
+<li>Ensure the instances have public IP address/Elastic IP address</li>
+<li>Ensure the NACLs and security groups allow the relevant traffic</li>
+</ul>
+</li>
+</ul>
+<p>Outbound from private instances</p>
+<ul>
+<li>Enable NAT</li>
+<li>Two options:<ul>
+<li>Amazon EC2 instance set up as a NAT in a public subnet</li>
+<li>NAT Gateway.</li>
+<li>Both these two are in the public subnet.</li>
+</ul>
+</li>
+</ul>
+<p><img src="7.png" alt=""></p>
+<p>Amazon VPC Flow logs</p>
+<ul>
+<li>Capture traffic flow details in your VPC</li>
+<li>Can be enabled for VPCs, subnets, and ENIs</li>
+<li>Publish logs to CloudWatch Logs.</li>
+</ul>
+<h2 id="VII-Connect-multiple-VPCs"><a href="#VII-Connect-multiple-VPCs" class="headerlink" title="VII. Connect multiple VPCs"></a>VII. Connect multiple VPCs</h2><p>VPN Hub and Spoke Architecture</p>
+<ul>
+<li>Two Amazon EC2-based VPN endpoints in each spoke to support high availability</li>
+<li>Central VPC(hub) that contains common services for all application VPCs</li>
+<li>Dynamic routing protocol between the spokes and the hub</li>
+</ul>
+<p>Resolution: VPC Peering<br>To establish a VPC peering connection:</p>
+<ul>
+<li>One sends a request, another one accepts to activate.</li>
+<li>To enable, add a route pointing to IP address range of peer VPC</li>
+<li>Update security groups</li>
+<li>VPC peering connection is one-to-one relationship between two VPCs</li>
+<li><strong>Note:</strong> Now VPC peering can cross different regions, through AWS backbone, never travel through the public Internet.</li>
+<li>VPC peering is not transitive.</li>
+</ul>
+<h2 id="VIII-Integrating-On-Premises-Components"><a href="#VIII-Integrating-On-Premises-Components" class="headerlink" title="VIII. Integrating On-Premises Components"></a>VIII. Integrating On-Premises Components</h2><p>VPN-connections</p>
+<ul>
+<li>Amazon Virtual Gateway(VGW). </li>
+<li>Dynamic routing uses Border Gateway Protocols, or BGP, peering to exchange routing information.</li>
+<li>AWS managed VPN supports up to 1.25 Gbps throughout per VPN tunnel.</li>
+</ul>
+<p>AWS Direct Connect</p>
+<ul>
+<li>Dedicated, private fiber to AWS.</li>
+<li>Create virtual interfaces(VIF) directly to AWS cloud.</li>
+</ul>
+<p>High Resiliency for Critical Workloads</p>
+<p><img src="8.png" alt=""></p>
+<p>Maximum Resiliency for Critical Workloads</p>
+<p><img src="9.png" alt=""></p>
+<p>Dual DX-Dual Location</p>
+<p><img src="10.png" alt=""></p>
+<h2 id="VIV-VPC-Best-practices"><a href="#VIV-VPC-Best-practices" class="headerlink" title="VIV. VPC Best practices"></a>VIV. VPC Best practices</h2><p>Best practice:</p>
+<ul>
+<li>Choose CIDR block or IP address ranges wisely. Plan ahead.</li>
+<li>Use subnets to divide resources based on access.</li>
+<li>Use Multi-AZ deployments in VPC for high availability.</li>
+<li>Use security groups to control traffic between resources.</li>
+<li>Use VPC FLow Logs to track and monitor the VPC traffic.</li>
+<li>Check the health of the VPN link via API calls or AWS Management Console.</li>
+</ul>
+<p>Common practice:</p>
+<ul>
+<li>Replicate the architecture across two/more AZ.</li>
+<li>Use NAT gateway to be in place of NAR instances. But which is on earth more appropriate? Check the previous content.</li>
+<li>If resources in multiple AZs share one NAT gateway, that is not recommended because if that gateway’s AZ is down, all resources in other AZ will be down. So in order to create AZ-independent architecture, be mind to create one gateway to each AZ.</li>
+</ul>
 
     </div>
 
@@ -290,8 +493,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/leetcode/" rel="tag"># leetcode</a>
-              <a href="/tags/life/" rel="tag"># life</a>
+              <a href="/tags/AWS/" rel="tag"># AWS</a>
+              <a href="/tags/Network/" rel="tag"># Network</a>
           </div>
 
         
@@ -300,13 +503,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/06/10/6-10-leetcode-check-in/" rel="prev" title="6.10 leetcode check-in">
-      <i class="fa fa-chevron-left"></i> 6.10 leetcode check-in
+    <a href="/2020/10/26/Java-%E7%BC%96%E8%AF%91%E6%89%93%E5%8C%85%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/" rel="prev" title="Java 编译打包过程记录">
+      <i class="fa fa-chevron-left"></i> Java 编译打包过程记录
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/09/03/return-to-blog/" rel="next" title="return to blog">
-      return to blog <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -372,6 +572,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#How-to-design-an-environment"><span class="nav-number">1.</span> <span class="nav-text">How to design an environment</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#I-How-to-choose-a-region"><span class="nav-number">1.1.</span> <span class="nav-text">I. How to choose a region</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#II-How-many-availability-zones-to-use"><span class="nav-number">1.2.</span> <span class="nav-text">II. How many availability zones to use?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#III-VPC"><span class="nav-number">1.3.</span> <span class="nav-text">III. VPC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IV-Divide-the-VPC-to-subnets"><span class="nav-number">1.4.</span> <span class="nav-text">IV. Divide the VPC to subnets</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#V-Default-VPCs-and-Default-Subnets"><span class="nav-number">1.5.</span> <span class="nav-text">V. Default VPCs and Default Subnets</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VI-Controlling-VPC-Traffic"><span class="nav-number">1.6.</span> <span class="nav-text">VI. Controlling VPC Traffic</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VII-Connect-multiple-VPCs"><span class="nav-number">1.7.</span> <span class="nav-text">VII. Connect multiple VPCs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VIII-Integrating-On-Premises-Components"><span class="nav-number">1.8.</span> <span class="nav-text">VIII. Integrating On-Premises Components</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VIV-VPC-Best-practices"><span class="nav-number">1.9.</span> <span class="nav-text">VIV. VPC Best practices</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -635,9 +836,9 @@
 </script>
 <script>
   var disqus_config = function() {
-    this.page.url = "https://acvoyager.github.io/2020/06/29/%E5%85%AD%E6%9C%88%E6%9C%AB%E5%A4%9C%E8%B0%88/";
-    this.page.identifier = "2020/06/29/六月末夜谈/";
-    this.page.title = "六月末夜谈";
+    this.page.url = "https://acvoyager.github.io/2020/10/28/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-How-to-design-an-environment/";
+    this.page.identifier = "2020/10/28/AWS学习笔记-How-to-design-an-environment/";
+    this.page.title = "AWS学习笔记: How to design an environment";
     };
   NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
     if (window.DISQUS) {
