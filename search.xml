@@ -1351,11 +1351,13 @@
 </ul>
 </li>
 </ol>
-<p>重点说完了，个人觉得记忆上述内容，比较易于理解的角度是从<code>tracked file</code>，也就是index区中记录的文件。我们从一个初始的刚刚<code>git init</code>的文件夹角度思考，一开始所有文件的状态是<code>untracked</code>。然后你自己编辑<code>.gitignore</code>，这里面提及到的文件会被彻底忽视，也就是连<code>untracked</code>状态都不会有因为你压根不想让git考虑它们（后文会讲一下.gitignore）。之后你做了些修改，然后你要<code>git add</code>。此后，你add涉及到的所有文件便成为<code>tracked file</code>。除非你在未来通过改变.gitignore或者<code>git rm</code>从Git Directory中删掉他们，否则这些<code>tracked file</code>之后只可能有两种状态：modified, or commited. 好了你现在满足了，commit交卷走人。那么Git directory的compressed database中便会创建一个包含这些<code>tracked file</code>在staging area中改动的快照并保存。你当前的working directory就是最新的这个commit。</p>
+<p>重点说完了，个人觉得记忆上述内容，比较易于理解的角度是从<code>tracked file</code>，也就是index区中记录的文件。我们从一个初始的刚刚<code>git init</code>的文件夹角度思考，一开始所有文件的状态是untracked。然后你自己编辑.gitignore，这里面提及到的文件会被彻底忽视，也就是连untracked状态都不会有因为你压根不想让git考虑它们（后文会讲一下.gitignore）。之后你做了些修改，然后你要<code>git add</code>。此后，你add涉及到的所有文件便成为tracked file。除非你在未来通过改变.gitignore或者<code>git rm</code>从Git Directory中删掉他们，否则这些tracked file之后只可能有两种状态：modified, or commited. 好了你现在满足了，commit交卷走人。那么Git directory的compressed database中便会创建一个包含这些tracked file在staging area中改动的快照并保存。你当前的working directory就是最新的这个commit。</p>
 <p>关于<code>.gitignore</code>，语法层面没什么好说的，用正则表达式，中枪的文件被git忽略，也可以用！号来表示不要忽略某文件/目录，这种情况一般是父目录被忽略了但是里面有些资料你不想让git忽略。</p>
-<p>值得一提的是，如果之前有commit记录，然后你想从现在这个commit记录开始修改.gitignore并令其生效。.gitignore被修改并不会自动地影响<code>tracked file</code>，所以这个时候你需要用比如<code>git rm -r --cached &lt;file&gt;</code>指令来将当前index（staging area）区中的指定<file>删除掉，然后重新<code>git add &lt;file&gt;</code>再add入index区中。刚才那个git rm影响到的文件会被视为是staged的改动，附截图帮助理解：</p>
+<p>值得一提的是，如果之前有commit记录，然后你想从现在这个commit记录开始修改.gitignore并令其生效。.gitignore被修改并不会自动地影响tracked file，所以这个时候你需要用比如<code>git rm -r --cached &lt;file&gt;</code>指令来将当前index（staging area）区中的指定<file>删除掉，然后重新<code>git add &lt;file&gt;</code>再add入index区中。刚才那个git rm影响到的文件会被视为是staged的改动，附截图帮助理解：</p>
 <p><img src="1.png" alt=""></p>
-<p>可以看到，在git rm –cached以后，index区中的文件会被删除，这些deleted的改动 ready to be commited，如果跟着commit的话，那么就意味着创建了一个快照，在这个快照中这些文件都没了，注意这也意味着你working directory中这些文件也确实被删了啊！</p>
+<p>可以看到，在git rm –cached以后，index区中的文件会被删除。实际上，这些文件被“降级”为untracked file. 具体见下图：</p>
+<p><img src="2.png" alt=""></p>
+<p>但是如果你不是–cached而是直接git rm删除的话，文件会从index和work dir中被删掉。</p>
 <p><a href="https://git-scm.com/docs/git-rm" target="_blank" rel="noopener">git rm</a></p>
 <blockquote>
 <p>Remove files matching pathspec from the index, or from the working tree and the index. git rm will not remove a file from just your working directory. (There is no option to remove a file only from the working tree and yet keep it in the index; use /bin/rm if you want to do that.) The files being removed have to be identical to the tip of the branch, and no updates to their contents can be staged in the index, though that default behavior can be overridden with the -f option. When –cached is given, the staged content has to match either the tip of the branch or the file on disk, allowing the file to be removed from just the index.</p>
