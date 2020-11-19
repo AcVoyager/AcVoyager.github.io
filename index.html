@@ -193,6 +193,138 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://acvoyager.github.io/2020/11/18/%E5%85%B3%E4%BA%8EGit%E7%9A%84%E4%B8%80%E4%BA%9Breview/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Voyager">
+      <meta itemprop="description" content="The only thing we have to fear is fear itself.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="The Black Pearl">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/18/%E5%85%B3%E4%BA%8EGit%E7%9A%84%E4%B8%80%E4%BA%9Breview/" class="post-title-link" itemprop="url">关于Git的一些review</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-11-18 22:56:20" itemprop="dateCreated datePublished" datetime="2020-11-18T22:56:20-08:00">2020-11-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-11-19 00:33:57" itemprop="dateModified" datetime="2020-11-19T00:33:57-08:00">2020-11-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%AD%E6%96%87-English/" itemprop="url" rel="index"><span itemprop="name">中文, English</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-users"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span class="firestore-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/11/18/%E5%85%B3%E4%BA%8EGit%E7%9A%84%E4%B8%80%E4%BA%9Breview/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/18/关于Git的一些review/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <a id="more"></a>
+
+<p>最近由于一些group work导致对git的使用量激增。在使用中，也重新对之前半懂不懂的一些概念进行了复习。<br>本文便记载一些复习的内容。</p>
+<p>Git的核心不外乎是其存储/数据结构，及其相互之间的关系。不论何时，官方文档永远是最好的资源:<br><a href="https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F" target="_blank" rel="noopener">What-is-Git</a></p>
+<p>个人看来，重点有如下三处：</p>
+<ol>
+<li><p>Snapshots, Not Differences.</p>
+<p>也就是说，Git每次commit看似会显示这里修改了什么什么，那里添加/删除了什么什么，<br>但是其存储的每个版本并不是这些变化(存储变化的VCs一般被称为Delta [$\Delta$] VCs)，而是存储一系列快照。具体存储的位置<br>为Git directory的compressed database中。</p>
+</li>
+<li><p>Three states.</p>
+<p>用Git管理的文件一般处于这三个状态中的一种: modified, staged, committed.</p>
+<ul>
+<li>Modified: Modified means that you have changed the file but have not committed it to your database yet. 也就是说该文件被修改（内容增删改，文件本身的增删），但是并未committed。这种状态通常出现在已经被add到index区的文件<br>发生改动的情况。如果是untracked的文件随你怎么改动，状态永远是untracked。</li>
+<li>Staged: Staged means that you have marked a modified file in its current version to go into your next commit snapshot. 也就是刚才说的modified的文件被add到index区后，处于staged状态。staged说白了意思就是准备好<br>要被committed了。</li>
+<li>Commited: Committed means that the data is safely stored in your local database. 被commit的文件已经<br>安全地保存到本地数据库中。</li>
+</ul>
+</li>
+<li><p>Git存储数据结构</p>
+<p>祭出下面这张图，一定要bear in mind。记不住。。。请耗子尾汁😂</p>
+<p><img src="https://git-scm.com/book/en/v2/images/areas.png" alt=""></p>
+<ul>
+<li>Working directory: The working tree is a single checkout of one version of the project. These files are pulled out of the compressed database in the Git directory and placed on disk for you to use or modify. 也有叫法是working tree，就是你当前编辑的这个版本基础，可能是之前的一次commit，也可能是<br>init状态。你直接修改的就是这个区的文件。那么working directory的内容是<strong>从git的本地（压缩）数据库中抽取并放到硬盘上</strong>的，供你编辑。</li>
+<li>Staging area: 经常说的index就指这个区域。index本身是<strong>一个文件，存储在Git directory</strong>内。作用就是保存你准备commit的改动。</li>
+<li>Gir directory: The Git directory is where Git stores the metadata and object database for your project. <code>git clone</code>就是下载的这玩意儿，然后再从中抽取最新的commit记录变成你看到的working directory（逗号后面是我自己根据上面working dir的概念的理解哈）。每次commit之后，都把当前staging area中的内容存为一次快照存到<strong>本地（压缩）数据库</strong>中。</li>
+</ul>
+</li>
+</ol>
+<p>重点说完了，个人觉得记忆上述内容，比较易于理解的角度是从<code>tracked file</code>，也就是index区中记录的文件。我们从一个初始的刚刚<code>git init</code>的文件夹角度思考，一开始所有文件的状态是<code>untracked</code>。然后你自己编辑<code>.gitignore</code>，这里面提及到的文件会被彻底忽视，也就是连<code>untracked</code>状态都不会有因为你压根不想让git考虑它们（后文会讲一下.gitignore）。之后你做了些修改，然后你要<code>git add</code>。此后，你add涉及到的所有文件便成为<code>tracked file</code>。除非你在未来通过改变.gitignore或者<code>git rm</code>从Git Directory中删掉他们，否则这些<code>tracked file</code>之后只可能有两种状态：modified, or commited. 好了你现在满足了，commit交卷走人。那么Git directory的compressed database中便会创建一个包含这些<code>tracked file</code>在staging area中改动的快照并保存。你当前的working directory就是最新的这个commit。</p>
+<p>关于<code>.gitignore</code>，语法层面没什么好说的，用正则表达式，中枪的文件被git忽略，也可以用！号来表示不要忽略某文件/目录，这种情况一般是父目录被忽略了但是里面有些资料你不想让git忽略。</p>
+<p>值得一提的是，如果之前有commit记录，然后你想从现在这个commit记录开始修改.gitignore并令其生效。.gitignore被修改并不会自动地影响<code>tracked file</code>，所以这个时候你需要用比如<code>git rm -r --cached &lt;file&gt;</code>指令来将当前index（staging area）区中的指定<file>删除掉，然后重新<code>git add &lt;file&gt;</code>再add入index区中。刚才那个git rm影响到的文件会被视为是staged的改动，附截图帮助理解：</p>
+<p><img src="1.png" alt=""></p>
+<p>可以看到，在git rm –cached以后，index区中的文件会被删除，这些deleted的改动 ready to be commited，如果跟着commit的话，那么就意味着创建了一个快照，在这个快照中这些文件都没了，注意这也意味着你working directory中这些文件也确实被删了啊！</p>
+<p><a href="https://git-scm.com/docs/git-rm" target="_blank" rel="noopener">git rm</a></p>
+<blockquote>
+<p>Remove files matching pathspec from the index, or from the working tree and the index. git rm will not remove a file from just your working directory. (There is no option to remove a file only from the working tree and yet keep it in the index; use /bin/rm if you want to do that.) The files being removed have to be identical to the tip of the branch, and no updates to their contents can be staged in the index, though that default behavior can be overridden with the -f option. When –cached is given, the staged content has to match either the tip of the branch or the file on disk, allowing the file to be removed from just the index.</p>
+</blockquote>
+<p>结尾：</p>
+<p>Git内容相当博大精深，今天先把理论复习到这里，如果之后有遇到值得记录的问题或者知识点，本文会跟着update。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://acvoyager.github.io/2020/11/16/AWS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Well-Architected-Framework/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1083,108 +1215,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://acvoyager.github.io/2020/10/19/Design-Pattern-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Voyager">
-      <meta itemprop="description" content="The only thing we have to fear is fear itself.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="The Black Pearl">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/19/Design-Pattern-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Design Pattern 学习笔记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-10-19 11:18:09" itemprop="dateCreated datePublished" datetime="2020-10-19T11:18:09-07:00">2020-10-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-10-26 13:25:20" itemprop="dateModified" datetime="2020-10-26T13:25:20-07:00">2020-10-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%B8%AD%E6%96%87-English/" itemprop="url" rel="index"><span itemprop="name">中文, English</span></a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="Views">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-users"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span class="firestore-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2020/10/19/Design-Pattern-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/10/19/Design-Pattern-学习笔记/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在学习设计模式，故用此篇记述所学内容。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/10/19/Design-Pattern-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1254,7 +1284,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
