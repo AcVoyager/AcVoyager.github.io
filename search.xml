@@ -1404,7 +1404,7 @@
 <p>Note that the snapshot pointed to by the final commit you end up with, whether it’s the last of the rebased commits for a rebase or the final merge commit after a merge, is the same snapshot — it’s only the history that is different. Rebasing replays changes from one line of work onto another in the order they were introduced, whereas merging takes the endpoints and merges them together.</p>
 </blockquote>
 <p>（下文假设都以master为主分支，experiment分支为副）</p>
-<p>不同的是，merge由于其three-way merge的特性，会保留branch1中的commit历史。如果我们压根不想保留，那么用rebase。</p>
+<p>不同的是，merge由于其three-way merge的特性，会保留branch1中的commit历史。如果我们<strong>不想保留副分支中的历史</strong>，那么请用rebase。</p>
 <h2 id="Rebase原理和过程"><a href="#Rebase原理和过程" class="headerlink" title="Rebase原理和过程"></a>Rebase原理和过程</h2><p>merge原理图：<img src="https://git-scm.com/book/en/v2/images/basic-rebase-2.png" alt=""></p>
 <p>rebase原理图：<img src="https://git-scm.com/book/en/v2/images/basic-rebase-3.png" alt=""></p>
 <p>从内容(snapshot)上说，c4’ == c5</p>
