@@ -1392,4 +1392,46 @@
         <tag>OS</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Git rebase 简单实操</title>
+    <url>/2020/11/25/Git-rebase-%E7%AE%80%E5%8D%95%E5%AE%9E%E6%93%8D/</url>
+    <content><![CDATA[<p>关于Git rebase的简单体验</p>
+<p>本文的引用参考全部来源于Git和Github的官方文档/教程。</p>
+<a id="more"></a>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>为什么要rebase？rebase是解决不同分支合并的一种办法。不采用rebase的话可以采用merge。rebase和merge的结果commit内容是<strong>完全一样</strong>的：</p>
+<blockquote>
+<p>Note that the snapshot pointed to by the final commit you end up with, whether it’s the last of the rebased commits for a rebase or the final merge commit after a merge, is the same snapshot — it’s only the history that is different. Rebasing replays changes from one line of work onto another in the order they were introduced, whereas merging takes the endpoints and merges them together.</p>
+</blockquote>
+<p>（下文假设都以master为主分支，experiment分支为副）</p>
+<p>不同的是，merge由于其three-way merge的特性，会保留branch1中的commit历史。如果我们压根不想保留，那么用rebase。</p>
+<h2 id="Rebase原理和过程"><a href="#Rebase原理和过程" class="headerlink" title="Rebase原理和过程"></a>Rebase原理和过程</h2><p>merge原理图：<img src="https://git-scm.com/book/en/v2/images/basic-rebase-2.png" alt=""></p>
+<p>rebase原理图：<img src="https://git-scm.com/book/en/v2/images/basic-rebase-3.png" alt=""></p>
+<p>从内容(snapshot)上说，c4’ == c5</p>
+<p>如果使用rebase的话，experiment除了c4’也就是最后合并的commit外，其余的，自从experiment与master公共祖先C2之后的所有experiment自己的commits全部会消失。如果你非要尝试在c4’ <code>git push origin experiment</code>，会报错如下：</p>
+<p><img src="1.png" alt=""></p>
+<p>图片中branch1是我自己测试时用的分支名。</p>
+<p>所以你应该做的是</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git checkout master # checkout到主分支</span><br><span class="line">git merge branch1 # fast forwarding</span><br><span class="line">git branch -d branch1 # 对你已经没用了</span><br></pre></td></tr></table></figure>
+
+<h2 id="冲突处理"><a href="#冲突处理" class="headerlink" title="冲突处理"></a>冲突处理</h2><p>当出现冲突时，git显示如下：</p>
+<p><img src="2.png" alt=""></p>
+<p>那么你要打开出现conflict的文件。比如说你用Atom打开的话，显示是这样的（相当智能）：</p>
+<p><img src="3.png" alt=""></p>
+<p>如果你想保留两分支其一的话，点那个大大的use me按钮。这里我们都想保留。不论你想怎么处理，图里面&gt;&gt;&gt;&gt;&gt;&gt;, =====和&lt;&lt;&lt;&lt;&lt;&lt;要删掉。之后按照你想要的方式来处理。处理接受后，进行以下三连：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git add . # staging</span><br><span class="line">git commit -m &lt;your message&gt; # this would be the message on c4&#x27;</span><br><span class="line">git rebase --continue # 确定rebase</span><br></pre></td></tr></table></figure>
+
+<p>如果一切顺利，git会显示Successfully rebased and updated refs/heads/branch1.</p>
+<p>最后，</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+
+<p>Done.</p>
+]]></content>
+      <categories>
+        <category>中文, English</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
 </search>
