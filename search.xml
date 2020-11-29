@@ -1473,4 +1473,64 @@
         <tag>leetcode</tag>
       </tags>
   </entry>
+  <entry>
+    <title>关于Java ConcurrentMap的一些心得</title>
+    <url>/2020/11/28/%E5%85%B3%E4%BA%8EJava-ConcurrentMap%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97/</url>
+    <content><![CDATA[<p>果然写代码永远是最后一步，把文档看好，逻辑理清楚比什么都强。</p>
+<a id="more"></a>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在写项目的时候用到了Java的ConcurrentHashMap。ConcurrentHashMap除了实现了和普通map一样<br>的Map接口外，还实现了ConcurrentMap接口。虽然说ConcurrentMap的所有operation都是thread-safe的，<br>但是如果选用不合适的代码组合仍然可能导致不同线程间的overlap。</p>
+<p>比如说，get()是非阻塞的，不上锁的（参加Javadoc）。如果有两个线程A和B，CPU实际操作顺序是，A先get，之后B get然后put，<br>这时A再put的时候会基于旧值进行put，导致丢失了B put的结果。这个听起来有点像数据库中Lost of Modify，<br>也有叫Lost Update的。放张图方便理解：</p>
+<p><img src="https://s3-us-west-1.amazonaws.com/morpheus-staging/system/spud_media/466/original/lostupdate001.png?1424555949" alt=""></p>
+<p><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/ConcurrentHashMap.html">文档</a>中是这样描述的：</p>
+<blockquote>
+<p>…However, even though all operations are thread-safe, retrieval operations do not entail locking, and there is not any support for locking the entire table in a way that prevents all access. This class is fully interoperable with Hashtable in programs that rely on its thread safety but not on its synchronization details.</p>
+<p><strong>Retrieval operations (including get) generally do not block, so may overlap with update operations (including put and remove)</strong>. Retrievals reflect the results of the most recently completed update operations holding upon their onset. (More formally, an update operation for a given key bears a happens-before relation with any (non-null) retrieval for that key reporting the updated value.) …</p>
+</blockquote>
+<p>为了正确地使用ConcurrentMap，个人做了点研究，并总结了一些心得。</p>
+<h2 id="What-is-Thread-Safety"><a href="#What-is-Thread-Safety" class="headerlink" title="What is Thread Safety?"></a>What is Thread Safety?</h2><p>先来看一下什么叫做线程安全。</p>
+<p><a href="https://en.wikipedia.org/wiki/Thread_safety">Wikipedia</a>中提到线程安全有多种理解方式。这里选用个人认为比较常用的是以下这种：</p>
+<blockquote>
+<p>Thread safe: Implementation is guaranteed to be free of <a href="https://en.wikipedia.org/wiki/Race_condition#Software">race conditions</a> when accessed by multiple threads simultaneously.</p>
+</blockquote>
+<p>Race Condition具体是什么请自行查阅，此处放张图简要解释（其实上面那张图也可以理解为广义的race condition问题）：</p>
+<p><img src="1.png" alt=""></p>
+<p>重点不在于定义，而是达到线程安全的方法。这些方法一般分为两类，重点就在于，分类的依据是什么？</p>
+<p><strong>一种着力于avoid shared state，而另一种shared state cannot be avoided.</strong></p>
+<p>前者：Re-entrancy lock（可重入锁），Thread-local storage（线程本地变量），Immutable objects（不可变对象）</p>
+<p>后者：Mutual exclusion（互斥机制），Atomic operations（原子操作）</p>
+<h3 id="联想Volatile"><a href="#联想Volatile" class="headerlink" title="联想Volatile"></a>联想Volatile</h3><p>此处联想一下volatile。volatile有一句很不精确的总结：“可以保证可见性，不可以保证原子性”。其实oracle官方对volatile的定义是，对于volatile类型的变量，read和write是原子性操作。</p>
+<p>听起来好像前后矛盾是不是？其实问题在于，<strong>原子性描述的对象不一样</strong>。对于volatile变量本身而言（map中的那个key而言），操作确实是原子级，保证线程安全的。但是对于涉及到这个变量的复合操作（i++，map中先get现有值并在此基础上put）而言，是不具备原子性的！这也许就是所谓的，shared state，数据结构/代码段的当前状态的共享，是无法避免的（本应避免）。</p>
+<p>所以，volatile无法作为线程安全的计数器使用。同理，如果还只用Map接口中的get和put方法的话，也是无法胜任需求的。</p>
+<h2 id="ConcurrentMap中复合操作的原子级方法"><a href="#ConcurrentMap中复合操作的原子级方法" class="headerlink" title="ConcurrentMap中复合操作的原子级方法"></a>ConcurrentMap中复合操作的原子级方法</h2><p>在ConcurrentMap接口中，提供了以下四种atomically的方法：</p>
+<ul>
+<li>putIfAbsent(K key, V value)</li>
+<li>remove(Object key, Object value)</li>
+<li>replace(K key, V oldValue, V newValue)</li>
+<li>replace(K key, V value)</li>
+</ul>
+<p>每种操作都提供了一个示例，用来介绍这个方法表示的是什么样的复合操作。比如对于putIfAbsent:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (!map.containsKey(key))</span><br><span class="line">   <span class="keyword">return</span> map.put(key, value);</span><br><span class="line"> <span class="keyword">else</span></span><br><span class="line">   <span class="keyword">return</span> map.get(key);</span><br></pre></td></tr></table></figure>
+
+<p>就是很常见的，如果不存在就更新，如果存在就取值（LRU模拟实现过程）。</p>
+<p>对于实现了ConcurrentMap接口的ConcurrentHashMap，有8个原子级复合操作，除了上述的四个以外，还有：</p>
+<ul>
+<li>public V computeIfAbsent​(K key, Function&lt;? super K,​? extends V&gt; mappingFunction)</li>
+<li>public V computeIfPresent​(K key, BiFunction&lt;? super K,​? super V,​? extends V&gt; remappingFunction)</li>
+<li>public V compute​(K key, BiFunction&lt;? super K,​? super V,​? extends V&gt; remappingFunction)</li>
+<li>public V merge​(K key, V value, BiFunction&lt;? super V,​? super V,​? extends V&gt; remappingFunction)</li>
+</ul>
+<p>这四个方法override了Map接口。</p>
+<p>利用这个8个方法，我们可以将很多复合操作原子化，从而使整个对于ConcurrentHashMap的操作避免race conditions带来的问题。</p>
+<p>比如我们想要做一件事：如果map1存在key1，那么更新key1 += someval; 否则添加一个条目&lt;key1, someval&gt;。我们可以这样写：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">V v = map1.putIfAbsent(key1, someval);</span><br><span class="line"><span class="keyword">if</span>(v != <span class="keyword">null</span>)</span><br><span class="line">  map1.computeIfPresent(key1, (k, v) -&gt; v + someval);</span><br></pre></td></tr></table></figure>
+<p>如果map1没有这个key1，那么putIfAbsent可以保证原子性的增添一个条目。负责增添的那次调用会返回null值，也就是说不会进入下一个判断；其他的线程发现返回值不是null，说明已经有线程增添过这个条目了，那么自己所需要的，就是更新条目值。这个过程可以用computeIfPresent原子性地做到。<br>·</p>
+]]></content>
+      <categories>
+        <category>中文, English</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
 </search>
