@@ -31,8 +31,9 @@
 <meta property="og:description" content="总感觉递归比起循环，有点不讲wood的感觉（">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://acvoyager.github.io/2020/11/25/%E9%80%92%E5%BD%92%E8%A7%A3%E5%86%B3n-sum%E9%97%AE%E9%A2%98/1.png">
+<meta property="og:image" content="https://acvoyager.github.io/2020/11/25/%E9%80%92%E5%BD%92%E8%A7%A3%E5%86%B3n-sum%E9%97%AE%E9%A2%98/2.png">
 <meta property="article:published_time" content="2020-11-26T00:51:00.000Z">
-<meta property="article:modified_time" content="2020-11-26T01:11:42.608Z">
+<meta property="article:modified_time" content="2020-12-01T04:11:16.892Z">
 <meta property="article:author" content="Voyager">
 <meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary">
@@ -225,7 +226,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -238,7 +239,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -308,10 +309,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2020-11-25 16:51:00 / Modified: 17:11:42" itemprop="dateCreated datePublished" datetime="2020-11-25T16:51:00-08:00">2020-11-25</time>
+      <time title="Created: 2020-11-25 16:51:00" itemprop="dateCreated datePublished" datetime="2020-11-25T16:51:00-08:00">2020-11-25</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2020-11-30 20:11:16" itemprop="dateModified" datetime="2020-11-30T20:11:16-08:00">2020-11-30</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -381,6 +388,9 @@
 
 <p>2 Sum的时候，我们希望第二个操作数从最后往前走，而且<strong>不随着第一个操作数的改变而重新初始化</strong>。这是由于第一步升序排列的性质所致。如果说a[i] + a[j] &gt;= target，那么必然a[i+1] + a[j] &gt; target，所以第二个操作数直接从j-1开始就行。如果i == j，那么意味着a[i] + a[i+1] &gt; target，这个时候再无计算任何组合的必要了，因为当第一个操作数已经是a[i]的情况下，不可能有更小的组合了。</p>
 <p>Done.</p>
+<p>— Nov 30, 2020 更新 —</p>
+<p>在leetcode上的3sum上提交结果如下：</p>
+<p><img src="2.png" alt=""></p>
 
     </div>
 
