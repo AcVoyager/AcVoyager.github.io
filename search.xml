@@ -1667,4 +1667,76 @@
         <tag>Distributed System</tag>
       </tags>
   </entry>
+  <entry>
+    <title>How malloc() works?</title>
+    <url>/2020/12/17/How-malloc-works/</url>
+    <content><![CDATA[<p>malloc()在操作系统中是怎样实现的？</p>
+<p>最近被问到了这样一个问题，略作搜索，发现牵扯到了一系列操作系统方面的知识，遂撰文以记之。</p>
+<a id="more"></a>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文的内容大多引用/总结于《深入了解计算机系统》– Computer Systems: A Programmer’s Perspective, Randal E. Bryant and David R. O’Hallaron. 2015.</p>
+<p>为了解释文章一开始提出的问题，我们需要从虚拟内存（Virtual Memory）开始说起。</p>
+<h2 id="Virtual-Memory-VM"><a href="#Virtual-Memory-VM" class="headerlink" title="Virtual Memory(VM)"></a>Virtual Memory(VM)</h2><p>为什么需要虚拟内存？原因有二：</p>
+<ol>
+<li>物理内存有限，如果进程数量很多，不足以为每个进程分配足够的资源。</li>
+<li>内存容易被恶意篡改(vulnerable to corruption)，比如有些进程可能会恶意地向其他进程使用的内存空间写入数据、篡改。</li>
+</ol>
+<p>虚拟内存做到了什么？有三点</p>
+<ol>
+<li>把主存当作disk的cache来用，只在主存中保留active的数据（LRU）。不得不说这是一种很有趣的想法。</li>
+<li>通过给每个进程一个统一的地址空间，来简化存储管理。</li>
+<li>（counter上一段的第二个原因）防止进程的地址空间被其他的进程污染。</li>
+</ol>
+<p>原文有一段话很有意思，这段话中，也出现了关键词malloc：</p>
+<blockquote>
+<p>Virtual memory is dangerous. Applications interact with virtual memory every time they reference a variable, dereference a pointer, or make a call to a <strong>dynamic allocation</strong> package such as <strong>malloc</strong>. If virtual memory is used improperly, applications can suffer from perplexing and insidious memory-related bugs. For example, a program with a bad pointer can crash immediately with a “segmentation fault” or a “protection fault,” run silently for hours before crashing, or scariest of all, run to completion with incorrect results. Understanding virtual memory, and the allocation packages such as malloc that manage it, can help you avoid these errors.</p>
+</blockquote>
+<p>上文提到，在使用VM的过程中，有可能会出现一些由于误使用指针导致的错误，比如说段错误(segmentation fault)等。</p>
+<h2 id="Translate-from-Virtual-Address-to-Physical-Address"><a href="#Translate-from-Virtual-Address-to-Physical-Address" class="headerlink" title="Translate from Virtual Address to Physical Address"></a>Translate from Virtual Address to Physical Address</h2><p><img src="1.png" alt=""></p>
+<p>一些需要注意的点：</p>
+<ul>
+<li>VA到PA的翻译者是MMU，MMU是一个在CPU上的硬件</li>
+<li>“…MMU use a lookup table in main memory..” MMU进行翻译时使用一个在<strong>主存</strong>存储的表。实际上这个表就是<a href="https://en.wikipedia.org/wiki/Memory_management_unit#Page_table_entries">页表</a>。</li>
+</ul>
+<h2 id="VM-caching"><a href="#VM-caching" class="headerlink" title="VM caching"></a>VM caching</h2><p>硬盘上的数据按照block来与main memory交换，因此VM空间也是按block来划分的，每个block叫做virtual page(VP). 相似地，PA也是按照block来划分，每个block叫做PP，也叫做page frame. VP与PP的大小是相同的。</p>
+<p><strong>Virtual Page存储在disk上</strong>。</p>
+<p>任一时间，一个VP会处于以下三种状态中的一种：</p>
+<ol>
+<li>Unallocated. 这个VP尚未被分配数据</li>
+<li>Cached. 这个VP已经被分配数据，并且数据在物理内存中cached</li>
+<li>Uncached. 这个VP的数据没有在物理内存中cached</li>
+</ol>
+<p>L1, L2, L3 cache后文简称SRAM，VM中与main memory交互的cache后文称为DRAM</p>
+<p>DRAM的性质</p>
+<ul>
+<li>VP比较大，4KB – 2MB</li>
+<li>fully associative（说真的我不知道怎么翻译），意思就是一个VP可以被放置在任何一个PP位置上</li>
+<li>DRAM cache采用write-back而非write-through。<a href="https://stackoverflow.com/a/57367793/9045814">write-back vs write-through</a>，简单来说就是write-back只写回到cache，除非要被replaced否则不写道真正的存储（disk）中，所以速度快</li>
+</ul>
+<h2 id="Page-Table（页表）"><a href="#Page-Table（页表）" class="headerlink" title="Page Table（页表）"></a>Page Table（页表）</h2><p><img src="2.png" alt=""></p>
+<p>PTE represents page table entries，这些entries组成了页表. 此处假设PTE有两个fields，valid bit和address field。</p>
+<p>Valid bit表示是否在DRAM中cached。与address区一起，这二者有如下三种组合</p>
+<ul>
+<li>Valid bit = 1, address -&gt; the start of corresponding physical address</li>
+<li>Valid bit = 0, address = null -&gt; not allocated</li>
+<li>Valid bit = 0, adress -&gt; the start of corresponding virtual address</li>
+</ul>
+<p>分别对应我们早些提到的cached, unallocated and uncached.</p>
+<p>当我们拿到一个virtual address去页表里面查询的时候，如果查到的那个valid bit=1，说明已经在physical memory中cached了。这种情况叫做page hit。</p>
+<p>如果valid bit=0，那么说明没有被cached。这样的话，就会触发page fault，抛出一个page fault exception。操作系统kernel会处理这个异常，然后通过某种算法将physical memory中的某个page替换成我们要找的那个。注意上面说过DRAM，也就是physical memory，也就是主存（这三个在此语境下就是一个东西），是write-back的，那么就意味着，当被替换的时候，才会把现在的值写会到disk里面。</p>
+<p><img src="3.png" alt=""></p>
+<p>把一个block（page）从DRAM转到Disk的操作叫swap in，反之swap out。上述那种方式也称为demand paging。</p>
+<p><strong>当我们需要分配内存(allocating)的时候，相当于在页表中将原来的null变为分配到的virtual page的地址。因为还没有访问，所以valid=0，没有被cached，address field指向的是VA</strong>。</p>
+<p>👆就是我们本文开篇的答案。</p>
+<h2 id="Thrashing"><a href="#Thrashing" class="headerlink" title="Thrashing"></a>Thrashing</h2><p>（中文名颠簸？</p>
+<p>假设一个进程真正需要的数据pages命名为working set，那么当working set的大小很大，超过了DRAM大小的时候，这种情况叫做thrashing。在此情况下，pages会持续性地swap in/out，导致运行性能严重下降。反过来讲，如果一个程序突然跑的很慢的时候，考虑是不是发生了thrashing。</p>
+<h2 id="Memory-Management"><a href="#Memory-Management" class="headerlink" title="Memory Management"></a>Memory Management</h2><p>当OS中运行了多个进程时，每个进程都有一个页表。每个进程的虚拟地址空间都是类似的，因此可以简化linking。</p>
+]]></content>
+      <categories>
+        <category>中文, English</category>
+      </categories>
+      <tags>
+        <tag>OS</tag>
+      </tags>
+  </entry>
 </search>
