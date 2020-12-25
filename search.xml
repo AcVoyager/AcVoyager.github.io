@@ -1718,7 +1718,10 @@
   <entry>
     <title>Interview Preparation</title>
     <url>/2020/11/02/Interview-Preparation/</url>
-    <content><![CDATA[<h2 id="网络相关"><a href="#网络相关" class="headerlink" title="网络相关"></a>网络相关</h2><p>OSI七层模型和TCP/IP四层模型：</p>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文为个人复习面试的一些资料。内容大多来源于网络。</p>
+<a id="more"></a>
+
+<h2 id="网络相关"><a href="#网络相关" class="headerlink" title="网络相关"></a>网络相关</h2><p>OSI七层模型和TCP/IP四层模型：</p>
 <p><img src="https://img-blog.csdn.net/2018041112053246?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5NTIxNTU0/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="经典网络分层模型图"></p>
 <p>TCP三次握手(动图)：</p>
 <p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcwNjA3MjA1NzA5MzY3?x-oss-process=image/format,png" alt=""></p>
