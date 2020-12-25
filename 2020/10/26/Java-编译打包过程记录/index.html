@@ -4,7 +4,7 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.2.0">
+<meta name="generator" content="Hexo 5.3.0">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
@@ -357,19 +357,15 @@
 
 <p>假设src目录如下：</p>
 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">src</span><br><span class="line">├── main</span><br><span class="line">│   ├── <span class="keyword">java</span></span><br><span class="line"><span class="keyword">│ </span>  │   ├── xxx.<span class="keyword">java</span></span><br><span class="line"><span class="keyword">│ </span>  │   ├── yyy.<span class="keyword">java</span></span><br><span class="line"><span class="keyword">│ </span>  │   ├── zzz.<span class="keyword">java</span></span><br><span class="line"><span class="keyword">│ </span>  └── resources</span><br><span class="line">└── test</span><br><span class="line">    ├── <span class="keyword">java</span></span><br><span class="line"><span class="keyword"> </span>   │   ├── xxxTest.<span class="keyword">java</span></span><br><span class="line"><span class="keyword"> </span>   │   ├── yyyTest.<span class="keyword">java</span></span><br><span class="line"><span class="keyword"> </span>   │   ├── zzzTest.<span class="keyword">java</span></span><br><span class="line"><span class="keyword"> </span>   └── resources</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <p>假定起始路径为工作目录。</p>
 <h2 id="使用javac编译"><a href="#使用javac编译" class="headerlink" title="使用javac编译"></a>使用<code>javac</code>编译</h2><p>JDK负责编译过程，JRE负责运行时。具体命令如下</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javac -d build src<span class="regexp">/main/</span>java/*.java</span><br></pre></td></tr></table></figure>
-
 <p>该命令会编译 <code>src/main/java</code>路径下所有java文件，并将输出的.class文件保存到<code>build</code>文件夹中。</p>
 <h2 id="使用jar打包"><a href="#使用jar打包" class="headerlink" title="使用jar打包"></a>使用<code>jar</code>打包</h2><p>进入<code>build</code>文件夹。注意这步很重要，如果不在build文件夹内进行后续打包操作的话，即使可以在外部利用相对路径解决问题，打包出来的jar包在运行的时候会报“找不到主类”的错误（哪怕已经在manifest中写明）。目前出现这种情况的原因暂且不明。</p>
 <p>在打包之前，要创建一个<code>MANIFEST.MF</code>来指明包中从哪个类开始运行（Main.class）</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Manifest</span>-Version: <span class="number">1</span>.<span class="number">0</span></span><br><span class="line"><span class="attribute">Main</span>-Class: Main</span><br></pre></td></tr></table></figure>
-
 <p>之后运行：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">jar</span> <span class="selector-tag">cvmf</span> <span class="selector-tag">MANIFEST</span><span class="selector-class">.MF</span> <span class="selector-tag">run</span><span class="selector-class">.jar</span> *<span class="selector-class">.class</span></span><br></pre></td></tr></table></figure>
-
 <p>意为将路径下所有的.class文件打包，生成的文件名叫<code>run.jar</code>，所使用的manifest文件名为<code>MANIFEST.MF</code>。</p>
 <p><code>jar</code>命令的选项cvmf分别表示：</p>
 <ul>
