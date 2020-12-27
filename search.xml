@@ -2095,4 +2095,21 @@ Java中线程池的核心实现类是`ThreadPoolExecutor`，顶层接口是`Exec
         <tag>OS</tag>
       </tags>
   </entry>
+  <entry>
+    <title>实现sqrt(x)和pow(x, n)</title>
+    <url>/2020/12/27/%E5%AE%9E%E7%8E%B0sqrt-x-%E5%92%8Cpow-x-n/</url>
+    <content><![CDATA[<p>sqrt(x)和pow(x, n)的Java实现</p>
+<a id="more"></a>
+
+<h2 id="sqrt-x"><a href="#sqrt-x" class="headerlink" title="sqrt(x)"></a>sqrt(x)</h2><p>使用二分法思想。时间复杂度log(x)。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">mySqrt</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = x, ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (l &lt;= r) &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = (r + l) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> ((<span class="keyword">long</span>) mid * mid &lt;= x) &#123;</span><br><span class="line">            ans = mid;</span><br><span class="line">            l = mid + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            r = mid - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="pow-x-n"><a href="#pow-x-n" class="headerlink" title="pow(x, n)"></a>pow(x, n)</h2><p>快速幂算法。时间复杂度O(log(n))</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">myPow</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">long</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">double</span> ans = <span class="number">1</span>, base = x;</span><br><span class="line">    <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">if</span>(n &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        n = -n;</span><br><span class="line">        flag = <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(n &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>((n &amp; <span class="number">1</span>) == <span class="number">1</span>)</span><br><span class="line">            ans *= base;</span><br><span class="line">        base *= base;</span><br><span class="line">        n /= <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    ans = flag ? <span class="number">1</span> / ans : ans;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>中文, English</category>
+      </categories>
+      <tags>
+        <tag>Algorithm</tag>
+      </tags>
+  </entry>
 </search>
