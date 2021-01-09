@@ -2118,6 +2118,7 @@ Java中线程池的核心实现类是`ThreadPoolExecutor`，顶层接口是`Exec
     <content><![CDATA[<p>简要记录<a href="https://developer.spotify.com/documentation/web-api/">Spotify Web API</a>的使用方法以及注意点。</p>
 <a id="more"></a>
 
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a href="https://www.ibm.com/support/knowledgecenter/SSGMCP_5.2.0/com.ibm.cics.ts.internet.doc/topics/dfhtl_uricomp.html">URL的组成</a><br><a href="https://www.ibm.com/support/knowledgecenter/SSGMCP_5.2.0/com.ibm.cics.ts.internet.doc/topics/dfhtl21.html">HTTP Request</a><br><a href="https://www.ibm.com/support/knowledgecenter/SSGMCP_5.2.0/com.ibm.cics.ts.internet.doc/topics/dfhtl22.html">HTTP Response</a></p>
 <p>Spotify Web API还算完善，每个API提供了一个在线的lab进行测试，示例如下：</p>
 <p><a href="https://developer.spotify.com/console/get-several-albums/">Get Several Albums</a></p>
 <h2 id="要点1-API中各参数含义以及重要参数"><a href="#要点1-API中各参数含义以及重要参数" class="headerlink" title="要点1: API中各参数含义以及重要参数"></a>要点1: API中各参数含义以及重要参数</h2><p>重点有两个：</p>
@@ -2148,6 +2149,7 @@ Java中线程池的核心实现类是`ThreadPoolExecutor`，顶层接口是`Exec
 <p>步骤流程图: <img src="https://developer.spotify.com/assets/AuthG_ClientCredentials.png" alt=""></p>
 <p>步骤大致描述：发送POST method，只包含刚才说的base64编码结果不包含authorization code，拿到access token，然后用access token进行后续访问。</p>
 <h2 id="Github开源库"><a href="#Github开源库" class="headerlink" title="Github开源库"></a>Github开源库</h2><p>官方的tutorial：<a href="https://github.com/spotify/web-api-auth-examples">Authentication Examples</a>，包含上述中的几类authorization方式。</p>
+<p><a href="https://github.com/zmb3/spotify">基于Go的Spotify接口wrapper</a></p>
 ]]></content>
       <categories>
         <category>中文, English</category>
