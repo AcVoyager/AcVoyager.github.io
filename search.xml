@@ -2112,4 +2112,48 @@ Java中线程池的核心实现类是`ThreadPoolExecutor`，顶层接口是`Exec
         <tag>OS</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Spotify Web API学习笔记</title>
+    <url>/2021/01/08/Spotify-Web-API%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>简要记录<a href="https://developer.spotify.com/documentation/web-api/">Spotify Web API</a>的使用方法以及注意点。</p>
+<a id="more"></a>
+
+<p>Spotify Web API还算完善，每个API提供了一个在线的lab进行测试，示例如下：</p>
+<p><a href="https://developer.spotify.com/console/get-several-albums/">Get Several Albums</a></p>
+<h2 id="要点1-API中各参数含义以及重要参数"><a href="#要点1-API中各参数含义以及重要参数" class="headerlink" title="要点1: API中各参数含义以及重要参数"></a>要点1: API中各参数含义以及重要参数</h2><p>重点有两个：</p>
+<p><img src="1.png" alt=""></p>
+<p><code>Spotify URI</code>，是Spotify内部的标记资源的方式。一首歌/一张专辑/一张歌单/一名歌手都有对应的URI。</p>
+<p><code>Spotify URL</code>，也称external URL，可以从外部访问到的URL。你可以把URL粘贴到浏览器里面直接进行访问，会打开Spotify的web播放器。</p>
+<p><img src="0.png" alt=""></p>
+<p>其中”Copy Song Link”得到的是external URL，“Copy Spotify URI”是URI。</p>
+<h2 id="要点2-rate-limiting"><a href="#要点2-rate-limiting" class="headerlink" title="要点2: rate limiting"></a>要点2: rate limiting</h2><blockquote>
+<p>Rate Limiting enables Web API to share access bandwidth to its resources equally across all users.</p>
+</blockquote>
+<p>我不知道中文名应该如何翻译，不过意思基本就是对一个clientID的访问带宽进行限制。如若短时间内遭遇同一clientID的大量访问，会返回状态号码429，意为发送了过多的request。</p>
+<p>推荐的做法是一次query查询多个实体。</p>
+<h2 id="要点3-是否要进行user-authorization以获取OAuth-Access-Token"><a href="#要点3-是否要进行user-authorization以获取OAuth-Access-Token" class="headerlink" title="要点3: 是否要进行user authorization以获取OAuth Access Token"></a>要点3: 是否要进行user authorization以获取OAuth Access Token</h2><p>写在前面：不论是否进行authorization，想用api必须先要<a href="https://developer.spotify.com/documentation/general/guides/app-settings/">register</a>来获取application级别的clientID和client secret。</p>
+<p>一般来说，如果只是为了查询一些歌曲、专辑等公共信息，是不需要进行authorization的。如果需要获取用户信息比如说姓名，邮箱等，那么是一定需要的（下文中第一类）。但是为了查询歌曲、专辑等信息进行authorization也是可以的（下文中第四类），得到access token后再通过API进行query会比没有token时的rate limiting高一些。</p>
+<p>文档中将User Authorization的情况其分为四类：</p>
+<ul>
+<li>Refreshable user authorization: <a href="https://developer.spotify.com/documentation/general/guides/authorization-guide/#authorization-code-flow">Authorization Code Flow</a></li>
+<li>Refreshable user authorization: Authorization Code Flow With Proof Key for Code Exchange (PKCE)</li>
+<li>Temporary user authorization: Implicit Grant</li>
+<li>Refreshable app authorization: <a href="https://developer.spotify.com/documentation/general/guides/authorization-guide/#client-credentials-flow">Client Credentials Flow</a></li>
+</ul>
+<p>其中个人重点学习了第一种和第四种。准确地说，第四种不涉及到authorization（授权）。</p>
+<h3 id="Authorization-Code-Flow"><a href="#Authorization-Code-Flow" class="headerlink" title="Authorization Code Flow"></a>Authorization Code Flow</h3><p>一句话概括：只需要用户为应用授权一次就可以得到access token以获取用户资料。</p>
+<p>步骤流程图：<img src="https://developer.spotify.com/assets/AuthG_AuthoriztionCode.png" alt=""></p>
+<p>步骤大致描述：先用clientID和secret发送GET获取一个authorization code之后用，然后用户点击授权后，把用base64编码clientID:client secret的结果与刚才的code发送POST得到最终的access token。</p>
+<h3 id="Client-Credential"><a href="#Client-Credential" class="headerlink" title="Client Credential"></a>Client Credential</h3><p>一句话概括：只需要server端验证（注意不是授权）来获得access token用于提高web api访问的rate limiting，不能获取用户资料，因为过程不涉及到authorization。</p>
+<p>步骤流程图: <img src="https://developer.spotify.com/assets/AuthG_ClientCredentials.png" alt=""></p>
+<p>步骤大致描述：发送POST method，只包含刚才说的base64编码结果不包含authorization code，拿到access token，然后用access token进行后续访问。</p>
+<h2 id="Github开源库"><a href="#Github开源库" class="headerlink" title="Github开源库"></a>Github开源库</h2><p>官方的tutorial：<a href="https://github.com/spotify/web-api-auth-examples">Authentication Examples</a>，包含上述中的几类authorization方式。</p>
+]]></content>
+      <categories>
+        <category>中文, English</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+      </tags>
+  </entry>
 </search>
