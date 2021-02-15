@@ -2197,4 +2197,43 @@ Java中线程池的核心实现类是`ThreadPoolExecutor`，顶层接口是`Exec
         <tag>Web</tag>
       </tags>
   </entry>
+  <entry>
+    <title>React自学笔记</title>
+    <url>/2021/02/15/React%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>看了一下，距离上次post已经过去一个月了。这一个月学习的内容与本学期上的课有关。比起上学期的求职时光，本学期课业压力更大，因此学习的东西也没那么自由。但不论怎么说，还是希望尽量有规律地更新，保持一个正反馈且积极反馈的学习体验。</p>
+<p>废话不多说，最近在学习React，因而本文用来记录学习之路上遇到的重点，坑点和一些tricks。</p>
+<a id="more"></a>
+
+<h2 id="LifeCycle"><a href="#LifeCycle" class="headerlink" title="LifeCycle"></a>LifeCycle</h2><p>Reference: <a href="https://reactjs.org/docs/state-and-lifecycle.html#adding-lifecycle-methods-to-a-class">Adding Lifecycle Methods to a Class</a></p>
+<p>留意两个class method：</p>
+<ul>
+<li><code>componentDidMount()</code>: 当一个element/component被插入到Dom树中后，React会调用该函数。</li>
+<li><code>componentWillUnmount()</code>: 当一个element/component从Dom树中被删除后，React会调用该函数</li>
+</ul>
+<h2 id="最好用Array-Func"><a href="#最好用Array-Func" class="headerlink" title="最好用Array Func"></a>最好用Array Func</h2><p>Reference: <a href="https://reactjs.org/docs/handling-events.html">Handling Events</a></p>
+<p>借用原文，</p>
+<blockquote>
+<p>You have to be careful about the meaning of this in JSX callbacks. In JavaScript, class methods are not bound by default. If you forget to bind this.handleClick and pass it to onClick, this will be undefined when the function is actually called. <br> This is not React-specific behavior; it is a part of how functions work in JavaScript. Generally, if you refer to a method without () after it, such as onClick={this.handleClick}, you should bind that method.</p>
+</blockquote>
+<p>如果不想用bind的话，那么在JSX传入一个callback函数时，最好适用() =&gt; {}这种风格：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;button onClick=&#123;<span class="function">() =&gt;</span> <span class="built_in">this</span>.handleClick()&#125;&gt;</span><br><span class="line">        Click me</span><br><span class="line">&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="Async的state"><a href="#Async的state" class="headerlink" title="Async的state"></a>Async的state</h2><p>使用<code>setState()</code>更新state的过程是异步的。那么如果下一个状态需要严格地依赖上个状态的值，代码该怎么写呢？</p>
+<p>Reference: <a href="https://reactjs.org/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous">State Updates May Be Asynchronous
+</a></p>
+<p><span style="color: red; font-weight: bold">不要</span>用这种”老”写法：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Wrong</span></span><br><span class="line"><span class="built_in">this</span>.setState(&#123;</span><br><span class="line">  counter: <span class="built_in">this</span>.state.counter + <span class="built_in">this</span>.props.increment,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>而用下面这种👇：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Correct</span></span><br><span class="line"><span class="built_in">this</span>.setState(<span class="function">(<span class="params">state, props</span>) =&gt;</span> (&#123;</span><br><span class="line">  counter: state.counter + props.increment</span><br><span class="line">&#125;));</span><br><span class="line"></span><br><span class="line"><span class="comment">// or in old-school style:</span></span><br><span class="line"><span class="built_in">this</span>.setState(<span class="function"><span class="keyword">function</span>(<span class="params">state, props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    counter: state.counter + props.increment</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>区别就在于，新的写法传入了一个method，其返回值为新state，而老写法直接传入需要更新的state。</p>
+<p>当然如果新的state不需要严格基于老state，那么老写法就可以。</p>
+<p><em>To be continued…</em></p>
+]]></content>
+      <categories>
+        <category>中文, English</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>React</tag>
+      </tags>
+  </entry>
 </search>
